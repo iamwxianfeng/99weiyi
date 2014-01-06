@@ -1,0 +1,39 @@
+<div id="xifu_content">
+  <div class="tab_conbox">
+    <ul>
+      <li id="tab1" class="tab_con">
+        <div class="hc_left">
+          <div class="yf">西服</div>
+          <div class="fzcc"> &nbsp;<input type="radio" name="radiobutton" value="radiobutton" onclick="Chima.Step.changeXifuStyle('<%= User::Style::LOOSE %>');" <%= 'checked' if @user.style == User::Style::LOOSE %> />宽松
+            &nbsp;<input type="radio" name="radiobutton" value="radiobutton" onclick="Chima.Step.changeXifuStyle('<%= User::Style::NORMAL %>');" <%= 'checked' if @user.style == User::Style::NORMAL %> />标准
+            &nbsp;<input type="radio" name="radiobutton" value="radiobutton" onclick="Chima.Step.changeXifuStyle('<%= User::Style::FIT %>');" <%= 'checked' if @user.style == User::Style::FIT %> />合体
+            &nbsp;<input type="radio" name="radiobutton" value="radiobutton" onclick="Chima.Step.changeXifuStyle('<%= User::Style::TIGHT %>');" <%= 'checked' if @user.style == User::Style::TIGHT %> />紧身 </div>
+          <div class="glcc">
+            <ul>
+              <li><span>胸围</span><span><%= show_suit_chest(@user) %></span></li>
+              <li><span>腰围</span><span><%= show_suit_middle_chest(@user) %></span></li>
+              <li><span>下摆</span><span><%= show_suit_xiabai(@user) %></span></li>
+              <li><span>前长</span><span><%= show_suit_front_length(@user) %></span></li>
+              <li><span>后长</span><span><%= show_suit_back_length(@user) %></span></li>
+              <li><span>肩宽</span><span><%= @user.shoulder %></span></li>
+              <li><span>袖长</span><span><%= @user.sleeve %></span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="hc_right">
+          <div class="cott">
+西服上衣尺寸部位重要性排序为胸围、腰围>肩宽、袖长、衣长（包括前长、后长）>下摆。<br/>
+你比较难买到完全符合这套推荐尺寸的西服，但你可购买最接近这个尺寸的西服。<br/>
+西服衣长不能过长，此外西服袖长应该比衬衫袖长短1cm。市面上的西服一般衣长偏长，袖长偏长。一般休闲西服比正装西服宽松。<br/>
+1、	胸围、腰围、下摆不应大于标准尺寸8cm或小于5cm。<br/>
+2、	衣长差距不应大于或小于4公分。<br/>
+3、	肩宽不应大于4cm或小于3cm。<br/>
+4、	袖长不应长于4cm或短于3cm。<br/>
+
+如买衣服时需更专业客服指导选尺码，请加QQ群1241330868（偏瘦群）。
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

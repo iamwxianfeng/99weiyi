@@ -1,0 +1,29 @@
+<div id="casualshirt_content">
+  <div class="tab_conbox">
+    <ul>
+      <li id="tab1" class="tab_con">
+        <div class="hc_left">
+          <div class="yf">休闲衬衫</div>
+          <div class="fzcc"> &nbsp;<input type="radio" name="radiobutton" value="radiobutton" onclick="Chima.Step.changeCasualshirtStyle('<%= User::Style::LOOSE %>');" <%= 'checked' if @user.style == User::Style::LOOSE %> />宽松
+            &nbsp;<input type="radio" name="radiobutton" value="radiobutton" onclick="Chima.Step.changeCasualshirtStyle('<%= User::Style::NORMAL %>');" <%= 'checked' if @user.style == User::Style::NORMAL %> />标准
+            &nbsp;<input type="radio" name="radiobutton" value="radiobutton" onclick="Chima.Step.changeCasualshirtStyle('<%= User::Style::FIT %>');" <%= 'checked' if @user.style == User::Style::FIT %> />合体
+            &nbsp;<input type="radio" name="radiobutton" value="radiobutton" onclick="Chima.Step.changeCasualshirtStyle('<%= User::Style::TIGHT %>');" <%= 'checked' if @user.style == User::Style::TIGHT %> />紧身 </div>
+          <div class="glcc">
+            <ul>
+              <li><span>胸围</span><span><%= show_casualshirt_chest(@user) %></span></li>
+              <li><span>腰围</span><span><%= show_casualshirt_middle_chest(@user) %></span></li>
+              <li><span>下摆</span><span><%= show_dressshirt_xiabai(@user) %></span></li>
+              <li><span>衣长</span><span><%= show_dressshirt_length(@user) %></span></li>
+              <li><span>肩宽</span><span><%= @user.shoulder %></span></li>
+              <li><span>袖长</span><span><%= @user.sleeve %></span></li>
+              <li><span>领围</span><span><%= @user.neck %></span></li>
+              <li><span>腕围</span><span><%= @user.wrist + 7 %></span></li>
+              <li><span>短袖长</span><span><%= show_dressshirt_short_length(@user) %></span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="hc_right">说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：</div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div id="suncoat_content">
+  <div class="tab_conbox">
+    <ul>
+      <li id="tab1" class="tab_con">
+        <div class="hc_left">
+          <div class="yf">中山装</div>
+          <div class="fzcc"> &nbsp;<input type="radio" name="radiobutton" value="radiobutton" onclick="Chima.Step.changeSuncoatStyle('<%= User::Style::LOOSE %>');" <%= 'checked' if @user.style == User::Style::LOOSE %> />宽松
+            &nbsp;<input type="radio" name="radiobutton" value="radiobutton" onclick="Chima.Step.changeSuncoatStyle('<%= User::Style::NORMAL %>');" <%= 'checked' if @user.style == User::Style::NORMAL %> />标准
+            &nbsp;<input type="radio" name="radiobutton" value="radiobutton" onclick="Chima.Step.changeSuncoatStyle('<%= User::Style::FIT %>');" <%= 'checked' if @user.style == User::Style::FIT %> />合体
+            &nbsp;<input type="radio" name="radiobutton" value="radiobutton" onclick="Chima.Step.changeSuncoatStyle('<%= User::Style::TIGHT %>');" <%= 'checked' if @user.style == User::Style::TIGHT %> />紧身 </div>
+          <div class="glcc">
+            <ul>
+              <li><span>胸围</span><span><%= show_coat_chest(@user) %></span></li>
+              <li><span>腰围</span><span><%= show_coat_middle_chest(@user) %></span></li>
+              <li><span>下摆</span><span><%= show_coat_chest(@user) - 2 %></span></li>
+              <li><span>前长</span><span><%= show_coat_length(@user) %></span></li>
+              <li><span>后长</span><span><%= show_coat_length(@user) %></span></li>
+              <li><span>肩宽</span><span><%= @user.shoulder %></span></li>
+              <li><span>袖长</span><span><%= @user.sleeve + 1 %></span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="hc_right">说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：</div>
+      </li>
+    </ul>
+  </div>
+</div>

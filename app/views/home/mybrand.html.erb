@@ -1,0 +1,106 @@
+<div class="tongzhi2" >
+  <div class="jdsh">你目前添加了 <span class="red18"><%= current_user.user_brands.count %></span> 件衣服，可添加更多衣服，将来买衣服时可更加准确。</div>
+</div>
+<div class="rq" style="padding-top:14px; width:881px">
+  <div id="tabbox">
+    <h3>男士上衣</h3>
+    <ul class="tabs" >
+      <li><a href="#">西服</a></li>
+      <li><a href="#">男士衬衫</a></li>
+      <li><a href="#">休闲衬衫</a></li>
+      <li><a href="#">T恤</a></li>
+      <li><a href="#">POLO衫</a></li>
+      <li><a href="#">羽绒服</a></li>
+      <li><a href="#" >夹克</a></li>
+      <li><a href="#">外套</a></li>
+      <li><a href="#" >大衣</a></li>
+      <li><a href="#" >毛衣、针织衫、卫衣</a></li>
+      <li><a href="#">风衣</a></li>
+      <li><a href="#">中山装</a></li>
+      <li><a href="#" >立领</a></li>
+    </ul>
+    <h3>男士下衣</h3>
+    <ul class="tabs">
+      <li><a href="#" >西服</a></li>
+      <li><a href="#" >男士衬衫</a></li>
+      <li><a href="#">休闲衬衫</a></li>
+    </ul>
+  </div>
+  <div class="mypp_mid">
+    <div class="mypp_tp"><strong>我的品牌</strong></div>
+    <div class="mypp_mnr">
+      <ul>
+        <% current_user.user_brands.each do |ub| %>
+        <li><span><a href="#">品牌为<%= ub.brand.try(:name) %></a></span><span>货号为<%= ub.model.try(:name) %></span><span><%= ub.type.try(:name) %></span></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <!--right-->
+  <div class="mypp_right">
+    <div class="yfpp">
+      <div class="yfpp_bt">他们在穿 <span class="ls14px">耐克 </span>的衣服</div>
+      <div class="yfpp_nr">
+        <% UserBrand.find_each do |user_brand|  %>
+          <% user = user_brand.user %>
+          <ul>
+            <li style=" border:none">
+              <div class="mypp_pic"><img src="<%= user.avatar_path %>" width="48" height="48" /></div>
+              <div class="mypp_wz"><%= user.fullname %><br />
+                <% unless @watch_users.map(&:watchable_id).index(user.id) %>
+                  <a href="javascript:;" _id="<%= user.id %>" class="watcher">关注</a>
+                <% else %>
+                  已关注.
+                <% end %>
+              </div>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+    <div class="yfpp">
+      <div class="yfpp_bt">他们在穿 <span class="ls14px">xl  </span>的衣服</div>
+      <div class="yfpp_nr">
+        <% UserBrand.find_each do |user_brand|  %>
+          <% user = user_brand.user %>
+          <ul>
+            <li style=" border:none">
+              <div class="mypp_pic"><img src="<%= user.avatar_path %>" width="48" height="48" /></div>
+              <div class="mypp_wz"><%= user.fullname %><br />
+                <% unless @watch_users.map(&:watchable_id).index(user.id) %>
+                  <a href="javascript:;" _id="<%= user.id %>" class="watcher">关注</a>
+                <% else %>
+                  已关注.
+                <% end %>
+              </div>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<p>&nbsp;</p>
+<div class="rq ycan" style="width:881px"><span>你可以：</span><a href="#"><img src="/assets/ycan_03.png" width="135" height="37" border="0" /></a>
+  <a href="/home/similar"><img src="/assets/ycan_05.gif" width="190" height="37" border="0" /></a></div>
+<p>&nbsp;</p>
+
+<script>
+  $(function(){
+    $(".watcher").click(function(){
+      var $this = $(this);
+      var id = $this.attr("_id");
+      $.ajax({
+        url: "/watchers",
+        type: "POST",
+        data: { user_id: id },
+        success: function(data){
+          if (data.retCode){
+            $this.html("已关注");
+            alert("关注成功!");
+          }
+        }
+      });
+    })
+  })
+</script>

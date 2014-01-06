@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>维衣尺码</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    jQuery.jqtab = function(tabtit,tabcon) {
+        $(tabcon).hide();
+        $(tabtit+" li:first").addClass("thistab").show();
+        $(tabcon+":first").show();
+    
+        $(tabtit+" li").mouseover(function() {
+            $(tabtit+" li").removeClass("thistab");
+            $(this).addClass("thistab");
+            $(tabcon).hide();
+            var activeTab = $(this).find("a").attr("tab");
+            $("#"+activeTab).fadeIn();
+            return false;
+        });
+        
+    };
+    /*调用方法如下：*/
+    $.jqtab("#tabs",".tab_con");
+    
+});
+</script>
+</head>
+<body>
+<div class="top">
+  <div class="logo"><img src="images/dl_01.png" width="200" height="66" /></div>
+  <div class="dlzc"><a href="#">注册</a> <a href="#">登录</a></div>
+</div>
+<div class="mune">
+  <div style="width:1000px; height:44px; margin:auto">
+    <ul>
+      <li><a href="#">首页</a></li>
+      <li><a href="#">我的尺寸</a></li>
+      <li><a href="#">各类型服装尺码</a></li>
+      <li><a href="#">我的品牌</a></li>
+      <li><a href="#">TA们穿</a></li>
+    </ul>
+    <div class="gzwb"><span>关注：</span><a href="#"><img src="images/dl_08.png" width="16" height="17" border="0" /></a><a href="#"><img src="images/dl_10.png" width="17" height="17" border="0" /></a><a href="#"><img src="images/dl_12.png" width="17" height="17" border="0" /></a><a href="#"><img src="images/dl_14.png" width="17" height="17" border="0" /></a></div>
+  </div>
+</div>
+<div class="tongzhi" style="font-size:12px">
+  <div class="jdsh s14">基于你的尺寸，尺码助手建议你购买各类型衣服时可参照如下尺寸购买。</div>
+  <div class="jdsh h14">提示：这些都是成品尺寸。仅供参考，如不适合请及时反馈</div>
+</div>
+<div class="rq">
+<div class="kind">种类</div>
+<div class="kind2">最佳/尺寸型号</div>
+</div>
+<div class="rq" style="padding-top:8px">
+  <div id="tabbox">
+    <h3>男士上衣</h3>
+    <ul class="tabs" id="tabs">
+      <li><a href="#" tab="tab1">西服</a></li>
+      <li><a href="#" tab="tab2">男士衬衫</a></li>
+      <li><a href="#" tab="tab3">休闲衬衫</a></li>
+      <li><a href="#" tab="tab4">T恤</a></li>
+      <li><a href="#" tab="tab5">POLO衫</a></li>
+      <li><a href="#" tab="tab6">羽绒服</a></li>
+      <li><a href="#" tab="tab7">夹克</a></li>
+      <li><a href="#" tab="tab8">外套</a></li>
+      <li><a href="#" tab="tab9">大衣</a></li>
+      <li><a href="#" tab="tab10">毛衣、针织衫、卫衣</a></li>
+      <li><a href="#" tab="tab11">风衣</a></li>
+      <li><a href="#" tab="tab12">中山装</a></li>
+      <li><a href="#" tab="tab13">立领</a></li>
+    </ul>
+    <h3>男士下衣</h3>
+    <ul class="tabs" id="tabs">
+      <li><a href="#" tab="tab14">西服</a></li>
+      <li><a href="#" tab="tab15">男士衬衫</a></li>
+      <li><a href="#" tab="tab16">休闲衬衫</a></li>
+    </ul>
+  </div>
+  <div class="tab_conbox">
+    <ul >
+      <li id="tab1" class="tab_con">
+        <div class="hc_left">
+          <div class="yf">西服</div>
+          <div class="fzcc"> &nbsp;<input type="radio" name="radiobutton" value="radiobutton" checked="checked" />宽松
+           &nbsp;<input type="radio" name="radiobutton" value="radiobutton" />标准
+           &nbsp;<input type="radio" name="radiobutton" value="radiobutton" />合体
+          &nbsp;<input type="radio" name="radiobutton" value="radiobutton" />紧身 </div>
+          <div class="glcc">
+            <ul>
+              <li><span>胸围</span><span>88.0</span></li>
+			  <li><span>腰围</span><span>88.0</span></li>
+			  <li><span>下摆</span><span>88.0</span></li>
+			  <li><span>前长</span><span>88.0</span></li>
+			  <li><span>后长</span><span>88.0</span></li>
+			  <li><span>肩宽</span><span>88.0</span></li>
+			  <li><span>袖长</span><span>88.0</span></li>
+	        </ul>
+          </div>
+        </div>
+		<div class="hc_right">说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：</div>
+      </li>
+      <li id="tab2" class="tab_con">
+       <div class="hc_left">
+          <div class="yf">西服</div>
+          <div class="fzcc"> &nbsp;&nbsp; <input type="radio" name="radiobutton" value="radiobutton" checked="checked" />宽松
+            &nbsp;&nbsp;<input type="radio" name="radiobutton" value="radiobutton" />标准
+            &nbsp;&nbsp;<input type="radio" name="radiobutton" value="radiobutton" />合体
+            &nbsp;&nbsp;<input type="radio" name="radiobutton" value="radiobutton" />紧身 </div>
+          <div class="glcc">
+            <ul>
+              <li><span>胸围</span><span>88.0</span></li>
+			  <li><span>腰围</span><span>88.0</span></li>
+			  <li><span>下摆</span><span>88.0</span></li>
+			  <li><span>前长</span><span>88.0</span></li>
+			  <li><span>后长</span><span>88.0</span></li>
+			  <li><span>肩宽</span><span>88.0</span></li>
+			  <li><span>袖长</span><span>88.0</span></li>
+	        </ul>
+          </div>
+        </div>
+		<div class="hc_right">说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：</div>
+      </li>
+      <li id="tab3" class="tab_con">
+      <div class="hc_left">
+          <div class="yf">西服</div>
+          <div class="fzcc"> &nbsp;&nbsp; <input type="radio" name="radiobutton" value="radiobutton" checked="checked" />宽松
+            &nbsp;&nbsp;<input type="radio" name="radiobutton" value="radiobutton" />标准
+            &nbsp;&nbsp;<input type="radio" name="radiobutton" value="radiobutton" />合体
+            &nbsp;&nbsp;<input type="radio" name="radiobutton" value="radiobutton" />紧身 </div>
+          <div class="glcc">
+            <ul>
+              <li><span>胸围</span><span>88.0</span></li>
+			  <li><span>腰围</span><span>88.0</span></li>
+			  <li><span>下摆</span><span>88.0</span></li>
+			  <li><span>前长</span><span>88.0</span></li>
+			  <li><span>后长</span><span>88.0</span></li>
+			  <li><span>肩宽</span><span>88.0</span></li>
+			  <li><span>袖长</span><span>88.0</span></li>
+	        </ul>
+          </div>
+        </div>
+		<div class="hc_right">说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：</div>
+      </li>
+      <li id="tab4" class="tab_con">
+        <div class="hc_left">
+          <div class="yf">男士衬衫</div>
+          <div class="fzcc"> &nbsp;&nbsp; <input type="radio" name="radiobutton" value="radiobutton" checked="checked" />宽松
+            &nbsp;&nbsp;<input type="radio" name="radiobutton" value="radiobutton" />标准
+            &nbsp;&nbsp;<input type="radio" name="radiobutton" value="radiobutton" />合体
+            &nbsp;&nbsp;<input type="radio" name="radiobutton" value="radiobutton" />紧身 </div>
+          <div class="glcc">
+            <ul>
+              <li><span>胸围</span><span>88.0</span></li>
+			  <li><span>腰围</span><span>88.0</span></li>
+			  <li><span>下摆</span><span>88.0</span></li>
+			  <li><span>前长</span><span>88.0</span></li>
+			  <li><span>后长</span><span>88.0</span></li>
+			  <li><span>肩宽</span><span>88.0</span></li>
+			  <li><span>袖长</span><span>88.0</span></li>
+	        </ul>
+          </div>
+        </div>
+		<div class="hc_right">说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：</div>
+      </li>
+      <li id="tab5" class="tab_con">
+        <div class="hc_left">
+          <div class="yf">休闲衬衫 </div>
+          <div class="fzcc"> &nbsp;&nbsp; <input type="radio" name="radiobutton" value="radiobutton" checked="checked" />宽松
+            &nbsp;&nbsp;<input type="radio" name="radiobutton" value="radiobutton" />标准
+            &nbsp;&nbsp;<input type="radio" name="radiobutton" value="radiobutton" />合体
+            &nbsp;&nbsp;<input type="radio" name="radiobutton" value="radiobutton" />紧身 </div>
+          <div class="glcc">
+            <ul>
+              <li><span>胸围</span><span>88.0</span></li>
+			  <li><span>腰围</span><span>88.0</span></li>
+			  <li><span>下摆</span><span>88.0</span></li>
+			  <li><span>前长</span><span>88.0</span></li>
+			  <li><span>后长</span><span>88.0</span></li>
+			  <li><span>肩宽</span><span>88.0</span></li>
+			  <li><span>袖长</span><span>88.0</span></li>
+	        </ul>
+          </div>
+        </div>
+		<div class="hc_right">说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：说明：</div>
+      </li>
+    </ul>
+  </div>
+ 
+</div>
+<p>&nbsp;</p>
+ <div class="rq ycan"><span>你可以：</span><a href="#"><img src="images/ycan_03.png" width="135" height="37" border="0" /></a><a href="#"><img src="images/ycan_05.gif" width="190" height="37" border="0" /></a></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

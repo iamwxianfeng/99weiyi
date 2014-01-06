@@ -1,0 +1,36 @@
+<%= form_tag session_path, :method=>:POST do %>
+  <div class="rq">
+    <h2>登录</h2>
+    <p>你可以直接使用如下账号登录</p>
+    <div class="qqkd">
+      <a href="/auth/qq"><img src="/assets/zc_03.png" width="113" height="26" border="0" /></a>
+      <a href="/auth/weibo"><img src="/assets/zc_05.png" width="112" height="26" border="0" /></a>
+      <!-- <a href="#"><img src="/assets/zc_07.png" width="113" height="26" border="0" /></a> -->
+    </div>
+    <!--
+    <div class="qqkd">
+      <a href="#"><img src="/assets/zc_12.png" width="86" height="23" border="0" /></a>
+      <a href="#"><img src="/assets/zc_14.png" width="62" height="23" border="0" /></a>
+      <a href="#"><img src="/assets/zc_16.png" width="75" height="23" border="0" /></a>
+    </div>
+    -->
+    <hr />
+    <div class="zctsy"><span class="zczh">使用已注册的本站账号登录：</span><span class="yyzh">没有账号，免费<a href="/signup">注册</a></span></div>
+    <div class="fzlx"><span class="gzxm">邮箱:</span><span class="input">
+        <label>
+          <input type="text" name="email" />
+        </label>
+      </span></div>
+    <div class="fzlx"><span class="gzxm">密码:</span><span class="input">
+        <label>
+          <input type="password" name="password" />
+        </label>
+      </span></div>
+    <div class="fzlx"><span class="gzxm">
+        <input type="checkbox" name="checkbox2" value="checkbox" />
+      </span><span>两周内自动登录</span></div>
+    <div class="fzlx" style="padding-left:100px">
+      <input type="submit" name="Submit2" value=" " class="dlbt"/>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,89 @@
+<%= form_tag '/user_brands', :method=>:post do %>
+  <%= hidden_field_tag "user_brand[user_id]", current_user.id %>
+  <div class="tongzhi">
+    <div class="s14">请提供你平时穿着感觉最合适、舒服的各种品牌服饰的尺码和型号。</div>
+
+    <div class="h14">比如穿雅戈尔175B的西服感觉合适，或者jackjones的休闲西服感觉舒适等等。这将有助于对你的身材特征及穿着偏好有更多的了解。</div>
+  </div>
+  <div class="rq">
+    <div class="fzlx"><span class="gzxm">服装类型:</span> <span class="slect">
+        <label>
+          <%= select_tag "user_brand[type_id]", "<option>--请选择服装类型--</option>#{options_from_collection_for_select(Type.all,:id,:name)}".html_safe %>
+        </label>
+      </span> <span class="btwz">比如西裤、正装衬衫、休闲衬衫、牛仔裤等。</span> </div>
+    <div class="fzlx"><span class="gzxm">品牌:</span> <span class="slect">
+        <label>
+          <%= select_tag "user_brand[brand_id]", "<option>--请选择品牌--</option>#{options_from_collection_for_select(Brand.all,:id,:name)}".html_safe %>
+        </label>
+      </span> <span class="btwz">输入品牌名，如果没有选择其他，并在输入框中输入。</span> </div>
+    <div class="fzlx"><span class="gzxm">货号：</span> <span class="input">
+        <label>
+          <input type="text" name="user_brand[item]" />
+        </label>
+      </span> <span class="btwz">非必选项，是各品牌用来表示产品系列的。不代表尺码大小。</span> </div>
+    <div class="fzlx"><span class="gzxm">型号：</span> <span class="slect">
+        <label>
+          <%= select_tag "user_brand[model_id]", "<option>--请选择型号--</option>#{options_from_collection_for_select(Model.all,:id,:name)}".html_safe %>
+        </label>
+      </span> <span class="btwz">入衬衫的38,39.裤子的170/176.T恤的L、s、m.不同服装类型标识发不一样。</span> </div>
+    <div class="fzlx"><span class="gzxm">穿着感觉：</span><span class="slect">
+        <label>
+          <%= select_tag "user_brand[feel_id]", "<option>--请选择穿着感觉--</option>#{options_for_select(Brand::FEEL.collect { |feel| [feel[:name],feel[:id]] })}".html_safe %>
+        </label>
+      </span><span class="btwz">是否合适，舒适度等。</span> </div>
+    <div class="fzlx"><span class="gzxm">购买地址：</span> <span class="input">
+        <label>
+          <input type="text" name="user_brand[buy_addr]" />
+        </label>
+      </span> <span class="btwz">输入购买链接或实体店地址。</span> </div>
+    <div class="fzlx"><a href="javascript:;" id="save"><img src="/assets/tjagin_09.png" width="132" height="36" border="0" /></a></div>
+    <div class="fzlx h18">当然，你也可以：</div>
+    <div class="fzlx"><a href="/home/measure"><img src="/assets/zjlbt_05222.png" width="145" height="37" border="0" /></a></div>
+  </div>
+  <p>&nbsp;</p>
+<% end %>
+
+<script type="text/javascript">
+  $(function(){
+
+    $("#user_brand_type_id").change(function(){
+      var $this = $(this);
+      var type_id = $this.val();
+      if(type_id == '--请选择服装类型--')
+        return;
+      var $brand_select = $("#user_brand_brand_id");
+      $.ajax({
+        url: "/types/get_brands",
+        type: "GET",
+        data: { "type_id": type_id },
+        success: function(data){
+          if(data.retCode){
+            Chima.Step.changeType($brand_select,data.items)
+          }
+        }
+      });
+    });
+
+    $("#user_brand_brand_id").change(function(){
+      var $this = $(this);
+      var brand_id = $this.val();
+      if(brand_id == '--请选择品牌--')
+        return;
+      var $model_select = $("#user_brand_model_id");
+      $.ajax({
+        url: "/brands/get_models",
+        type: "GET",
+        data: { "brand_id": brand_id },
+        success: function(data){
+          if(data.retCode)
+            Chima.Step.changeType($model_select,data.items);
+        }
+      });
+    });
+
+    $("#save").click(function(){
+      $("form").submit();
+    });
+
+  })
+</script>

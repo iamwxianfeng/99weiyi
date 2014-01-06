@@ -1,0 +1,61 @@
+<%= form_tag "/users/#{current_user.id}/upload_avatar", :multipart=>true do %>
+  <div class="rq">
+    <div class="trzy_tp">
+      <p>添加或修改你的头像    </p>
+      <br />
+      <br />
+      <div class=" sep2_sg"> <span class="cgzl_tm">头像<strong>：</strong></span>
+        <div class="zy_tx"> <img src="<%= current_user.avatar_path %>"  height="60px" width="60px"/></div>
+        <div class="shcti"><div class="l14">从电脑中选择你喜欢的照片</div><div><span class="fzlx">
+              <!-- <span class="input">
+                 <label>
+                   <input type="file" name="textfield"/>
+                </label>
+              </span> -->
+              <label>
+                <input type="file" name="file" value="浏览" />
+                <input type="submit" name="Submit2" value="上传" />
+              </label>
+            </span></div>
+        </div>
+      </div>
+      <br />
+      <div class=" sep2_sg">上传你喜欢的照片,预览的小兔（60X60）即为保存后的头像图标</div>
+      <br />
+      <p class="bcbxg_bt">
+        <a href="javascript:;" id="save"><img src="/assets/bcbxiu2.png" width="136" height="37" border="0" /></a>
+        <a href="javascript:;" id="cancel"><img src="/assets/bcbxiu3.png" width="136" height="37" border="0" /></a></p>
+    </div>
+  </div>
+  <p>&nbsp;</p>
+<% end %>
+
+<script type="text/javascript">
+  $(function(){
+
+    $("#save").click(function(){
+      $.ajax({
+        url: "/users/<%= current_user.id %>/update_avatar",
+        type: 'POST',
+        data: {},
+        success: function(data){
+          if(data.retCode)
+            window.location.href = "/users/<%= current_user.id %>/avatar"
+        }
+      });
+    });
+
+    $("#cancel").click(function(){
+      $.ajax({
+        url: "/users/<%= current_user.id %>/cancel_avatar",
+        type: "POST",
+        success: function(data){
+          if (data.retCode)
+            window.location.href = "/users/<%= current_user.id %>/avatar"
+        }
+      });
+
+    });
+
+  })
+</script>

@@ -1,0 +1,1 @@
+require File.expand_path("../../../lib/restful_authentication/init",__FILE__)

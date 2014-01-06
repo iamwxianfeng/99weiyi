@@ -1,0 +1,1 @@
+AB = ActiveRecord::Base

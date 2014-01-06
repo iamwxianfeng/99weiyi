@@ -1,0 +1,35 @@
+zh_CN:
+  activerecord:
+    attributes:
+      model:
+        name: 型号名称
+      size:
+        name: 尺码名称
+      forecast_msize:
+        height: 身高
+        weight: 体重
+        chest: 胸围
+        middle_chest: 中腰围
+        shoulder: 肩宽
+        sleeve: 袖长
+        neck: 领围
+        down_chest: 腰围
+        ass: 臀围
+        crosspiece: 横档
+        foot: 脚长
+      forecast_wsize:
+        height: 身高
+        weight: 体重
+        chest: 胸围
+        middle_chest: 中腰围
+        shoulder: 肩宽
+        sleeve: 袖长
+        neck: 领围
+        down_chest: 腰围
+        ass: 臀围
+        crosspiece: 横档
+        foot: 脚长
+      height:
+        value: 身高
+      weight:
+        value: 体重

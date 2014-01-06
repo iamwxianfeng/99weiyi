@@ -1,0 +1,77 @@
+<div class="ygcc_bt">我的预估尺寸是：</div>
+<div class="yg_sg"><strong>身高:</strong><span class="l14"><%= current_user.height.value %> cm</span> <strong>体重：</strong><span class="l14"><%= current_user.weight.value %> kg</span></div>
+<table width="930" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#47777b" class="ygcc_xx">
+  <tr>
+    <td width="84" height="25" rowspan="2" bgcolor="#F4F9F9">&nbsp;</td>
+    <td height="25" colspan="5" align="center" bgcolor="#F4F9F9">上身</td>
+    <td height="25" colspan="4" align="center" bgcolor="#F4F9F9">下身</td>
+  </tr>
+  <tr>
+    <td width="90" height="25" align="center" bgcolor="#F4F9F9">胸围</td>
+    <td width="106" height="25" align="center" bgcolor="#F4F9F9">中腰围</td>
+    <td width="80" height="25" align="center" bgcolor="#F4F9F9">肩宽</td>
+    <td width="78" height="25" align="center" bgcolor="#F4F9F9">袖长</td>
+    <td width="83" height="25" align="center" bgcolor="#F4F9F9">领围</td>
+    <td width="85" align="center" bgcolor="#F4F9F9">腰围</td>
+    <td width="86" height="25" align="center" bgcolor="#F4F9F9">臀围</td>
+    <td width="79" height="25" align="center" bgcolor="#F4F9F9">横档</td>
+    <td width="84" height="25" align="center" bgcolor="#F4F9F9">脚长</td>
+  </tr>
+  <tr>
+    <td height="25" align="center" bgcolor="#F4F9F9">预估尺寸</td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.chest %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.middle_chest %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.shoulder %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.sleeve %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.neck %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.down_chest %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.ass %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.crosspiece %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.foot %></td>
+  </tr>
+</table>
+<div class="rq">
+  <p class="hdzqcc_bt">身材相似的人他们在穿：</p>
+  <div class="scxsr">
+    <ul>
+      <% UserBrand.find_each do |ub| %>
+        <li>
+          <div class="scxs_pic"><img src="<%= ub.user.avatar_path %>" width="70" height="70" /></div>
+          <div class="scxs_wz">
+            <div>用户 <span class="tjagin"><%= ub.user.login %></span> 在传 <%= ub.brand.name %> 的 <span class="tjagin"> <%= ub.model.try(:name) %> 码</span> <%= ub.type.try(:name) %> </div>
+            <div>他感觉 <%= ub.human_feel %> <span class="scxs_h12"> <%= ub.created_at %> </span></div>
+            <div>我穿这个号也合适先
+              <% unless @likes.map(&:user_brand_id).index(ub.id) %>
+                <a href="javascript:;" class="like" _id="<%= ub.id %>">收藏一下</a>。
+              <% else %>
+                已收藏!
+              <% end %>
+              <!-- <a href="#">评论</a> <a href="#">转发</a> -->
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<p>&nbsp;</p>
+
+<script type="text/javascript">
+  $(function(){
+    $(".like").click(function(){
+      var $this = $(this);
+      var id = $this.attr("_id");
+      $.ajax({
+        url: "/likes",
+        type: "POST",
+        data: { user_brand_id: id },
+        success: function(data){
+          if (data.retCode){
+            $this.html("已收藏!");
+            alert("收藏成功!");
+          }
+        }
+      })
+    });
+  })
+</script>

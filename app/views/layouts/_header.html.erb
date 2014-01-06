@@ -1,0 +1,20 @@
+<div class="top">
+  <div class="logo"><a href='/'><img src="/assets/dl_01.png" width="200" height="66" /></a></div>
+  <% if logged_in? %>
+    <div class="dlzc"><span class="l14"><a href="/users/<%= current_user.id %>"><%= current_user.fullname %></a></span> <a href="/logout">退出</a></div>
+  <% else %>
+    <div class="dlzc"><a href="/signup">注册</a> <a href="/login">登录</a></div>
+  <% end %>
+</div>
+<div class="mune">
+  <div style="width:1000px; height:44px; margin:auto">
+    <ul>
+      <li><a href="/">首页</a></li>
+      <li><a href="/home/mysize">我的尺寸</a></li>
+      <li><a href="/home/recommended">各类型服装尺码</a></li>
+      <li><a href="/home/mybrand">我的品牌</a></li>
+      <li><a href="/home/similar">TA们穿</a></li>
+    </ul>
+    <div class="gzwb"><span>关注：</span><a href="#"><img src="/assets/dl_08.png" width="16" height="17" border="0" /></a><a href="#"><img src="/assets/dl_10.png" width="17" height="17" border="0" /></a><a href="#"><img src="/assets/dl_12.png" width="17" height="17" border="0" /></a><a href="#"><img src="/assets/dl_14.png" width="17" height="17" border="0" /></a></div>
+  </div>
+</div>

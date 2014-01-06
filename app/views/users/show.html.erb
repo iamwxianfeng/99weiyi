@@ -1,0 +1,65 @@
+<div class="rq">
+  <div class="trzy_tp trzy_xhx">
+    <div class="zy_tx"> <img src="<%= current_user.avatar_path %>" width="60px" height="60px"/></div>
+    <div class="zy_nc"><%= current_user.login %> <br />
+      <br />
+      <a href="#">收件箱</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/users/<%= current_user.id %>/edit">编辑我的资料</a></div>
+    <div class="zy_gz">
+      关注<span class="red18"><%= current_user.watchs.count %></span>人&nbsp;&nbsp;&nbsp;&nbsp;
+      粉丝<span class="red18"><%= current_user.watchers.count %></span>人
+    </div>
+  </div>
+  <div class="yg_sg" style="padding-top:30px"><div class="zy_wdcc">我的尺寸</div>
+    <div class="zy_sg"><strong>身高:</strong><span class="l14"><%= current_user.height.value %> cm</span> <strong>体重：</strong><span class="l14"><%= current_user.weight.value %> kg</span></div></div>
+  <table width="930" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#47777b" class="ygcc_xx">
+    <tr>
+      <td width="84" height="25" rowspan="2" bgcolor="#F4F9F9">&nbsp;</td>
+      <td height="25" colspan="5" align="center" bgcolor="#F4F9F9">上身</td>
+      <td height="25" colspan="4" align="center" bgcolor="#F4F9F9">下身</td>
+    </tr>
+    <tr>
+      <td width="90" height="25" align="center" bgcolor="#F4F9F9">胸围</td>
+      <td width="106" height="25" align="center" bgcolor="#F4F9F9">中腰围</td>
+      <td width="80" height="25" align="center" bgcolor="#F4F9F9">肩宽</td>
+      <td width="78" height="25" align="center" bgcolor="#F4F9F9">袖长</td>
+      <td width="83" height="25" align="center" bgcolor="#F4F9F9">领围</td>
+      <td width="85" align="center" bgcolor="#F4F9F9">腰围</td>
+      <td width="86" height="25" align="center" bgcolor="#F4F9F9">臀围</td>
+      <td width="79" height="25" align="center" bgcolor="#F4F9F9">横档</td>
+      <td width="84" height="25" align="center" bgcolor="#F4F9F9">脚长</td>
+    </tr>
+    <tr>
+      <td height="25" align="center" bgcolor="#F4F9F9">预估尺寸</td>
+      <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.chest %></td>
+      <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.middle_chest %></td>
+      <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.shoulder %></td>
+      <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.sleeve %></td>
+      <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.neck %></td>
+      <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.down_chest %></td>
+      <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.ass %></td>
+      <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.crosspiece %></td>
+      <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.foot %></td>
+    </tr>
+  </table>
+  <div class="trzy_tp">
+    <p><strong>我的品牌</strong></p>
+    <% @user_brands.each do |user_brand| %>
+      <div class="wdsc_nr"><span>品牌名：<a href="#"><%= user_brand.brand.name %></a></span>
+        <span>货号：<a href="#"><%= user_brand.model.try(:name) %></a> </span>
+        <span>尺码为:<a href="#"><%= user_brand.model.try(:name) %> 的 <%= user_brand.type.name %></a></span></div>
+    <% end %>
+  </div>
+  <div class="trzy_tp">
+    <p><strong>我的收藏</strong></p>
+    <% @likes.each do |like| %>
+      <% user_brand = like.user_brand %>
+      <div class="wdsc_nr">
+        <span>品牌名：<a href="#"><%= user_brand.brand.name %></a></span>
+        <span>货号：<a href="#"><%= user_brand.model.try(:name) %></a> </span>
+        <span>尺码为:<a href="#"> <%= user_brand.model.try(:name) %> 的 <%= user_brand.type.name %> </a></span>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+<p>&nbsp;</p>

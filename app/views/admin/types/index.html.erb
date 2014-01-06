@@ -1,0 +1,24 @@
+<%= link_to '新服装类型', new_admin_type_path %>
+<h1>服装类型列表</h1>
+
+<table>
+  <tr>
+    <th>服装类型</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @types.each do |type| %>
+  <tr>
+    <td><%= type.name %></td>
+    <td><%= link_to '显示', [:admin,type] %></td>
+    <td><%= link_to '编辑', edit_admin_type_path(type) %></td>
+    <td><%= link_to '删除', [:admin,type], confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+

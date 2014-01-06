@@ -1,0 +1,44 @@
+<div class="ygcc_bt">你的预估尺寸是：</div>
+<div class="yg_sg"><strong>身高:</strong><span class="l14"><%= current_user.height.value %> cm</span> <strong>体重：</strong><span class="l14"><%= current_user.weight.value %> kg</span></div>
+<table width="930" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#47777b" class="ygcc_xx">
+  <tr>
+    <td width="84" height="25" rowspan="2" bgcolor="#F4F9F9">&nbsp;</td>
+    <td height="25" colspan="5" align="center" bgcolor="#F4F9F9">上身</td>
+    <td height="25" colspan="4" align="center" bgcolor="#F4F9F9">下身</td>
+  </tr>
+  <tr>
+    <td width="90" height="25" align="center" bgcolor="#F4F9F9">胸围</td>
+    <td width="106" height="25" align="center" bgcolor="#F4F9F9">中腰围</td>
+    <td width="80" height="25" align="center" bgcolor="#F4F9F9">肩宽</td>
+    <td width="78" height="25" align="center" bgcolor="#F4F9F9">袖长</td>
+    <td width="83" height="25" align="center" bgcolor="#F4F9F9">领围</td>
+    <td width="85" align="center" bgcolor="#F4F9F9">腰围</td>
+    <td width="86" height="25" align="center" bgcolor="#F4F9F9">臀围</td>
+    <td width="79" height="25" align="center" bgcolor="#F4F9F9">横档</td>
+    <td width="84" height="25" align="center" bgcolor="#F4F9F9">脚长</td>
+  </tr>
+  <tr>
+    <td height="25" align="center" bgcolor="#F4F9F9">预估尺寸</td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.chest %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.middle_chest %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.shoulder %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.sleeve %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.neck %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.down_chest %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.ass %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.crosspiece %></td>
+    <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.foot %></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<div class="rq">
+  <p class="hdzqcc_bt"><strong>可以通过以下二种方式获得准确尺寸：</strong></p>
+  <div class="zqcc_ff">
+    <div class="zqcc_pic"><a href="/home/measure"><img src="/assets/zqcc_03.png" width="197" height="37" border="0" /></a> </div>
+    <div class="zqcc_wz" style="padding-top:10px">自己用尺子等工具测量身体各个部位。</div>
+  </div>
+  <div class="zqcc_ff">
+    <div class="zqcc_pic"><a href="/home/brand_input"><img src="/assets/zqcc_09.png" width="260" height="37" border="0" /></a> </div>
+    <div class="zqcc_wz" style="padding-top:10px">请相应输入服装类型、品牌、货号、型号信息。系统会自动为您识别尺寸。</div>
+  </div>
+</div>

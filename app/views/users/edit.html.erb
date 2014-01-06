@@ -1,0 +1,62 @@
+<%= form_tag user_path(current_user), :method=>:put do %>
+  <div class="rq">
+    <div class="trzy_tp">
+      <p><span class="h14"><%= current_user.login %> </span>的资料    </p>
+      <div class=" sep2_sg"> <span class="cgzl_tm">呢称：</span>
+        <label></label>
+        <span class="fzlx"><span class="input">
+            <label>
+              <input type="text" name="user[login]" value="<%= current_user.login %>" />
+            </label>
+          </span></span></div>
+      <br />
+      <div class=" sep2_sg"> 性别：
+        <label></label>
+        <label>
+          <input name="user[gender]" type="radio" value="0" <%= 'checked' if current_user.gender == User::Gender::M %> />
+        </label>
+        男
+        <label>
+          <input type="radio" name="user[gender]" value="1" <%= 'checked' if current_user.gender == User::Gender::W %>/>
+        </label>
+        女    </div>
+      <br />
+      <div class=" sep2_sg"> <span class="cgzl_tm">头像<strong>：</strong></span>
+        <div class="zy_tx"> <img src="<%= current_user.avatar_path %>"  width="60px" height="60px"/></div>
+        <div class="xgzl_sctx"><a href="/users/<%= current_user.id %>/avatar" class="l14">上传头像</a></div>
+      </div>
+      <br />
+      <div class=" sep2_sg"> 身高：
+        <label>
+          <select name="user[height_id]" class="sg_slect">
+            <option>--请选择身高--</option>
+            <% Height.all.each do |height| %>
+              <option value="<%= height.id %>" <%= 'selected' if current_user.height_id == height.id %>><%= height.value %></option>
+            <% end %>
+          </select>
+        </label>
+        <strong>&nbsp;</strong>cm (厘米) </div>
+      <br />
+      <div class=" sep2_sg"> 体重：
+        <label>
+          <select name="user[weight_id]" class="sg_slect">
+            <option>--请选择体重--</option>
+            <% Weight.all.each do |weight| %>
+              <option value="<%= weight.id %>" <%= 'selected' if current_user.weight_id == weight.id %>><%= weight.value.to_i %></option>
+            <% end %>
+          </select>
+        </label>
+        <strong>&nbsp;</strong>kg (公斤) </div>
+      <p class="bcbxg_bt"><a href="javascript:;" id="save"><img src="/assets/bcbxiu.png" width="136" height="37" border="0" /></a></p>
+    </div>
+  </div>
+  <p>&nbsp;</p>
+<% end %>
+
+<script type="text/javascript">
+  $(function(){
+    $("#save").click(function(){
+      $("form").submit();
+    })
+  })
+</script>

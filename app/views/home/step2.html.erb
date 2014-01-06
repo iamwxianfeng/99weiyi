@@ -1,0 +1,45 @@
+<div class="rq">
+  <div class="h18 zqcc_ff" style="margin-top:80px"><strong>我的</strong></div>
+  <div class=" sep2_sg"> <strong>身高：</strong>
+    <label>
+      <select name="select" class="sg_slect">
+        <option>--请选择身高--</option>
+        <% Height.all.each do |height| %>
+          <option value="<%= height.id %>"><%= height.value %></option>
+        <% end %>
+      </select>
+    </label>
+    <strong>&nbsp;</strong>cm (厘米) </div>
+  <div class=" sep2_sg"><strong>体重：</strong>
+    <label>
+      <select name="select2" class="sg_slect">
+        <option>--请选择体重--</option>
+        <% Weight.all.each do |weight| %>
+          <option value="<%= weight.id %>"><%= weight.value.to_i %></option>
+        <% end %>
+      </select>
+    </label>
+    &nbsp;kg (公斤) </div>
+  <!-- <div style="padding-left:50px">请输入净尺寸</div> -->
+  <div class="zqcc_ff" style="margin-top:80px">
+    <div class="zqcc_pic"><a href="javascript:;" id="height_weight_btn"><img src="/assets/next.png" width="145" height="37" border="0" /></a> </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $("#height_weight_btn").click(function(){
+      var height = $("select[name='select'] :selected").val();
+      var weight = $("select[name='select2'] :selected").val();
+      if(height == "--请选择身高--"){
+        alert("请选择身高");
+        return
+      }
+      if(weight == "--请选择体重--"){
+        alert("请选择体重");
+        return
+      }
+      window.location.href = "/home/step3?height=" + height + "&weight=" + weight;
+    });
+  })
+</script>

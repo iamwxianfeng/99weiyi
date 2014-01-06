@@ -1,0 +1,32 @@
+<div class="rq">
+  <div class="zqcc_ff h18" style="margin-top:80px">我偏好穿：</div>
+  <div class="zqcc_ff step3"> <span>
+      <label>
+        <input name="radiobutton" type="radio" value="<%= User::Style::LOOSE %>" checked="checked" />
+      </label>
+      宽松 </span> <span>
+      <label>
+        <input type="radio" name="radiobutton" value="<%= User::Style::NORMAL %>" />
+      </label>
+      标准 </span> <span>
+      <label>
+        <input type="radio" name="radiobutton" value="<%= User::Style::FIT %>" />
+      </label>
+      合体 </span> <span>
+      <label>
+        <input type="radio" name="radiobutton" value="<%= User::Style::TIGHT %>" />
+      </label>
+      紧身 </span> <span class="tjagin">的衣服</span></div>
+  <div class="zqcc_ff" style="margin-top:80px">
+    <div class="zqcc_pic"><a href="javascript:;" id="style"><img src="/assets/ygcc_03.png" width="213" height="37" border="0" /></a> </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $("#style").click(function(){
+      var style = $("input[name='radiobutton']:checked").val();
+      window.location.href = "/home/mysize?style=" + style;
+    });
+  });
+</script>

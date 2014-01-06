@@ -1,0 +1,12 @@
+<p>
+  <b>名称:</b>
+  <%= @brand.name %> <br/>
+  <b>服装类型</b> <br/>
+  <% @brand.types.each do |type| %>
+    <%= type.name %> <br/>
+  <% end  %>
+</p>
+
+
+<%= link_to '编辑', edit_admin_brand_path(@brand) %> |
+<%= link_to '返回', admin_brands_path %>

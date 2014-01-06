@@ -1,0 +1,96 @@
+<%= form_tag '/home/actual_size', :method=>:post  do %>
+  <%= hidden_field_tag "actual_size[user_id]", current_user.id %>
+  <div class="tongzhi" style="font-size:12px">
+    <div class="jdsh s14">请按照如下说明进行测量。</div>
+    <div class="jdsh h14">提示：以下是以下均是净尺寸，成衣尺寸需要有一定的加放量</div>
+  </div>
+  <div class="rq">
+    <div class="zjl_left">
+      <div class="zil_bt"><img src="/assets/zilian.gif" width="304" height="45" /></div>
+      <ul>
+        <li>
+          <div class="kd1">胸围：<%= @forecast.chest %></div>
+          <div><input name="actual_size[chest]" value="<%= @actual_size.try(:chest) %>" type="text" class="zj_iunpt" />cm <!-- <input type="button" value="确认"  class="zj_qr"/> -->
+          </div>
+        </li>
+
+        <li>
+          <div class="kd1">中腰围：<%= @forecast.middle_chest %></div>
+          <div><input name="actual_size[middle_chest]" value="<%= @actual_size.try(:middle_chest) %>" type="text" class="zj_iunpt" />cm
+          </div>
+        </li>
+
+        <li>
+          <div class="kd1">肩宽：<%= @forecast.shoulder %></div>
+          <div><input name="actual_size[shoulder]" value="<%= @actual_size.try(:shoulder) %>" type="text" class="zj_iunpt" />cm
+          </div>
+        </li>
+
+        <li>
+          <div class="kd1">袖长：<%= @forecast.sleeve %></div>
+          <div><input name="actual_size[sleeve]" value="<%= @actual_size.try(:sleeve) %>" type="text" class="zj_iunpt" />cm
+          </div>
+        </li>
+
+        <li>
+          <div class="kd1">领围：<%= @forecast.neck %></div>
+          <div><input name="actual_size[neck]" value="<%= @actual_size.try(:neck) %>" type="text" class="zj_iunpt" />cm
+          </div>
+        </li>
+
+        <li>
+          <div class="kd1">臂围：</div>
+          <div><input name="actual_size[arm]" value="<%= @actual_size.try(:arm) %>" type="text" class="zj_iunpt" />cm
+          </div>
+        </li>
+
+        <li>
+          <div class="kd1">腕围：</div>
+          <div><input name="actual_size[wrist]" value="<%= @actual_size.try(:wrist) %>"  type="text" class="zj_iunpt" />cm
+          </div>
+        </li>
+
+        <li>
+          <div class="kd1">臀围：<%= @forecast.ass %></div>
+          <div><input name="actual_size[ass]" value="<%= @actual_size.try(:ass) %>" type="text" class="zj_iunpt" />cm
+          </div>
+        </li>
+
+        <li>
+          <div class="kd1">横档：<%= @forecast.crosspiece %></div>
+          <div><input name="actual_size[crosspiece]" value="<%= @actual_size.try(:crosspiece) %>" type="text" class="zj_iunpt" />cm
+          </div>
+        </li>
+
+        <li>
+          <div class="kd1">脚长：<%= @forecast.foot %></div>
+          <div><input name="actual_size[foot]" value="<%= @actual_size.try(:foot) %>" type="text" class="zj_iunpt" />cm
+          </div>
+        </li>
+        <li>
+          <div class="kd1">膝围：</div>
+          <div><input name="actual_size[knee]" value="<%= @actual_size.try(:knee) %>" type="text" class="zj_iunpt" />cm
+          </div>
+        </li>
+
+      </ul>
+    </div>
+    <!--right-->
+    <div class="zj_right"><img src="/assets/zilcc.gif" width="375" height="204" /><span class="zjl_wz">说明：将软尺围绕颈部领口位置，保证软尺和颈部之间留有两指间距,或按个人需要调节</span></div>
+  </div>
+  <p>&nbsp;</p>
+  <div class="rq ycan"><a href="javascript:;" id="save"><img src="/assets/zjlbt_032.png" width="187" height="37" border="0" /></a>
+    <a href="/home/brand_input"><img src="/assets/zjlbt_052.jpg" width="176" height="37" border="0" /></a>
+    <!-- <a href=""><img src="/assets/zjlbt_07.gif" width="244" height="37" border="0" /></a> -->
+  </div>
+  <p>&nbsp;</p>
+
+<% end %>
+
+<script type="text/javascript">
+  $(function(){
+    $("#save").click(function(){
+      $("form").submit();
+    });
+  });
+</script>

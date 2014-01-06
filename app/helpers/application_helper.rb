@@ -1,0 +1,500 @@
+# encoding: utf-8
+module ApplicationHelper
+
+  ##
+  # obj => :user
+  #        @user
+  def error_messages_for obj
+    html = ''
+    obj = instance_variable_get("@#{obj}") if obj.is_a?(Symbol)
+    if obj.errors.any?
+      html << %Q{<div id="error_explanation">}
+      html << %Q(<ul>)
+      obj.errors.full_messages.each { |msg|
+        html << %Q(<li>#{msg}</li>)
+      }
+      html << %Q{</ul>}
+      html << %Q{</div>}
+    end
+    raw html
+  end
+
+  def show_real_dressshirt_chest(user)
+    chest = show_dressshirt_chest(user) - 10
+    middle_chest = show_dressshirt_middle_chest(user)
+    r = if chest > middle_chest
+      chest
+    else
+      middle_chest
+    end
+    r
+  end
+
+
+
+
+
+  # 西裤腰围
+  def show_xiku_down_chest(user)
+    user.down_chest
+  end
+
+  # 西裤臀围
+  def show_xiku_ass(user)
+    r = case user.style
+    when User::Style::LOOSE
+      user.ass + 11
+    when User::Style::NORMAL
+      user.ass + 8
+    when User::Style::FIT
+      user.ass + 6
+    when User::Style::TIGHT
+      user.ass + 4
+    end
+    r
+  end
+
+  # 西裤总档
+  def show_xiku_zongdan(user)
+    height = user.height.value
+    r = case height
+    when 160..161 then 61
+    when 162..163 then 62
+    when 164..165 then 63
+    when 166..167 then 64
+    when 168..169 then 65
+    when 170..171 then 66
+    when 172..173 then 67
+    when 174..175 then 68
+    when 176..177 then 69
+    when 178..179 then 70
+    when 181..182 then 71
+    when 182..183 then 72
+    when 184..185 then 73
+    when 186..187 then 74
+    when 188..190 then 75
+    else
+      61
+    end
+    if user.down_chest > 90 and user.down_chest <= 100
+      r = r + 3
+    elsif user.down_chest > 100 and user.down_chest <= 110
+      r = r + 6
+    elsif user.down_chest > 110 and user.down_chest <= 120
+      r = r + 9
+    elsif user.down_chest > 120 and user.down_chest <= 130
+      r = r + 12
+    elsif user.down_chest > 130 and user.down_chest <= 140
+      r = r + 15
+    elsif user.down_chest > 140
+      r = r + 18
+    end
+    r
+  end
+
+  # 西裤横档
+  def show_xiku_crosspiece(user)
+    r = case user.style
+    when User::Style::LOOSE
+      user.crosspiece + 10
+    when User::Style::NORMAL
+      user.crosspiece + 8
+    when User::Style::FIT
+      user.crosspiece + 6
+    when User::Style::TIGHT
+      user.crosspiece + 4
+    end
+    r
+  end
+
+  # 西裤裤长
+  def show_xiku_foot(user)
+    user.foot
+  end
+
+  # 西裤裤口
+  def show_xiku_kukou(user)
+    case show_xiku_crosspiece(user)
+    when 0..60 then 20
+    when 61..64 then 21
+    when 64..68 then 22
+    when 68..72 then 23
+    when 72..76 then 24
+    when 76..10000 then 25
+    end
+  end
+
+  # 正装衬衫 衣长
+  def show_dressshirt_length(user)
+    height = user.height.value
+    r = case height
+    when 160..161 then 70
+    when 162..163 then 71
+    when 164..165 then 72
+    when 166..167 then 73
+    when 168..169 then 74
+    when 170..171 then 75
+    when 172..173 then 76
+    when 174..175 then 77
+    when 176..177 then 78
+    when 178..179 then 79
+    when 181..182 then 80
+    when 182..183 then 81
+    when 184..187 then 82
+    when 188..189 then 83
+    when 190 then 84
+    else
+      70
+    end
+    r
+  end
+
+  # 正装衬衫 短袖长
+  def show_dressshirt_short_length(user)
+    height = user.height.value
+    r = case height
+    when 160..167 then 23
+    when 168..171 then 24
+    when 172..179 then 25
+    when 180..187 then 26
+    when 188..190 then 27
+    end
+    r
+  end
+
+  # 休闲衬衫 胸围
+  def show_casualshirt_chest(user)
+    if user.style == User::Style::LOOSE
+      user.style = User::Style::NORMAL
+    elsif user.style == User::Style::NORMAL
+      user.style = User::Style::FIT
+    elsif user.style == User::Style::FIT
+      user.style = User::Style::TIGHT
+    end
+    r = case user.chest_middle_chest_diff
+    when 13..16
+      if user.style == User::Style::LOOSE
+        user.chest + 18
+      elsif user.style == User::Style::NORMAL
+        user.chest + 15
+      elsif user.style == User::Style::FIT
+        user.chest + 12
+      elsif user.style == User::Style::TIGHT
+        user.chest + 9
+      end
+    when 5..12
+      if user.style == User::Style::LOOSE
+        user.chest + 17
+      elsif user.style == User::Style::NORMAL
+        user.chest + 14
+      elsif user.style == User::Style::FIT
+        user.chest + 11
+      elsif user.style == User::Style::TIGHT
+        user.chest + 9
+      end
+    when -3..4
+      if user.style == User::Style::LOOSE
+        user.chest + 16
+      elsif user.style == User::Style::NORMAL
+        user.chest + 13
+      elsif user.style == User::Style::FIT
+        user.chest + 10
+      elsif user.style == User::Style::TIGHT
+        user.chest + 8
+      end
+    else
+      user.chest
+    end
+    r
+  end
+
+  # 休闲衬衫 腰围
+  def show_casualshirt_middle_chest(user)
+    if user.style == User::Style::LOOSE
+      user.style = User::Style::NORMAL
+    elsif user.style == User::Style::NORMAL
+      user.style = User::Style::FIT
+    elsif user.style == User::Style::FIT
+      user.style = User::Style::TIGHT
+    end
+    r = case user.chest_middle_chest_diff
+    when 13..16
+      if user.style == User::Style::LOOSE
+        user.middle_chest + 18
+      elsif user.style == User::Style::NORMAL
+        user.middle_chest + 15
+      elsif user.style == User::Style::FIT
+        user.middle_chest + 12
+      elsif user.style == User::Style::TIGHT
+        user.middle_chest + 9
+      end
+    when 11..12
+      if user.style == User::Style::LOOSE
+        user.middle_chest + 15
+      elsif user.style == User::Style::NORMAL
+        user.middle_chest + 12
+      elsif user.style == User::Style::FIT
+        user.middle_chest + 9
+      elsif user.style == User::Style::TIGHT
+        user.middle_chest + 9
+      end
+    when 9..10
+      if user.style == User::Style::LOOSE
+        user.middle_chest + 14
+      elsif user.style == User::Style::NORMAL
+        user.middle_chest + 11
+      elsif user.style == User::Style::FIT
+        user.middle_chest + 9
+      elsif user.style == User::Style::TIGHT
+        user.middle_chest + 7
+      end
+    when 5..8
+      if user.style == User::Style::LOOSE
+        user.middle_chest + 13
+      elsif user.style == User::Style::NORMAL
+        user.middle_chest + 10
+      elsif user.style == User::Style::FIT
+        user.middle_chest + 8
+      elsif user.style == User::Style::TIGHT
+        user.middle_chest + 7
+      end
+    when -3..4
+      if user.style == User::Style::LOOSE
+        user.middle_chest + 12
+      elsif user.style == User::Style::NORMAL
+        user.middle_chest + 9
+      elsif user.style == User::Style::FIT
+        user.middle_chest + 8
+      elsif user.style == User::Style::TIGHT
+        user.middle_chest + 7
+      end
+    else
+      user.middle_chest
+    end
+    r
+  end
+
+  # t-shirt 胸围
+  def show_tshirt_chest(user)
+    r = if user.style == User::Style::LOOSE
+      user.chest + 13
+    elsif user.style == User::Style::NORMAL
+      user.chest + 10
+    elsif user.style == User::Style::FIT
+      user.chest + 8
+    elsif user.style == User::Style::TIGHT
+      user.chest + 6
+    end
+    r
+  end
+
+  # t-shirt 腰围
+  def show_tshirt_middle_chest(user)
+    r = if user.style == User::Style::LOOSE
+      show_tshirt_chest(user) - 5
+    elsif user.style == User::Style::NORMAL
+      show_tshirt_chest(user) - 8
+    elsif user.style == User::Style::FIT
+      show_tshirt_chest(user) - 10
+    elsif user.style == User::Style::TIGHT
+      show_tshirt_chest(user)
+    end
+    r
+  end
+
+  # t-shirt 衣长
+  def show_tshirt_length(user)
+    height = user.height.value
+    r = case height
+    when 160..161 then 65
+    when 162..163 then 66
+    when 164..165 then 66
+    when 166..167 then 66
+    when 168..169 then 67
+    when 170..171 then 68
+    when 172..173 then 69
+    when 174..175 then 70
+    when 176..177 then 71
+    when 178..179 then 72
+    when 181..182 then 73
+    when 182..183 then 74
+    when 184..187 then 75
+    when 188..189 then 76
+    when 190 then 77
+    else
+      65
+    end
+    r
+  end
+
+  # polo 衫 胸围
+  def show_polo_chest(user)
+    r = if user.style == User::Style::LOOSE
+      user.chest + 15
+    elsif user.style == User::Style::NORMAL
+      user.chest + 12
+    elsif user.style == User::Style::FIT
+      user.chest + 9
+    elsif user.style == User::Style::TIGHT
+      user.chest + 6
+    end
+    r
+  end
+
+  # polo 衣长
+  def show_polo_length(user)
+    height = user.height.value
+    r = case height
+    when 160..161 then 65
+    when 162..163 then 66
+    when 164..165 then 66
+    when 166..167 then 67
+    when 168..169 then 69
+    when 170..171 then 70
+    when 172..173 then 71
+    when 174..175 then 72
+    when 176..177 then 73
+    when 178..179 then 74
+    when 181..182 then 75
+    when 182..183 then 76
+    when 184..187 then 77
+    when 188..189 then 78
+    when 190 then 79
+    else
+      65
+    end
+    r
+  end
+
+  # 羽绒服 胸围
+  def show_coat_chest(user)
+    r = if user.style == User::Style::LOOSE
+      user.chest + 24
+    elsif user.style == User::Style::NORMAL
+      user.chest + 20
+    elsif user.style == User::Style::FIT
+      user.chest + 16
+    elsif user.style == User::Style::TIGHT
+      user.chest + 12
+    end
+    r || 0
+  end
+
+  # 羽绒服 腰围
+  def show_coat_middle_chest(user)
+    r = if user.style == User::Style::LOOSE
+      show_coat_chest(user) - 5
+    elsif user.style == User::Style::NORMAL
+      show_coat_chest(user) - 5
+    elsif user.style == User::Style::FIT
+      show_coat_chest(user) - 6
+    elsif user.style == User::Style::TIGHT
+      show_coat_chest(user)
+    end
+    r || 0
+  end
+
+  # 羽绒服 衣长
+  def show_coat_length(user)
+    height = user.height.value
+    r = case height
+    when 160..161 then "60-86"
+    when 162..163 then "61-87"
+    when 164..165 then "62-88"
+    when 166..167 then "63-89"
+    when 168..169 then "64-90"
+    when 170..171 then "65-91"
+    when 172..173 then "66-92"
+    when 174..175 then "67-93"
+    when 176..177 then "68-94"
+    when 178..179 then "69-95"
+    when 181..182 then "70-96"
+    when 182..183 then "71-97"
+    when 184..187 then "72-98"
+    when 188..189 then "73-99"
+    when 190 then "74-100"
+    else
+      "60-86"
+    end
+    r
+  end
+
+  # jack 胸围
+  def show_jack_chest(user)
+    r = if user.style == User::Style::LOOSE
+      user.chest + 20
+    elsif user.style == User::Style::NORMAL
+      user.chest + 16
+    elsif user.style == User::Style::FIT
+      user.chest + 12
+    elsif user.style == User::Style::TIGHT
+      user.chest + 8
+    end
+    r
+  end
+
+  # 大衣 衣长
+  def show_overcoat_length(user)
+    height = user.height.value
+    r = case height
+    when 160..161 then "85"
+    when 162..163 then "86"
+    when 164..165 then "87"
+    when 166..167 then "88"
+    when 168..169 then "89"
+    when 170..171 then "90"
+    when 172..173 then "91"
+    when 174..175 then "92"
+    when 176..177 then "93"
+    when 178..179 then "94"
+    when 180..181 then "95"
+    when 182..183 then "96"
+    when 184..187 then "97"
+    when 188..189 then "98"
+    when 190 then "99"
+    else
+      "85"
+    end
+    r
+  end
+
+  # 毛衫 胸围
+  def show_sweater_chest(user)
+    r = if user.style == User::Style::LOOSE
+      user.chest + 9
+    elsif user.style == User::Style::NORMAL
+      user.chest + 7
+    elsif user.style == User::Style::FIT
+      user.chest + 5
+    elsif user.style == User::Style::TIGHT
+      user.chest + 3
+    end
+    r || 0
+  end
+
+  # 毛衫 衣长
+  def show_sweater_length(user)
+    height = user.height.value
+    r = case height
+    when 160..161 then "58-64"
+    when 162..163 then "58-64"
+    when 164..165 then "59-65"
+    when 166..167 then "59-65"
+    when 168..169 then "60-66"
+    when 170..171 then "60-66"
+    when 172..173 then "61-67"
+    when 174..175 then "61-67"
+    when 176..177 then "62-68"
+    when 178..179 then "62-68"
+    when 180..181 then "63-69"
+    when 182..183 then "63-69"
+    when 184..187 then "64-70"
+    when 188..189 then "64-70"
+    when 190 then "65-71"
+    else
+      "58-64"
+    end
+    r
+  end
+
+end

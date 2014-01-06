@@ -1,0 +1,33 @@
+<div class="rq">
+  <div class="xbxz">
+    <div class="xb_dx">
+      <label>
+        <input name="radiobutton" type="radio" value="0" checked="checked" class="nv_bt1"/>
+      </label>
+      <label>
+        <input type="radio" name="radiobutton" value="1" class="nv_bt" />
+      </label>
+    </div>
+    <div class="xb_next"><a href="javascript:;" id="sex_submit"><img src="/assets/next.png" width="145" height="37" border="0" /></a></div>
+  </div>
+  <div class="oright">
+    <div class="otsy0">
+        <div class="otsywz">维衣尺码助手是一个智能工具，它可以告诉你买衣服时买多大的尺码是最合适的。此外，你也可以发现与你身材类型相同或相似的人在穿什么。
+      </div>
+    </div>
+    <div class="otsy"></div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $("#sex_submit").click(function(){
+      var gender = $("input[name='radiobutton']:checked").val();
+      if(W.String.isEmpty(gender)){
+        gender = 0;
+      }
+      window.location.href = "/home/step2?gender=" + gender;
+    });
+  });
+</script>
