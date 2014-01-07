@@ -23,6 +23,10 @@ group :test do
 end
 
 
+group :development do
+  gem "better_errors" #https://github.com/charliesome/better_errors
+  gem 'capistrano'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
