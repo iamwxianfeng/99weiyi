@@ -1,7 +1,8 @@
 require 'rbconfig'
 HOST_OS = RbConfig::CONFIG['host_os']
 
-source 'http://rubygems.org'
+# source 'http://rubygems.org'
+source 'http://ruby.taobao.org'
 
 gem 'rails', '3.1.1'
 gem 'jquery-rails', '0.2.7'
@@ -31,7 +32,6 @@ end
 group :development do
   gem "better_errors" #https://github.com/charliesome/better_errors
   # gem 'capistrano'
-#  gem 'capistrano', '~> 3.0', require: false
 end
 
 # To use ActiveModel has_secure_password
