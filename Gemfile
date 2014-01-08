@@ -12,6 +12,10 @@ gem 'omniauth-weibo-oauth2', '0.2.0'
 # gem 'omniauth-qq-connect', '0.1.0'
 gem 'omniauth-qq', :git => 'git://github.com/blankyao/omniauth-qq.git'
 
+gem 'thin', '~> 1.5.1' # or mongrel
+gem 'unicorn', '~> 4.6.3'
+
+
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'
   gem 'coffee-rails', '~> 3.1.1'
@@ -23,9 +27,11 @@ group :test do
 end
 
 
+
 group :development do
   gem "better_errors" #https://github.com/charliesome/better_errors
-  gem 'capistrano'
+  # gem 'capistrano'
+#  gem 'capistrano', '~> 3.0', require: false
 end
 
 # To use ActiveModel has_secure_password
