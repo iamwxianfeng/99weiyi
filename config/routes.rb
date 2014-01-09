@@ -41,6 +41,10 @@ Chima::Application.routes.draw do
   resources :likes
   resources :watchers
 
+  namespace :v1 do
+    match "/home/:action", :controller => "home", :as => "home"
+  end
+
   namespace :admin do
     root :to => 'up_sizes#index'
     resources :down_sizes
