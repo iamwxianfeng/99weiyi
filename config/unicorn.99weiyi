@@ -9,7 +9,7 @@ ENV=production
 if [ -n "$2" ]; then
   ENV="$2"
 fi
-CMD="cd $APP_ROOT; bundle exec unicorn -E $ENV -D -c $APP_ROOT/config/unicorn.rb -l 0.0.0.0:9002"
+CMD="cd $APP_ROOT; bundle exec unicorn -E $ENV -D -c $APP_ROOT/config/unicorn.rb"
 action="$1"
 set -u
 
