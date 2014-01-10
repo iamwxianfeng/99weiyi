@@ -38,5 +38,8 @@ class ApplicationController < ActionController::Base
   #  def current_user
   #    User.find_by_visitor_id(cookies[:visitor_id])
   # end
+  def to_hashes arr, role
+    arr.map { |doc| doc.to_hash role }
+  end
 
 end

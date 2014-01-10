@@ -43,6 +43,8 @@ Chima::Application.routes.draw do
 
   namespace :v1 do
     match "/home/:action", :controller => "home", :as => "home"
+    get '/weights',to: 'weights#index'
+    get '/heights',to: 'heights#index'
   end
 
   namespace :admin do

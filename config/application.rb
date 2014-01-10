@@ -56,5 +56,9 @@ module Chima
 
 
     require "#{Rails.root}/lib/taobao.rb"
+
+    Dir.glob "#{Rails.root}/lib/{activerecord}/*.rb" do |f|
+      require f
+    end
   end
 end

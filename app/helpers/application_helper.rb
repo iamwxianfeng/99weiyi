@@ -30,10 +30,6 @@ module ApplicationHelper
     r
   end
 
-
-
-
-
   # 西裤腰围
   def show_xiku_down_chest(user)
     user.down_chest
