@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
     :format     => { :with => Authentication.email_regex, :message => Authentication.bad_email_message }
   # :length     => { :within => 6..100 }
 
-
+ before_create :generate_access_token
 
   def self.authenticate(email, password)
     return nil if email.blank? || password.blank?
@@ -167,6 +167,10 @@ class User < ActiveRecord::Base
   end
 
   protected
+  
+  def generate_access_token
+    self.access_token = self.class.make_token
+  end
 
   def make_activation_code
     self.deleted_at = nil

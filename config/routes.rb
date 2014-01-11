@@ -42,7 +42,7 @@ Chima::Application.routes.draw do
   resources :watchers
 
   namespace :v1 do
-    match "/home/:action", :controller => "home", :as => "home"
+    post '/my/forecast', to: 'my#forecast'
     get '/weights',to: 'weights#index'
     get '/heights',to: 'heights#index'
   end

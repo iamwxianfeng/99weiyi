@@ -27,8 +27,11 @@ class ApplicationController < ActionController::Base
     ##
     # 预估尺寸算法
     # 身高差值 + 体重差值 最小的
+    # binding.pry
     forecasts.each_with_index do |forecast,index|
-      arr << (forecast.height.value - @user.height.value).abs + (forecast.weight.value - @user.weight.value).abs
+      unless @user.height.nil? || @user.weight.nil?
+        arr << (forecast.height.value - @user.height.value).abs + (forecast.weight.value - @user.weight.value).abs
+      end
     end
     min = arr.min
     index = arr.find_index(min)

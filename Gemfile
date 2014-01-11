@@ -72,3 +72,8 @@ gem "guard-livereload", ">= 0.3.0", :group => :development
 gem "guard-rspec", ">= 0.4.3", :group => :development
 gem "devise", ">= 1.4.9"
 gem "rails-footnotes", ">= 3.7", :group => :development
+
+group :development, :test do
+  gem 'pry', '~> 0.9.10' # https://github.com/pry/pry
+  gem 'pry-nav', '~> 0.2.3' # https://github.com/nixme/pry-nav
+end
