@@ -171,6 +171,10 @@ class User < ActiveRecord::Base
   def fullname
     login || visitor_nick
   end
+  
+  def is_male?
+    self.gender == Gender::M
+  end
 
   protected
   
