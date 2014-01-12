@@ -196,10 +196,13 @@ class V1::ChimaController < ApplicationController
 
     def request_user
     	@user = User.find_by_access_token(params[:access_token])
+      if  params[:access_token].nil? || @user.nil?
+        return render status: 410, json: {message: "qing deng lu "}
+      end
 
-    	if @user.nil?
-    		return render status: 410, json: {message: "qing deng lu "}
-    	end
+    	# if @user.nil?
+    	# 	return render status: 410, json: {message: "qing deng lu "}
+    	# end
 
       if params[:style]
         @user.style = params[:style]
