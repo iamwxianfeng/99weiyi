@@ -33,3 +33,14 @@ zh_CN:
         value: 身高
       weight:
         value: 体重
+  errors:
+  # The default format to use in full error messages.
+    format: "%{attribute} %{message}"
+    messages:
+      missing: "%{resource} 不存在或已被删除"
+      missing_field: "%{field} 为必填项"
+      invalid_field: "%{field} 格式不正确"
+      already_exists: "输入的 %{field} 已存在，请重试"
+      unauthorized: '授权过期，请重新登录'
+      permission_denied: "无权访问 %{resource}"
+    

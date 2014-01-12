@@ -30,6 +30,7 @@ class HomeController < ApplicationController
     @user.update_attribute :style , params[:style]
     get_forecast
     Rails.logger.debug "debug #{@forecast.inspect}"
+    return redirect_to '/home/step2', :flash => { :error => "抱歉，您选择的身高和体重没有预估尺寸，您可以重新选择" } if @forecast.nil?
     @user.forecast_id = @forecast.id
     @user.save(:validate=>false)
   end

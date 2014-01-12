@@ -51,7 +51,7 @@ module ApplicationHelper
   end
 
   # 西裤总档
-  def show_xiku_zongdan(user)
+  def show_xiku_zongdang(user)
     height = user.height.value
     r = case height
     when 160..161 then 61

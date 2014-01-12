@@ -2,7 +2,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include AuthenticatedSystem
-
   #  helper_method :current_user
 
   def render_json_ok
@@ -13,8 +12,8 @@ class ApplicationController < ActionController::Base
     render :json => { retCode: 0 }
   end
 
-  def get_forecast
-    @user = current_user
+  def get_forecast(user = nil)
+    @user ||=  user || current_user
     if @user.gender == User::Gender::M
       height_forecasts = ForecastMsize.where(:height_id=>@user.height_id)
       weight_forecasts = ForecastMsize.where(:weight_id=>@user.weight_id)
@@ -27,7 +26,6 @@ class ApplicationController < ActionController::Base
     ##
     # 预估尺寸算法
     # 身高差值 + 体重差值 最小的
-    # binding.pry
     forecasts.each_with_index do |forecast,index|
       unless @user.height.nil? || @user.weight.nil?
         arr << (forecast.height.value - @user.height.value).abs + (forecast.weight.value - @user.weight.value).abs

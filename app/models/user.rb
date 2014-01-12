@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
+  # include Chimaapi
+
   set_table_name 'users'
   belongs_to :height
   belongs_to :weight
@@ -70,6 +72,10 @@ class User < ActiveRecord::Base
       user.save
     end
     user
+  end
+
+  def self.get_by_access_token(access_token)
+    User.find_by_access_token(access_token) #or raise MissingError.new :user
   end
 
   # 胸腰差 = 胸围 - 中腰围

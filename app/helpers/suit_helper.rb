@@ -38,7 +38,8 @@ module SuitHelper
     else
       user.chest
     end
-    UserForecast.update_data(current_user,UpSize::M_TYPES.invert["西服上衣"],'chest',r)
+    # user ||=
+    UserForecast.update_data(current_user || user ,UpSize::M_TYPES.invert["西服上衣"],'chest',r)
     r || 0
   end
   # 正装衬衫 胸围
@@ -100,7 +101,7 @@ module SuitHelper
     else
       user.middle_chest
     end
-    UserForecast.update_data(current_user,UpSize::M_TYPES.invert["西服上衣"],'middle_chest',r)
+    UserForecast.update_data(current_user || user, UpSize::M_TYPES.invert["西服上衣"],'middle_chest',r)
     r || 0
   end
   # 正装衬衫 腰围
@@ -122,7 +123,7 @@ module SuitHelper
     when -3..0
       show_suit_chest(user) + 3
     end
-    UserForecast.update_data(current_user,UpSize::M_TYPES.invert["西服上衣"],'lap',r)
+    UserForecast.update_data(current_user || user ,UpSize::M_TYPES.invert["西服上衣"],'lap',r)
     r
   end
   # 正装下摆
@@ -150,7 +151,7 @@ module SuitHelper
     else
       71
     end
-    UserForecast.update_data(current_user,UpSize::M_TYPES.invert["西服上衣"],'front_length',r)
+    UserForecast.update_data(current_user || user ,UpSize::M_TYPES.invert["西服上衣"],'front_length',r)
     r
   end
 
@@ -176,11 +177,12 @@ module SuitHelper
     else
       68
     end
-    UserForecast.update_data(current_user,UpSize::M_TYPES.invert["西服上衣"],'back_length',r)
+    UserForecast.update_data(current_user || user,UpSize::M_TYPES.invert["西服上衣"],'back_length',r)
     r
   end
 
   def calc_brand
+    # logged_user = current_user || 
     forecast = UserForecast.where(:category_id=>UpSize::M_TYPES.invert["西服上衣"],:user_id=>current_user.id,:style=>current_user.style).last
     return [] if forecast.nil?
     suits = UpSize.where(:category_id=>UpSize::M_TYPES.invert["西服上衣"])
