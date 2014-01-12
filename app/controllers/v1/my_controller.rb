@@ -18,7 +18,7 @@ class V1::MyController < ApplicationController
 	    forecast_j.merge!({access_token: @user.access_token })
 	    render json: forecast_j
 	  else
-	  	render satus: 422, json: { message: "抱歉，您选择的身高和体重没有预估尺寸，您可以重新选择"}
+	  	render status: 422, json: { message: "抱歉，您选择的身高和体重没有预估尺寸，您可以重新选择"}
     end
   end
 
