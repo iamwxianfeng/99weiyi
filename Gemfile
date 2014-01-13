@@ -5,14 +5,15 @@ HOST_OS = RbConfig::CONFIG['host_os']
 source 'http://ruby.taobao.org'
 
 gem 'rails', '3.1.1'
-gem 'jquery-rails', '0.2.7'
+gem 'jquery-rails'
 gem 'mysql2', '0.3.10'
 gem "omniauth", '1.1.0'
 gem 'omniauth-weibo-oauth2', '0.2.0'
+gem 'will_paginate', '3.0.4'
 # gem 'omniauth-qq', '0.2.1'
 # gem 'omniauth-qq-connect', '0.1.0'
 gem 'omniauth-qq', :git => 'git://github.com/blankyao/omniauth-qq.git'
-
+# gem 'rails_admin','0.4.9' #https://github.com/sferik/rails_admin
 gem 'thin', '~> 1.5.1' # or mongrel
 gem 'unicorn', '~> 4.6.3'
 
