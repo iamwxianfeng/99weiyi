@@ -2,7 +2,7 @@
 
 class QuestionsController < ApplicationController
 	
-	before_filter :login_required
+	before_filter :login_required, :only => [:create]
   
   def new
     @question = Question.new
@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to new_question_path, notice: 'question was successfully created.' }
+        format.html { redirect_to new_question_path, notice: '您的问题已经成功提交，我们工作人员会及时给你回复，记得查看哦！' }
         format.json { render json: @question, status: :created, location: @question }
       else
         format.html { render action: "new" }

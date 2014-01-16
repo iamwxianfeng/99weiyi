@@ -1,31 +1,30 @@
+  <div class="tongzhi">
+    <!-- <div class="jdsh">基于你的尺寸，尺码助手建议你购买各类型衣服时参照如下尺寸购买。</div> -->
+    <div class="jdsh red18"><%= flash[:notice] %></div>
 <h1>问答助手</h1>
-
+  
 <%= form_for(@question) do |f| %>
 <%= error_messages_for @question %>
 
   <div class="field">
-    <%= f.label '请选择服装类型' %><br />
+    <%= f.label '请选择服装类型' %>
     <% if current_user && current_user.is_male? %>
-	    up: <%= f.select :up_size_id , options_for_select(UpSize::M_TYPES.invert) %> or
-	    down: <%= f.select :down_size_id , options_for_select(DownSize::M_TYPES.invert) %> 
+	    上衣: <%= f.select :up_size_id , options_for_select(UpSize::M_TYPES.invert) %> or
+	    下衣: <%= f.select :down_size_id , options_for_select(DownSize::M_TYPES.invert) %> 
 	  <% else %>
-		  up: <%= f.select :up_size_id , options_for_select(UpSize::W_TYPES.invert) %> or
-		  down: <%= f.select :down_size_id , options_for_select(DownSize::W_TYPES.invert) %> 
+		  上衣: <%= f.select :up_size_id , options_for_select(UpSize::W_TYPES.invert) %> or
+		  下衣: <%= f.select :down_size_id , options_for_select(DownSize::W_TYPES.invert) %> 
     <% end %>
   </div>
 
   <div class="field">
-    <%= f.label "名称" %><br />
-    <%= f.text_field :url %>
+    <%= f.label "服装产品网址链接（可不填）" %> </br> <%= f.text_field :url %>
   </div>
   <div class="field">
-    <%= f.label "名称" %><br />
-    <%= f.text_area :content %>
+    <%= f.text_area :content,:placeholder=>"尽可能详细叙述您的需求..." %>
   </div>
   <div class="actions">
-    <%= f.submit '提交' %>
+    <%= f.submit '提问' %>
   </div>
 <% end %>
-
-
-<%#= link_to '返回', admin_items_path %>
+</div>
