@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :likes
   has_many :watchers, :as => :watchable
   has_many :watchs, :class_name => "Watcher"
+  has_many :questions
 
   module Style
     LOOSE = 'loose' # 宽松

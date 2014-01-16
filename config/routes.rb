@@ -46,7 +46,9 @@ Chima::Application.routes.draw do
     post '/my/actual_size', to: 'my#actual_size'
     get '/weights',to: 'weights#index'
     get '/heights',to: 'heights#index'
-    match '/chima/:action', controller:"chima"
+    get '/chima',to: 'chima#index'
+    # match '/chima/:action', controller:"chima"
+    post '/questions', to: 'questions#create'
   end
 
   namespace :admin do
