@@ -33,7 +33,7 @@ class V1::ChimaController < ApplicationController
     end
 
   # 西裤
-    def xiku
+    def load_xiku
       h = {}
       h[:down_chest] = show_xiku_down_chest(@user)
       h[:ass] = show_xiku_ass(@user)
@@ -45,7 +45,7 @@ class V1::ChimaController < ApplicationController
     end
 
   # 正装衬衫
-    def dressshirt
+    def load_dressshirt
       h = {}
       h[:chest] = show_real_dressshirt_chest(@user)
       h[:middle_chest] = show_dressshirt_middle_chest(@user)
@@ -60,7 +60,7 @@ class V1::ChimaController < ApplicationController
     end
 
   # 休闲衬衫
-    def casualshirt
+    def load_casualshirt
       h = {}
       h[:chest] = show_casualshirt_chest(@user)
       h[:middle_chest] = show_casualshirt_middle_chest(@user)
@@ -75,7 +75,7 @@ class V1::ChimaController < ApplicationController
     end
 
   # T恤
-    def tshirt
+    def load_tshirt
       h = {}
       h[:chest] = show_tshirt_chest(@user)
       h[:middle_chest] = show_tshirt_middle_chest(@user)
@@ -86,7 +86,7 @@ class V1::ChimaController < ApplicationController
     end
 
   # POLO衫
-    def polo
+    def load_polo
       h = {}
       h[:chest] = show_polo_chest(@user)
       h[:length] = show_polo_length(@user)
@@ -96,7 +96,7 @@ class V1::ChimaController < ApplicationController
     end
 
   # 羽绒服
-    def downcote
+    def load_downcote
       h = {}
       h[:chest] = show_coat_chest(@user)
       h[:middle_chest] = show_coat_middle_chest(@user)
@@ -108,7 +108,7 @@ class V1::ChimaController < ApplicationController
     end
 
   # 夹克
-    def jack
+    def load_jack
       h = {}
       h[:chest] = show_jack_chest(@user)
       h[:length] = show_coat_length(@user)
@@ -118,7 +118,7 @@ class V1::ChimaController < ApplicationController
     end
 
   # 外套
-    def cote
+    def load_cote
       h = {}
       h[:chest] = show_jack_chest(@user)
       h[:length] = show_coat_length(@user)
@@ -128,7 +128,7 @@ class V1::ChimaController < ApplicationController
     end
 
   # 大衣
-    def overcote
+    def load_overcote
       h = {}
       h[:chest] = show_coat_chest(@user) + 2
       h[:middle_chest] = show_coat_middle_chest(@user) + 2
@@ -140,7 +140,7 @@ class V1::ChimaController < ApplicationController
     end
 
   # 毛衣、针织衫、卫衣
-    def sweater
+    def load_sweater
       h = {}
       h[:chest] = show_sweater_chest(@user)
       h[:xiabai] = show_sweater_chest(@user) - 4
@@ -151,7 +151,7 @@ class V1::ChimaController < ApplicationController
     end
 
   # 风衣
-    def dustcote
+    def load_dustcote
       h = {}
       h[:chest] = show_coat_chest(@user)
       h[:middle_chest] = show_coat_middle_chest(@user)
@@ -163,7 +163,7 @@ class V1::ChimaController < ApplicationController
     end
 
   # 中山装
-    def suncote
+    def load_suncote
       h = {}
       h[:chest] = show_coat_chest(@user)
       h[:middle_chest] = show_coat_middle_chest(@user)
@@ -176,7 +176,7 @@ class V1::ChimaController < ApplicationController
     end
 
   # 立领
-    def standcote
+    def load_standcote
       h = {}
       h[:chest] = show_suit_chest(@user)
       h[:middle_chest] = show_suit_middle_chest(@user)
@@ -190,7 +190,7 @@ class V1::ChimaController < ApplicationController
 
 
   # 唐装
-    def tangcote
+    def load_tangcote
       h = {}
       h[:chest] = show_suit_chest(@user)
       h[:middle_chest] = show_suit_middle_chest(@user)
