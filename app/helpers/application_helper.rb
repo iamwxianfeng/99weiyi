@@ -493,4 +493,8 @@ module ApplicationHelper
     r
   end
 
+  def string_time(time)
+    time.strftime("%Y-%m-%d %H:%M:%S") unless time.nil?
+  end
+
 end

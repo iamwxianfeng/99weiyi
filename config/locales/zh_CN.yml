@@ -43,4 +43,51 @@ zh_CN:
       already_exists: "输入的 %{field} 已存在，请重试"
       unauthorized: '授权过期，请重新登录'
       permission_denied: "无权访问 %{resource}"
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: 大约一小时前
+        other: 大约 %{count} 小时前
+      about_x_months:
+        one: 大约一个月
+        other: 大约 %{count} 个月前
+      about_x_years:
+        one: 大约一年
+        other: 大约 %{count} 年前
+      almost_x_years:
+        one: 接近一年
+        other: 接近 %{count} 年前
+      half_a_minute: 半分钟
+      less_than_x_minutes:
+        one: 不到一分钟
+        other: 不到 %{count} 分钟
+      less_than_x_seconds:
+        one: 不到一秒
+        other: 不到 %{count} 秒
+      over_x_years:
+        one: 一年多
+        other: ! '%{count} 年多'
+      x_days:
+        one: 一天
+        other: ! '%{count} 天前'
+      x_minutes:
+        one: 一分钟
+        other: ! '%{count} 分钟'
+      x_months:
+        one: 一个月
+        other: ! '%{count} 个月'
+      x_seconds:
+        one: 一秒
+        other: ! '%{count} 秒'
+    prompts:
+      day: 日
+      hour: 时
+      minute: 分
+      month: 月
+      second: 秒
+      year: 年
+  will_paginate:
+    previous_label: "&#8592; 上一页"
+    next_label: "下一页 &#8594;"
+    page_gap: "&hellip;"
     

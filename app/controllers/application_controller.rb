@@ -36,11 +36,15 @@ class ApplicationController < ActionController::Base
     @forecast = forecasts[index.to_i]
   end
 
-  #  def current_user
-  #    User.find_by_visitor_id(cookies[:visitor_id])
-  # end
+  
   def to_hashes arr, role
     arr.map { |doc| doc.to_hash role }
+  end
+
+  def logged_as_manager
+    unless current_user && current_user.is_manager?   
+      redirect_back_or_default('/', :notice => "您无权访问.")
+    end
   end
 
 end

@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="yg_sg" style="padding-top:30px"><div class="zy_wdcc">我的尺寸</div>
-    <div class="zy_sg"><strong>身高:</strong><span class="l14"><%= current_user.height.value %> cm</span> <strong>体重：</strong><span class="l14"><%= current_user.weight.value %> kg</span></div></div>
+    <div class="zy_sg"><strong>身高:</strong><span class="l14"><%= current_user.height.try(:value) %> cm</span> <strong>体重：</strong><span class="l14"><%= current_user.weight.try(:value) %> kg</span></div></div>
   <table width="930" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#47777b" class="ygcc_xx">
     <tr>
       <td width="84" height="25" rowspan="2" bgcolor="#F4F9F9">&nbsp;</td>
@@ -28,6 +28,7 @@
       <td width="79" height="25" align="center" bgcolor="#F4F9F9">横档</td>
       <td width="84" height="25" align="center" bgcolor="#F4F9F9">脚长</td>
     </tr>
+    <% if @forecast %>
     <tr>
       <td height="25" align="center" bgcolor="#F4F9F9">预估尺寸</td>
       <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.chest %></td>
@@ -40,6 +41,7 @@
       <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.crosspiece %></td>
       <td height="25" align="center" bgcolor="#F4F9F9"><%= @forecast.foot %></td>
     </tr>
+    <% end %>
   </table>
   <div class="trzy_tp">
     <p><strong>我的品牌</strong></p>

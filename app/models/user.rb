@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
-  # include Chimaapi
 
   set_table_name 'users'
   belongs_to :height
@@ -20,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :watchers, :as => :watchable
   has_many :watchs, :class_name => "Watcher"
   has_many :questions
+  has_many :answers
 
   module Style
     LOOSE = 'loose' # 宽松
@@ -31,6 +31,14 @@ class User < ActiveRecord::Base
   module Gender
     M = 0 # 男性
     W = 1 # 女性
+  end
+
+  module Role
+    Temp = -1 
+    Normal = 0
+    Measure = 1
+    Admin = 2
+
   end
 
   validates :login, :presence => { message: '昵称不能为空' },
@@ -157,8 +165,12 @@ class User < ActiveRecord::Base
     fs
   end
 
+  def title
+    self.login || self.name || self.email
+  end
+
   def avatar_path
-    DiskFile.where(:item_type=>"User",:item_id=>self.id).last.try(:path) || avatar_src
+    DiskFile.where(:item_type=>"User",:item_id=>self.id).last.try(:path) || "/assets/avatar_common.png"
   end
 
   def tmp_user?
@@ -177,6 +189,18 @@ class User < ActiveRecord::Base
     self.gender == Gender::M
   end
 
+  def is_female?
+    self.gender == Gender::W
+  end
+  
+  def is_admin?
+    self.role_id == Role::Admin
+  end
+
+  def is_manager?
+    self.role_id > Role::Normal # [admin,messure]
+  end
+ 
   protected
   
   def generate_access_token

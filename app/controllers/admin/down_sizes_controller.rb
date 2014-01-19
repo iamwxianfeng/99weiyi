@@ -1,5 +1,6 @@
 class Admin::DownSizesController < ApplicationController
   layout 'admin'
+  before_filter :logged_as_manager
   # GET /down_sizes
   # GET /down_sizes.json
   def index

@@ -1,6 +1,7 @@
 # encoding:utf-8
 class Admin::ForecastMsizesController < ApplicationController
   layout 'admin'
+  before_filter :logged_as_manager
   # GET /forecast_msizes
   # GET /forecast_msizes.json
   def index

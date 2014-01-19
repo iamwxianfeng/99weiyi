@@ -1,0 +1,25 @@
+<p><%= @question.user.try(:title) || "未知用户" %>
+<%= time_ago_in_words(@question.created_at) %></p>
+<p>
+  <%= link_to "服装产品网址链接", @question.url %></p>
+ <p> 类型 : <%= @question.up_size %> <%= @question.down_size %> </p>
+<p><%= @question.content %></p>
+<%= form_for([:admin,@question, @question.answers.build],:html => { :class => "form-horizontal" }) do |f| %>
+  <p>
+    <%= f.text_area :content,:class=> "tarea",:placeholder => '200 字以内哦' %>
+  </p>
+  <p>
+    <%= f.submit "确定回复",:class=>"btn btn-large" %>
+  </p>
+<% end %>
+<p>其他量体师的回复</p>
+<hr>
+<% @question.answers.each do |a| %>
+  <p> 
+  	<%= image_tag(a.user.try(:avatar_path), size: "50x50")%>
+    <%= a.user.try(:login) || "admin" %> 
+    <%= string_time(a.created_at)%>
+  </p> 
+  <p><%= a.content%></p>
+  
+<% end %>

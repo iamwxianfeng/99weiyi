@@ -1,7 +1,7 @@
 class Admin::UpSizesController < ApplicationController
   layout 'admin'
-  # GET /up_sizes
-  # GET /up_sizes.json
+  before_filter :logged_as_manager
+
   def index
     @up_sizes = UpSize.all
 

@@ -1,0 +1,40 @@
+<div class="tongzhi">
+  <div class="jdsh red18"><%= flash[:notice] %></div>
+  <div class="jdsh">买衣服把不准尺码? 维衣尺码助手专业顾问帮您解答！</div> 
+<%= form_tag("/questions", :method => "post",:id=>"question_form") do %>
+  <p>请选择服装类型:
+    <% if current_user && current_user.is_male? %>
+      <%= select(nil,:up_size_id , options_for_select(UpSize::M_TYPES.invert),{:prompt => '上衣'}) %> 或
+      <%= select(nil, :down_size_id , options_for_select(DownSize::M_TYPES.invert),{:prompt => '下衣'}) %> 
+    <% else %>
+       <%= select(nil, :up_size_id , options_for_select(UpSize::W_TYPES.invert),{:prompt => '上衣'}) %> 或
+      <%= select(nil, :down_size_id , options_for_select(DownSize::W_TYPES.invert) ,{:prompt => '下衣'})%> 
+    <% end %>
+  </p>
+  <p>服装产品网址链接（可不填）:</p>
+  <p class="input">
+    <%=text_field_tag(:url,nil,:placeholder=>'http://www.abc.com')%>
+  </p>
+  <p>
+    <%= text_area_tag(:content, nil, :placeholder=>"尽可能详细叙述您的需求,200 字以内哦",:class=>"tarea") %>
+  </p>
+  <p><%= submit_tag("提问" ,:class=> "tiwen" )%>   </p>
+<%end%>
+<div class="table_wrap">
+  <ul>
+    <li class="current"><a href="#">最新提问</a></li>
+  </ul>
+</div>
+<% @questions.each do |q|%>
+ <p><%=image_tag(q.user.try(:avatar_path),size: "50x50")%> <%=q.user.try(:login) || "admin" %></br>
+  <%= q.content %></p>
+ <p><%=time_ago_in_words(q.created_at)%></p>
+   <%q.answers.each do |a|%>
+    <%=image_tag(a.user.try(:avatar_path),size: "50x50")%> <%=a.user.try(:login) || "admin" %> </br> <%=a.content%> </br>
+    <%=time_ago_in_words(a.created_at)%>
+    <hr>
+   <%end%>
+<%end%>
+<br>
+<div class="pageinate"><%= will_paginate @questions %></div>
+</div>

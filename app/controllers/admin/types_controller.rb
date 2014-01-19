@@ -1,5 +1,6 @@
 class Admin::TypesController < ApplicationController
   layout 'admin'
+  before_filter :logged_as_manager
   # GET /types
   # GET /types.json
   def index

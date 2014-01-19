@@ -47,7 +47,6 @@ Chima::Application.routes.draw do
     get '/weights',to: 'weights#index'
     get '/heights',to: 'heights#index'
     get '/chima',to: 'chima#index'
-    # match '/chima/:action', controller:"chima"
     post '/questions', to: 'questions#create'
   end
 
@@ -69,7 +68,9 @@ Chima::Application.routes.draw do
     resources :heights
     resources :weights
     resources :types
-    resources :questions
+    resources :questions do
+      resources :answers
+    end
   end
   resources :questions
 end

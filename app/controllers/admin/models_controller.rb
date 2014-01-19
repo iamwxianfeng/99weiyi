@@ -1,6 +1,7 @@
 # encoding:utf-8
 class Admin::ModelsController < ApplicationController
   layout 'admin'
+  before_filter :logged_as_manager
 
   def index
     if params[:brand_id]
