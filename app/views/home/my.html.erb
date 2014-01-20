@@ -53,7 +53,7 @@
   <% @user_brands.each do |user_brand| %>
     <div class="wdsc_nr"><span>品牌名：<a href="#"><%= user_brand.brand.name %></a></span>
       <span>货号：<a href="#"><%= user_brand.model.try(:name) %></a> </span>
-      <span>尺码为:<a href="#"><%= user_brand.model.try(:name) %> 的 <%= user_brand.type.name %></a></span>
+      <span>尺码为:<a href="#"><%= user_brand.model.try(:name) %> 的 <%= user_brand.type.try(:name) %></a></span>
     </div>
   <% end %>
 </div>
@@ -64,7 +64,7 @@
     <div class="wdsc_nr">
       <span>品牌名：<a href="#"><%= user_brand.brand.name %></a></span>
       <span>货号：<a href="#"><%= user_brand.model.try(:name) %></a> </span>
-      <span>尺码为:<a href="#"> <%= user_brand.model.try(:name) %> 的 <%= user_brand.type.name %> </a></span>
+      <span>尺码为:<a href="#"> <%= user_brand.model.try(:name) %> 的 <%= user_brand.type.try(:name) %> </a></span>
     </div>
   <% end %>
 </div>
