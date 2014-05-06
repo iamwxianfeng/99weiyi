@@ -73,7 +73,7 @@ gem "guard-livereload", ">= 0.3.0", :group => :development
 gem "guard-rspec", ">= 0.4.3", :group => :development
 gem "devise", ">= 1.4.9"
 gem "rails-footnotes", ">= 3.7", :group => :development
-gem 'passenger', '3.0.19'
+gem 'passenger'
 
 group :development, :test do
   gem 'pry', '~> 0.9.10' # https://github.com/pry/pry
