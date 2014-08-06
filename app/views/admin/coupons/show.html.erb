@@ -1,0 +1,12 @@
+<p>
+  <b>Name:</b>
+  <%= @coupon.title %>
+  <b>amount:</b>
+  <%= @coupon.amount %>
+  <b>endtime:</b>
+  <%= @coupon.end_time %>
+</p>
+
+
+<%= link_to '编辑', edit_admin_coupon_path(@coupon) %> |
+<%= link_to '返回', admin_coupons_path %>

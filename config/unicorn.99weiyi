@@ -3,7 +3,7 @@ set -e
 
 # Feel free to change any of the following variables for your app:
 TIMEOUT=${TIMEOUT-60}
-APP_ROOT=/home/wxianfeng/projects/99weiyi
+APP_ROOT=/var/www/99weiyi
 PID=$APP_ROOT/tmp/pids/unicorn.pid
 ENV=production
 if [ -n "$2" ]; then

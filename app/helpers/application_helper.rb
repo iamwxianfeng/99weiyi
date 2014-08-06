@@ -1,9 +1,11 @@
 # encoding: utf-8
 module ApplicationHelper
 
+  include SessionsHelper
   ##
   # obj => :user
   #        @user
+
   def error_messages_for obj
     html = ''
     obj = instance_variable_get("@#{obj}") if obj.is_a?(Symbol)
@@ -495,6 +497,10 @@ module ApplicationHelper
 
   def string_time(time)
     time.strftime("%Y-%m-%d %H:%M:%S") unless time.nil?
+  end
+
+  def to_hashes arr, role
+    arr.map { |doc| doc.to_hash role }
   end
 
 end

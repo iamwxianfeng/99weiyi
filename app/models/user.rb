@@ -5,6 +5,22 @@ class User < ActiveRecord::Base
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
+  include Weiyi::Mapper
+  include Activerecord::Visible
+
+  attr_visible :id,:login,:gender,:email, :style, :province, :city, :avatar_url, as: :get
+
+# login: 'zhangsanfeng'
+#   gender: 1 # 0: 未知 1：男 2:女
+#   height： 9 // height_id: 150cm
+#   weight： 2 // weight_id: 50kg
+#   style: 'normal'
+#   province: 100000 #北京
+#   city: 100001 #朝阳
+#   weibo: {nick_name:'love xiaotiantian',activated: false},
+#   qq: {nick_name:'love xiaotiantian',activated: true},
+#   weixin: {nick_name:'love xiaotiantian',activated: true}
+#   avatar_url: http://upyun.com/xxx.png
 
   set_table_name 'users'
   belongs_to :height
@@ -20,6 +36,9 @@ class User < ActiveRecord::Base
   has_many :watchs, :class_name => "Watcher"
   has_many :questions
   has_many :answers
+  has_many :reserves
+  has_many :user_coupons
+  has_many :invitations
 
   module Style
     LOOSE = 'loose' # 宽松
@@ -34,15 +53,14 @@ class User < ActiveRecord::Base
   end
 
   module Role
-    Temp = -1 
+    Temp = -1
     Normal = 0
     Measure = 1
     Admin = 2
 
   end
 
-  validates :login, :presence => { message: '昵称不能为空' },
-    :uniqueness => { message: "昵称已经存在" }
+  # validates :login, :uniqueness => { message: "昵称已经存在" }
   # :length     => { :within => 1..40 }
   # :format     => { :with => Authentication.login_regex, :message => Authentication.bad_login_message }
 
@@ -184,7 +202,7 @@ class User < ActiveRecord::Base
   def fullname
     login || visitor_nick
   end
-  
+
   def is_male?
     self.gender == Gender::M
   end
@@ -192,7 +210,7 @@ class User < ActiveRecord::Base
   def is_female?
     self.gender == Gender::W
   end
-  
+
   def is_admin?
     self.role_id == Role::Admin
   end
@@ -200,9 +218,29 @@ class User < ActiveRecord::Base
   def is_manager?
     self.role_id > Role::Normal # [admin,messure]
   end
- 
+
+  def find_coupon_total_count_by_sql
+    sql = "select count(c.amount)  as count from coupons as c inner join user_coupons as uc on c.id = uc.`coupon_id` and uc.user_id=#{self.id};"
+    self.class.find_by_sql(sql)
+  end
+
+  def find_coupon_count_by_sql status
+    sql = "select count(c.amount)  as count from coupons as c inner join user_coupons as uc on c.id = uc.`coupon_id` and uc.status =#{status} and uc.user_id=#{self.id};"
+    self.class.find_by_sql(sql)
+  end
+
+  def find_coupon_total_sum_by_sql
+    sql = "select sum(c.amount)  as total from coupons as c inner join user_coupons as uc on c.id = uc.`coupon_id` and uc.user_id=#{self.id};"
+    self.class.find_by_sql(sql)
+  end
+
+  def find_coupon_sum_by_sql status
+    sql = "select sum(c.amount)  as total from coupons as c inner join user_coupons as uc on c.id = uc.`coupon_id` and uc.status =#{status} and uc.user_id=#{self.id};"
+    self.class.find_by_sql(sql)
+  end
+
   protected
-  
+
   def generate_access_token
     self.access_token = self.class.make_token
   end

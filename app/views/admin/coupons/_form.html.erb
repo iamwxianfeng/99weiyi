@@ -1,0 +1,19 @@
+<%= form_for([:admin,@coupon]) do |f| %>
+<%= error_messages_for @coupon %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+    <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br />
+    <%= f.text_field :end_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit "提交" %>
+  </div>
+<% end %>

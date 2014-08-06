@@ -2,6 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include AuthenticatedSystem
+  include ApplicationHelper
   #  helper_method :current_user
 
   def render_json_ok
@@ -10,6 +11,10 @@ class ApplicationController < ActionController::Base
 
   def render_json_fail
     render :json => { retCode: 0 }
+  end
+
+  def render_json_oauth_error
+    render :json => { error: '用户名或密码错误'}
   end
 
   def get_forecast(user = nil)
@@ -36,15 +41,21 @@ class ApplicationController < ActionController::Base
     @forecast = forecasts[index.to_i]
   end
 
-  
+
   def to_hashes arr, role
     arr.map { |doc| doc.to_hash role }
   end
 
   def logged_as_manager
-    unless current_user && current_user.is_manager?   
-      redirect_back_or_default('/', :notice => "您无权访问.")
-    end
+    # unless current_user && current_user.is_manager?
+    #   redirect_back_or_default('/', :notice => "您无权访问.")
+    # end
   end
+
+  # def auth_required
+  #   unless signed_in?
+  #     return render :json => { error: '用户名或密码错误'}
+  #   end
+  # end
 
 end

@@ -44,10 +44,32 @@ Chima::Application.routes.draw do
   namespace :v1 do
     post '/my/forecast', to: 'my#forecast'
     post '/my/actual_size', to: 'my#actual_size'
-    get '/weights',to: 'weights#index'
-    get '/heights',to: 'heights#index'
-    get '/chima',to: 'chima#index'
+    get '/weights', to: 'weights#index'
+    get '/heights', to: 'heights#index'
+    get '/chima', to: 'chima#index'
     post '/questions', to: 'questions#create'
+    post '/reserves', to: 'reserves#create'
+    post '/invitations', to: 'invitations#create'
+
+    get '/user', to: 'users#show'
+    get '/user/reserves', to: 'users#reserves'
+    get '/user/coupons', to: 'users#coupons'
+    get '/user/interactions', to: 'users#interactions'
+    get '/user/invitations', to: 'users#invitations'
+
+    resources :users do
+      collection {
+        post :signup
+        post :signin
+        post :oauth
+        delete :signout
+        post :patch
+        post :avatar
+      }
+    end
+
+
+
   end
 
   namespace :admin do
@@ -71,6 +93,8 @@ Chima::Application.routes.draw do
     resources :questions do
       resources :answers
     end
+  resources :shops
+  resources :coupons
   end
   resources :questions
 end

@@ -55,12 +55,12 @@ module Chima
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-
     require "#{Rails.root}/lib/taobao.rb"
     require "#{Rails.root}/lib/error.rb"
 
-    Dir.glob "#{Rails.root}/lib/{activerecord}/*.rb" do |f|
+    Dir.glob "./lib/{activerecord}/*.rb" do |f|
       require f
     end
+
   end
 end

@@ -19,7 +19,7 @@ working_directory APP_PATH
 # we use a shorter backlog for quicker failover when busy
 # 可同时监听 Unix 本地 socket 或 TCP 端口
 #listen "/tmp/project_name.sock", :backlog => 64
-listen "/tmp/99weiyi.sock", :backlog => 64
+listen APP_PATH +  "/tmp/99weiyi.sock", :backlog => 64
 
 # 开启tcp 端口，可不使用 apache 或 nginx 做代理，直接本地：http://localhost:port
 # listen 9003, :tcp_nopush => true
@@ -38,8 +38,8 @@ timeout 180
 pid APP_PATH + "/tmp/pids/unicorn.pid"
 
 # unicorn 日志
-stderr_path APP_PATH + "/tmp/unicorn.stderr.log"
-stdout_path APP_PATH + "/tmp/unicorn.stdout.log"
+stderr_path APP_PATH + "/log/unicorn.stderr.log"
+stdout_path APP_PATH + "/log/unicorn.stdout.log"
 
 #preload_app true
 

@@ -1,0 +1,10 @@
+<p>
+  <b>Name:</b>
+  <%= @shop.name %>
+  <b>Address:</b>
+  <%= @shop.address %>
+</p>
+
+
+<%= link_to '编辑', edit_admin_shop_path(@shop) %> |
+<%= link_to '返回', admin_shops_path %>
