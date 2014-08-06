@@ -1,3 +1,5 @@
+# encoding:utf-8
+
 module Chima
   class File
     def self.digest(file)
