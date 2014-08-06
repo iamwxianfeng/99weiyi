@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module SessionsHelper
 
     def current_user=(user)
