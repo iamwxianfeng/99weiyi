@@ -3,33 +3,6 @@ Api 接口地址：
 * 测试环境：http://chima.365weiyi.com/
 * 线上环境：http://www.99weiyi.com/
 
-### 获取身高json 数据
-
-```
-GET /v1/heights
-Parameters:
-{
-  access_token // 用户唯一标识，String 必选
-}
-
-eg: http:/365weiyi.com:9001/v1/heights?access_token=7a68b4d65ddd6a6191ef0cbf9cadb06528d92d6
-
-Status 200
-Response:
-
-[{"id": 1,"value": 155 }, ...]
-
-```
-### 获取体重json 数据
-
-```
-GET /v1/weights
-Status 200
-Response:
-
-[{"id": 1,"value": 48 }, ...]
-
-```
 ### 用户输入性别,身高,体重,喜好,获取预估尺寸
 
 ```
