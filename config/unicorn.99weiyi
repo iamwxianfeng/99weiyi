@@ -3,13 +3,13 @@ set -e
 
 # Feel free to change any of the following variables for your app:
 TIMEOUT=${TIMEOUT-60}
-APP_ROOT=/var/www/99weiyi
+APP_ROOT=/Users/jidongdong/Projects/99weiyi/
 PID=$APP_ROOT/tmp/pids/unicorn.pid
 ENV=production
 if [ -n "$2" ]; then
   ENV="$2"
 fi
-CMD="cd $APP_ROOT; bundle exec unicorn -E $ENV -D -c $APP_ROOT/config/unicorn.rb"
+CMD="cd $APP_ROOT; bundle exec unicorn -E $ENV -D -c $APP_ROOT/config/unicorn.rb -l 0.0.0.0:9007"
 action="$1"
 set -u
 

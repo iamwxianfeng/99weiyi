@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-module SessionsHelper
+module V1Helper
 
-    def current_user=(user)
-      @current_user = user
+    def login_user=(user)
+      @login_user = user
     end
 
     def auth_user(access_token)
@@ -11,8 +11,8 @@ module SessionsHelper
       User.find_by_access_token(access_token)
     end
 
-    def current_user
-      @current_user ||= auth_user(current_token)
+    def login_user
+      @login_user ||= auth_user(current_token)
     end
 
     def current_token
@@ -25,7 +25,7 @@ module SessionsHelper
     end
 
     def signed_in?
-      !current_user.nil?
+      !login_user.nil?
     end
 
     def auth_required

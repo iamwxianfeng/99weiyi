@@ -93,8 +93,9 @@ Chima::Application.routes.draw do
     resources :questions do
       resources :answers
     end
-  resources :shops
-  resources :coupons
+    resources :reserves
+    resources :shops
+    resources :coupons
   end
   resources :questions
 end

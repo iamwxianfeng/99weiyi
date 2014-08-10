@@ -1,0 +1,19 @@
+<p>
+  <b>预约人姓名:</b>
+  <%= @reserve.name %> <br />
+  <b>地址：</b>
+  <%= @reserve.address %> <br />
+  <b>手机号:</b>
+  <%= @reserve.phone %> <br />
+  <b>服务时间:</b>
+  <%= @reserve.service_time %> <br />
+  <b>店名:</b>
+  <%= @reserve.shop.try(:name) %> <br />
+  <b>预约类型:</b>
+  <%= @reserve.reserve_type %> <br />
+  <b>创建时间:</b>
+  <%= @reserve.created_at %> <br />
+</p>
+
+<%= link_to '编辑', edit_admin_reserve_path(@reserve) %>  |
+<%= link_to '返回', admin_reserves_path %>

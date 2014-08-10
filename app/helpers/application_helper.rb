@@ -1,10 +1,7 @@
 # encoding: utf-8
 module ApplicationHelper
 
-  include SessionsHelper
-  ##
-  # obj => :user
-  #        @user
+  include V1Helper
 
   def error_messages_for obj
     html = ''

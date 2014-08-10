@@ -1,7 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+AB.connection.execute('truncate weights;')
+AB.connection.execute('truncate heights;')
+weights_arr = [30.00,31.00,32.00,33.00,34.00,35.00,36.00,37.00,38.00,39.00,40.00,41.00,42.00,43.00,44.00,45.00,46.00,47.00,48.00,49.00,50.00,51.00,52.00,53.00,54.00,55.00,56.00,57.00,58.00,59.00,60.00,61.00,62.00,63.00,64.00,65.00,66.00,67.00,68.00,69.00,70.00,71.00,72.00,73.00,74.00,75.00,76.00,77.00,78.00,79.00,80.00,81.00,82.00,83.00,84.00,85.00,86.00,87.00,88.00,89.00,90.00,91.00,92.00,93.00,94.00,95.00,96.00,97.00,98.00,99.00,100.00,101.00,102.00,103.00,104.00,105.00,106.00,107.00,108.00,109.00,110.00,111.00,112.00,113.00,114.00,115.00,116.00,117.00,118.00,119.00,120.00]
+heights_arr = [155,160,165,170,175,180,185,156,157,158,159,161,162,163,164,166,167,168,169,171,172,173,174,176,177,178,179,181,182,183,184,186,187,188,189,190,191,192]
+
+weights_arr.each do |w|
+  wt = Weight.create(value: w)
+  p wt.value, wt.created_at
+end
+
+heights_arr.each do |h|
+  ht = Height.create(value: h)
+  p ht.value, ht.created_at
+end
+
+p "end"

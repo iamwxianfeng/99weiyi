@@ -35,7 +35,7 @@ Success: Status 200 OK
 {"message":  "抱歉，您选择的身高和体重没有预估尺寸，您可以重新选择"}
 
 ```
-### 保存自己量尺寸
+### 保存自己量尺寸（用户注册后，才可保存自己量尺寸）
 
 ```
 POST /v1/my/actual_size?access_token=7a68b4d65ddd6a6191ef0cbf9cadb06528d92d6
@@ -73,7 +73,7 @@ Input:
 
 Response:
 Success: Status 201 OK
-{access_token: '7a68b4d65ddd6a6191ef0cbf9cadb06528d92d6'}
+{ access_token: '7a68b4d65ddd6a6191ef0cbf9cadb06528d92d6' }
 Error: Status 422
 {
   "error":{

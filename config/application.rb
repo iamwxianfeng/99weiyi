@@ -6,7 +6,11 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "active_resource/railtie"
 require "sprockets/railtie"
-require 'pry'
+
+if Rails.env == "development"
+  require 'pry'
+end
+
 # require "rails/test_unit/railtie"
 
 if defined?(Bundler)

@@ -12,7 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <!-- Custom styles for this template -->
-    <link href="offcanvas.css" rel="stylesheet">
+    <!-- <link href="offcanvas.css" rel="stylesheet"> -->
     <%= stylesheet_link_tag    "bootstrap_admin" %>
     <%= javascript_include_tag "bootstrap_admin" %>
     <%= csrf_meta_tags %>
@@ -43,6 +43,9 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="/admin">Home</a></li>
             <li><%=link_to "问答助手", admin_questions_path %></li>
+            <li><%=link_to "预约管理", admin_reserves_path %></li>
+            <li><%=link_to "体验店管理", admin_shops_path %></li>
+            <li><%=link_to "优惠券管理", admin_coupons_path %></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -74,7 +77,7 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="row">
-           <%= yield %>            
+           <%= yield %>
           </div><!--/row-->
         </div><!--/span-->
 
@@ -88,11 +91,5 @@
 
     </div><!--/.container-->
 
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="offcanvas.js"></script>
   </body>
 </html>

@@ -3,7 +3,7 @@
 class V1::ChimaController < ApplicationController
 
   layout false
-  
+
   include ApplicationHelper
   include SuitHelper
 
@@ -14,7 +14,7 @@ class V1::ChimaController < ApplicationController
       h = send("load_#{params[:type]}")
       render json: h
     else
-      render status:422, json: {error: "请求参数错误"}
+      render status:422, json: { error: "请求参数错误" }
     end
   end
 
@@ -205,7 +205,7 @@ class V1::ChimaController < ApplicationController
     def request_user
     	@user = User.find_by_access_token(params[:access_token])
       if  params[:access_token].nil? || @user.nil?
-        return render status: 410, json: {message: "授权过期，请登录"}
+        return render status: 401, json: {message: "授权过期，请登录"}
       end
 
       if params[:style]
