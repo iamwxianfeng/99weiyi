@@ -1,6 +1,5 @@
 Chima::Application.routes.draw do
   # root :to => 'welcome#step1'
-  # root :to => 'users#new'
   root :to => "home#step1"
 
   resource :session do

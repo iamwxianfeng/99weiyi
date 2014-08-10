@@ -10,18 +10,6 @@ class User < ActiveRecord::Base
 
   attr_visible :id,:login,:gender,:email, :style, :province, :city, :avatar_url, as: :get
 
-# login: 'zhangsanfeng'
-#   gender: 1 # 0: 未知 1：男 2:女
-#   height： 9 // height_id: 150cm
-#   weight： 2 // weight_id: 50kg
-#   style: 'normal'
-#   province: 100000 #北京
-#   city: 100001 #朝阳
-#   weibo: {nick_name:'love xiaotiantian',activated: false},
-#   qq: {nick_name:'love xiaotiantian',activated: true},
-#   weixin: {nick_name:'love xiaotiantian',activated: true}
-#   avatar_url: http://upyun.com/xxx.png
-
   set_table_name 'users'
   belongs_to :height
   belongs_to :weight

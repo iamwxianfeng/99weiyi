@@ -47,9 +47,9 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_as_manager
-    # unless current_user && current_user.is_manager?
-    #   redirect_back_or_default('/', :notice => "您无权访问.")
-    # end
+    unless current_user && current_user.is_manager?
+      redirect_back_or_default('/', :notice => "您无权访问.")
+    end
   end
 
   # def auth_required
