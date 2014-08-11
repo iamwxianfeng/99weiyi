@@ -13,7 +13,6 @@ Input:
   height： 9 // height_id: 150cm
   weight： 2 // weight_id: 50kg
   style： "loose" // loose: 宽松 normal: 正常 fit: 合适 tight: 紧身
-  birthday: "1970-09-10" // 出生年月
 }
 Response:
 Success: Status 200 OK

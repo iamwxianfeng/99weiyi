@@ -7,7 +7,7 @@ class V1::MyController < ApplicationController
 	  password = "123456"
     email = "#{Chima::Token.make_token}@tmp_user.com"
     login = "临时用户#{User.last.id}"
-    attr = {email: email, login: login, password: password, password_confirmation: password,gender: params[:gender],height_id: params[:height],weight_id: params[:weight_id],style: params[:style], birthday: params[:birthday] }
+    attr = {email: email, login: login, password: password, password_confirmation: password,gender: params[:gender],height_id: params[:height],weight_id: params[:weight_id],style: params[:style]}
     user = User.new(attr)
     user.save(validate: false)
     get_forecast(user)
@@ -24,7 +24,7 @@ class V1::MyController < ApplicationController
 
   def actual_size
   	user = User.get_by_access_token(params[:access_token])
-  	return render status: 422, json: { message: "授权过期，请登录"} if user.nil?
+  	return render status: 401, json: { message: "授权过期，请登录"} if user.nil?
   	@actual_size = if user.actual_size
       user.actual_size
     else
