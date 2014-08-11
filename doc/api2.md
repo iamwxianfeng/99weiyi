@@ -62,17 +62,18 @@ Success: Status 200 OK
 ### 注册：
 
 ```
-post /v1/users/signup?access_token=...
+post /v1/users/signup
 Input:
 {
   email: '99@weiyi.com',
   password: '123456',
-  password_confirm: '123456'
+  password_confirmation: '123456'
 }
 
 Response:
 Success: Status 201 OK
 { access_token: '7a68b4d65ddd6a6191ef0cbf9cadb06528d92d6' }
+fc76177f68e6871090b6e0de94aafce62b597635
 Error: Status 422
 {
   "error":{
