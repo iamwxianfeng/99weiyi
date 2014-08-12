@@ -131,7 +131,8 @@ module SuitHelper
 
   # 西服前长
   def show_suit_front_length(user)
-    height = user.height.value
+    height = user.height.try(:value)
+    return 0 unless height
     r = case height
     when 160..161 then 71
     when 162..163 then 72
@@ -182,7 +183,7 @@ module SuitHelper
   end
 
   def calc_brand
-    # logged_user = current_user || 
+    # logged_user = current_user ||
     forecast = UserForecast.where(:category_id=>UpSize::M_TYPES.invert["西服上衣"],:user_id=>current_user.id,:style=>current_user.style).last
     return [] if forecast.nil?
     suits = UpSize.where(:category_id=>UpSize::M_TYPES.invert["西服上衣"])
