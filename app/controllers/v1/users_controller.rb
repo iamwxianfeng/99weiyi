@@ -6,11 +6,14 @@ class V1::UsersController < ApplicationController
   before_filter :auth_required, except: [:signup, :signin]
 
   def signup
-    user = User.new(email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
-    if user.save
-      render json: {access_token: user.access_token}
+     @user = login_user ||= User.new
+     @user.email = params[:email]
+     @user.password = params[:password]
+     @user.password_confirmation = params[:password_confirmation]
+    if @user.save
+      render json: {access_token: @user.access_token}
     else
-      render status: 422, json: {error: user.errors}
+      render status: 422, json: {error: @user.errors}
     end
   end
 

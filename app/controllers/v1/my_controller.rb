@@ -12,10 +12,10 @@ class V1::MyController < ApplicationController
     user.save(validate: false)
     get_forecast(user)
     if @forecast
-	    @user.forecast_id = @forecast.id
-	    @user.save(validate: false)
+	    user.forecast_id = @forecast.id
+	    user.save(validate: false)
 	    forecast_j = {chest: @forecast.chest, middle_chest: @forecast.middle_chest,shoulder: @forecast.shoulder,sleeve:  @forecast.sleeve, neck: @forecast.neck ,down_chest: @forecast.down_chest,ass: @forecast.ass, crosspiece: @forecast.crosspiece,foot: @forecast.foot }
-	    # forecast_j.merge!({access_token: @user.access_token })
+	    forecast_j.merge!({access_token: user.access_token })
 	    render json: forecast_j
 	  else
 	  	render status: 422, json: { message: "抱歉，您选择的身高和体重没有预估尺寸，您可以重新选择"}

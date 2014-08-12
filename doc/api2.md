@@ -3,6 +3,28 @@ Api 接口地址：
 * 测试环境：http://chima.365weiyi.com/
 * 线上环境：http://www.99weiyi.com/
 
+### 获取身高json 数据
+
+```
+GET /v1/heights
+Status 200
+Response:
+
+[{"id": 1,"value": 155 }, ...]
+
+```
+### 获取体重json 数据
+
+```
+GET /v1/weights
+Status 200
+Response:
+
+[{"id": 1,"value": 48 }, ...]
+
+```
+
+
 ### 用户输入性别,身高,体重,喜好,获取预估尺寸
 
 ```
@@ -29,6 +51,7 @@ Success: Status 200 OK
   ass: "93.0" //臀围
   crosspiece: "53.6" // 横档
   foot: "98.0" //脚长
+  access_token: '7a68b4d65ddd6a6191ef0cbf9cadb06528d92d6'
 }
 失败返回: Status 422
 {"message":  "抱歉，您选择的身高和体重没有预估尺寸，您可以重新选择"}
@@ -62,7 +85,7 @@ Success: Status 200 OK
 ### 注册：
 
 ```
-post /v1/users/signup
+post /v1/users/signup?access_token=7a68b4d65ddd6a6191ef0cbf9cadb06528d92d6
 Input:
 {
   email: '99@weiyi.com',
