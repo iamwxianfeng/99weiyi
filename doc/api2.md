@@ -3,28 +3,6 @@ Api 接口地址：
 * 测试环境：http://chima.365weiyi.com/
 * 线上环境：http://www.99weiyi.com/
 
-### 获取身高json 数据
-
-```
-GET /v1/heights
-Status 200
-Response:
-
-[{"id": 1,"value": 155 }, ...]
-
-```
-### 获取体重json 数据
-
-```
-GET /v1/weights
-Status 200
-Response:
-
-[{"id": 1,"value": 48 }, ...]
-
-```
-
-
 ### 用户输入性别,身高,体重,喜好,获取预估尺寸
 
 ```
@@ -32,8 +10,8 @@ POST /v1/my/forecast
 Input:
 {
   gender: 1, // 性别 Int 必选 0 男，1 女
-  height： 9 // height_id: 150cm
-  weight： 2 // weight_id: 50kg
+  height： 170 // 身高: 170cm
+  weight： 70 // 体重: 70kg
   style： "loose" // loose: 宽松 normal: 正常 fit: 合适 tight: 紧身
 }
 Response:
@@ -279,7 +257,7 @@ Response:
 ### 我的邀请记录
 
 ```
-get /v1/user/invitations
+get /v1/user/invitations?access_token=...
 {
   id:1,
   status: 0, #验证状态 #0：未验证， 1： 已验证
@@ -311,6 +289,34 @@ GET /v1/chima
 }
 请求示例(查看西服的修身尺寸)：http://localhost:3000/v1/chima?type=xifu&style=tight&access_token=7a68b4d65ddd6a6191ef0cbf9cadb06528d92d6
 请求的类型不同，返回的数据不同,
+
+返回所有数据示例：
+
+```
+{
+  chest: "90.4" //胸围
+  middle_chest: "80.4" //腰围
+  down_chest: "80.4" //腰围
+  length: "71"//前长
+  front_length: "71"//前长
+  back_length: "68"//后长
+  short_length: "32.0" //短袖长
+  shoulder: "41.0" //肩宽
+  xiabai: "98.5"//下摆
+  sleeve: "56.0" //袖长
+  nick: "36.0" //领围
+  wrist: "7.0" //腕围
+  ass: "97.5" //臀围
+  zongdang: "61" // 总裆
+  hengdang: "60.0" //横裆
+  foot: "98.0" //裤长
+  kukou："20" //裤口
+}
+
+```
+
+```
+
 
 
 type: 'xifu' //西服
