@@ -3,7 +3,7 @@
 class V1::UsersController < ApplicationController
   layout false
 
-  before_filter :auth_required, except: [:signup, :signin]
+  before_filter :auth_required, except: [:signup, :signin, :oauth]
 
   def signup
      @user = login_user ||= User.new
@@ -29,8 +29,11 @@ class V1::UsersController < ApplicationController
   # def signout
   # end
 
+#uid,
   def oauth
+    user = User.find_by_visitor_id(params[:uid]) || User.from_auth_hash(params)
 
+    render json: { access_token: user.access_token }
   end
 
   def show

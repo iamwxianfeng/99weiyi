@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   include Weiyi::Mapper
   include Activerecord::Visible
+  include Chima::Oauth
 
   attr_visible :id,:login,:gender,:email, :style, :province, :city, :avatar_url, as: :get
 
@@ -27,6 +28,7 @@ class User < ActiveRecord::Base
   has_many :reserves
   has_many :user_coupons
   has_many :invitations
+  has_many :passports
 
   module Style
     LOOSE = 'loose' # 宽松
@@ -91,6 +93,21 @@ class User < ActiveRecord::Base
 
   def self.get_by_access_token(access_token)
     User.find_by_access_token(access_token) #or raise MissingError.new :user
+  end
+
+  def self.from_auth_hash(hash)
+    oauth_hash = Chima::Oauth.send("#{hash[:type]}_user_info".to_sym, hash)
+    # { login: login, provider_uid: hash[:uid], provider_name: provider_name, avatar_url: avatar_url }
+
+    p oauth_hash[:provider_uid]
+    if oauth_hash.nil?
+      # raise AccountsError.new(:oauth_error)
+    else
+      user = User.new(login: oauth_hash[:login], visitor_id: oauth_hash[:provider_uid])
+      user.passports.new({provider_uid: oauth_hash[:provider_uid], provider_name: oauth_hash[:provider_name], avatar_url: oauth_hash[:avatar_url] })
+      user.save(validate: false)
+      user
+    end
   end
 
   # 胸腰差 = 胸围 - 中腰围
@@ -225,6 +242,20 @@ class User < ActiveRecord::Base
   def find_coupon_sum_by_sql status
     sql = "select sum(c.amount)  as total from coupons as c inner join user_coupons as uc on c.id = uc.`coupon_id` and uc.status =#{status} and uc.user_id=#{self.id};"
     self.class.find_by_sql(sql)
+  end
+
+  def human_gender
+    self.gender == 0 ? '男' : '女'
+  end
+
+  def human_role
+    r = case self.role_id
+    when Role::Temp then '临时用户'
+    when Role::Normal then '普通用户'
+    when Role::Measure then '量体师'
+    when Role::Admin  then '管理员'
+    end
+    r
   end
 
   protected

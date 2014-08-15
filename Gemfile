@@ -21,7 +21,7 @@ gem 'unicorn', '~> 4.6.3'
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'
   gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier' #, '>= 1.0.3'
 end
 
 group :test do
@@ -79,3 +79,12 @@ group :development, :test do
   gem 'pry', '~> 0.9.10' # https://github.com/pry/pry
   gem 'pry-nav', '~> 0.2.3' # https://github.com/nixme/pry-nav
 end
+
+gem 'weibo_2'
+gem 'qq_connect' #, :git => 'git@github.com:pobing/qq_connect.git'
+#gem 'qq', :git => 'git://github.com/046569/qq.git'
+
+#Upload Image gem
+gem 'carrierwave' #,'~> 0.9.0', :require => 'carrierwave'
+gem "carrierwave-upyun"
+gem "rest-client"

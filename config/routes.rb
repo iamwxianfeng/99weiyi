@@ -95,6 +95,7 @@ Chima::Application.routes.draw do
     resources :reserves
     resources :shops
     resources :coupons
+    resources :users
   end
   resources :questions
 end

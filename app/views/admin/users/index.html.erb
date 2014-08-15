@@ -1,0 +1,37 @@
+<%#= link_to '新建', new_admin_size_path %>
+<h1>用户列表</h1>
+
+<table class="table table-hover table-condensed">
+  <tr>
+    <th>账号</th>
+    <th>邮箱</th>
+    <th>性别</th>
+    <th>角色</th>
+    <th>注册日期</th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.login %></td>
+    <td><%= user.email %></td>
+    <td><%= user.human_gender %></td>
+    <td><%= user.human_role %></td>
+    <td><%= user.created_at %></td>
+    <td>
+      <% if user.role_id ==0 %>
+        <%= link_to '设为量体师', "#" %>
+      <% end %>
+
+      <% if user.role_id >=0 && user.role_id < 2 %>
+        <%= link_to '设为管理员', "#" %>
+      <% end %>
+      <%#= link_to '删除', [:admin,user], confirm: '确定删除?', method: :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+

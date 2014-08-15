@@ -76,3 +76,14 @@ provider_name //visitor_nick
 avatar_url //avatar_src
 is_actived //
 actived_at
+
+
+
+| user_id       | int(11)     | YES  |     | 0                   |                |
+| provider_uid  | varchar(20) | YES  |     |                     |                |
+| provider_name | varchar(20) | YES  |     |                     |                |
+| avatar_url    | varchar(50) | YES  |     |                     |                |
+| is_actived    | tinyint(1)  | YES  |     | 0                   |                |
+| actived_at
+
+provider,login

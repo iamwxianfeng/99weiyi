@@ -61,6 +61,7 @@ module Chima
 
     require "#{Rails.root}/lib/taobao.rb"
     require "#{Rails.root}/lib/error.rb"
+     require "#{Rails.root}/lib/chima/oauth.rb"
 
     Dir.glob "./lib/{activerecord}/*.rb" do |f|
       require f
