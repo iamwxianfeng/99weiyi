@@ -29,7 +29,6 @@ group :test do
 end
 
 
-
 group :development do
   gem "better_errors" #https://github.com/charliesome/better_errors
   # gem 'capistrano'

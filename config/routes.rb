@@ -95,7 +95,11 @@ Chima::Application.routes.draw do
     resources :reserves
     resources :shops
     resources :coupons
-    resources :users
+    resources :users do
+      member {
+        post :update_role
+      }
+    end
   end
   resources :questions
 end

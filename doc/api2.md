@@ -109,8 +109,8 @@ Error: Status 401
 ```
 post /v1/users/oauth
 uid: '1404376560' //需要查询的用户ID
-provider：'qq｜weibo'
-access_token // OAuth授权方式为必填参数,
+type：'qq｜weibo'
+access_token：'2.0078SVUFQONVuC9f60d8b164ppioaB' // OAuth授权方式为必填参数,
 
 Response:
 Success: Status 200 OK

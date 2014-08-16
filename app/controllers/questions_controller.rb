@@ -1,9 +1,9 @@
 #encoding: utf-8
 
 class QuestionsController < ApplicationController
-	
+
 	before_filter :login_required, :only => [:create]
-  
+
   def index
     @questions = Question.paginate(:page => params[:page]).order('id DESC')
   end
@@ -18,7 +18,6 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @question = Question.new(content: params[:content],url: params[:url], up_size_id: params[:up_size_id], down_size_id: params[:down_size_id],user_id: current_user.id)
     respond_to do |format|
       if @question.save

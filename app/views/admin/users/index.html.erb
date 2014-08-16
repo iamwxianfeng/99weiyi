@@ -1,6 +1,7 @@
 <%#= link_to '新建', new_admin_size_path %>
 <h1>用户列表</h1>
-
+<a class="btn" href="/admin/users">所有</a> <a class="btn" href="/admin/users?role=2">管理员列表</a> <a class="btn" href="/admin/users?role=1">量体师列表</a>
+</hr>
 <table class="table table-hover table-condensed">
   <tr>
     <th>账号</th>
@@ -13,18 +14,20 @@
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.login %></td>
-    <td><%= user.email %></td>
+    <td><%= user.try(:login).to_s.slice(0..20) %></td>
+    <td>
+        <%= user.try(:email).to_s.slice(0..20) %>
+    </td>
     <td><%= user.human_gender %></td>
     <td><%= user.human_role %></td>
     <td><%= user.created_at %></td>
     <td>
-      <% if user.role_id ==0 %>
-        <%= link_to '设为量体师', "#" %>
+      <% if user.role_id == User::Role::Normal %>
+        <%= link_to '设为量体师', "/admin/users/#{user.id}/update_role", :class => 'set_measure' %>
       <% end %>
 
-      <% if user.role_id >=0 && user.role_id < 2 %>
-        <%= link_to '设为管理员', "#" %>
+      <% if user.role_id >= User::Role::Normal && user.role_id < User::Role::Admin %>
+        <%= link_to '设为管理员', "/admin/users/#{user.id}/update_role", :class => 'set_admin' %>
       <% end %>
       <%#= link_to '删除', [:admin,user], confirm: '确定删除?', method: :delete %>
     </td>
