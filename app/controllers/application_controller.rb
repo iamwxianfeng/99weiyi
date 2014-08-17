@@ -46,8 +46,14 @@ class ApplicationController < ActionController::Base
     arr.map { |doc| doc.to_hash role }
   end
 
-  def logged_as_manager
-    unless current_user && current_user.is_manager?
+  def logged_as_messure
+    unless current_user && current_user.is_messure?
+      redirect_back_or_default('/', :notice => "您无权访问.")
+    end
+  end
+
+  def logged_as_admin
+    unless current_user && current_user.is_admin?
       redirect_back_or_default('/', :notice => "您无权访问.")
     end
   end

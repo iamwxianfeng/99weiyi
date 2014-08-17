@@ -13,7 +13,6 @@ gem 'will_paginate', '3.0.4'
 # gem 'omniauth-qq', '0.2.1'
 # gem 'omniauth-qq-connect', '0.1.0'
 gem 'omniauth-qq', :git => 'git://github.com/blankyao/omniauth-qq.git'
-# gem 'rails_admin','0.4.9' #https://github.com/sferik/rails_admin
 gem 'thin', '~> 1.5.1' # or mongrel
 gem 'unicorn', '~> 4.6.3'
 
@@ -87,3 +86,5 @@ gem 'qq_connect' #, :git => 'git@github.com:pobing/qq_connect.git'
 gem 'carrierwave' #,'~> 0.9.0', :require => 'carrierwave'
 gem "carrierwave-upyun"
 gem "rest-client"
+gem 'resque',:require => 'resque/server'
+gem 'redis'

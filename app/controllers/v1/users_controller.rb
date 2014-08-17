@@ -10,8 +10,11 @@ class V1::UsersController < ApplicationController
      @user.email = params[:email]
      @user.password = params[:password]
      @user.password_confirmation = params[:password_confirmation]
+     from_user = User.find_by_invite_code(params['invite_code'])
+     @user.from_user_id = from_user.id
     if @user.save
-      render json: {access_token: @user.access_token}
+      Resque.enqueue(UserMailer,@user.id,'activation')
+      render json: { access_token: @user.access_token }
     else
       render status: 422, json: {error: @user.errors}
     end
@@ -29,7 +32,7 @@ class V1::UsersController < ApplicationController
   # def signout
   # end
 
-#uid,
+
   def oauth
     user = User.find_by_visitor_id(params[:uid]) || User.from_auth_hash(params)
 
@@ -96,7 +99,7 @@ class V1::UsersController < ApplicationController
     reserves_count = Reserve.where(user_id: login_user.id).count
     invite_count   =  login_user.invitations.count
     coupons_count  = login_user.user_coupons.count
-    render json: {reserves: reserves_count, invite: invite_count, coupons: coupons_count }
+    render json: { reserves: reserves_count, invite: invite_count, coupons: coupons_count }
   end
 
 #我的邀请记录

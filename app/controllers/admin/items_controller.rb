@@ -1,7 +1,7 @@
 # encoding:utf-8
 class Admin::ItemsController < ApplicationController
   layout 'admin'
-  before_filter :logged_as_manager
+  before_filter :logged_as_admin
   # GET /items
   # GET /items.json
   def index

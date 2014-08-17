@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   include Activerecord::Visible
   include Chima::Oauth
 
-  attr_visible :id,:login,:gender,:email, :style, :province, :city, :avatar_url, as: :get
+  attr_visible :id,:login,:gender,:email, :style, :province, :city, :avatar_url, :invite_code, as: :get
 
   set_table_name 'users'
   belongs_to :height
@@ -97,11 +97,9 @@ class User < ActiveRecord::Base
 
   def self.from_auth_hash(hash)
     oauth_hash = Chima::Oauth.send("#{hash[:type]}_user_info".to_sym, hash)
-    # { login: login, provider_uid: hash[:uid], provider_name: provider_name, avatar_url: avatar_url }
 
-    p oauth_hash[:provider_uid]
     if oauth_hash.nil?
-      # raise AccountsError.new(:oauth_error)
+      return render status: 422, json: { message: "操作失败"}
     else
       user = User.new(login: oauth_hash[:login], visitor_id: oauth_hash[:provider_uid])
       user.passports.new({provider_uid: oauth_hash[:provider_uid], provider_name: oauth_hash[:provider_name], avatar_url: oauth_hash[:avatar_url] })
@@ -220,8 +218,8 @@ class User < ActiveRecord::Base
     self.role_id == Role::Admin
   end
 
-  def is_manager?
-    self.role_id > Role::Normal # [admin,messure]
+  def is_messure?
+    self.role_id >= Role::Measure # [admin,messure]
   end
 
   def find_coupon_total_count_by_sql
@@ -258,15 +256,40 @@ class User < ActiveRecord::Base
     r
   end
 
+  def activate?
+    self.email_verify == true
+  end
+
+  def activate!
+    AB.transaction do
+      self.email_verify = true
+      self.activated_at = Time.now.utc
+      self.activation_code = nil
+      save(:validate => false)
+      reward_invite
+    end
+  end
+
   protected
 
   def generate_access_token
     self.access_token = self.class.make_token
+    self.invite_code  = Chima::Token.random_code
+    self.activation_code = self.class.make_token
   end
 
   def make_activation_code
     self.deleted_at = nil
     self.activation_code = self.class.make_token
+  end
+
+  # 给邀请者赠送优惠券
+  def reward_invite
+    invitor = User.find_by_id(self.from_user_id)
+    if invitor
+      coupon = Coupon.find_or_create_by_amount(30)
+      UserCoupon.create({user_id: invitor.id, coupon_id: coupon.id})
+    end
   end
 
 end

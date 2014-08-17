@@ -1,6 +1,6 @@
 class Admin::UpSizesController < ApplicationController
   layout 'admin'
-  before_filter :logged_as_manager
+  before_filter :logged_as_admin
 
   def index
     @up_sizes = UpSize.all

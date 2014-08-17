@@ -1,7 +1,7 @@
 # encoding:utf-8
 class Admin::AnswersController < ApplicationController
   layout 'admin'
-	before_filter :logged_as_manager
+	before_filter :logged_as_admin
 
   def create
     @question = Question.find_by_id(params[:question_id])

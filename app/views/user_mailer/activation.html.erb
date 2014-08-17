@@ -1,3 +1,5 @@
-<%=h @user.login %>, your account has been activated.  Welcome aboard!
-
-<%=h @url %>
+<p class="d">Hi, <%= @to_user.email %> ：</p>
+<p>欢迎您加入99weiyi！请点击下面的链接激活您的账号：</p>
+<p><a href="<%=@url%>" target="_blank"><%=@url%></a></p>
+<p><span>（如无法直接打开链接，请将链接直接复制到您使用的浏览器窗口地址栏内使用）</span></p>
+<p class="c">99weiyi.com</p>

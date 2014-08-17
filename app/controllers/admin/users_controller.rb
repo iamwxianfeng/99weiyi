@@ -1,7 +1,7 @@
 # encoding:utf-8
 class Admin::UsersController < ApplicationController
   layout 'admin'
-  # before_filter :logged_as_manager
+  before_filter :logged_as_admin
 
   def index
     @users = if params[:role]

@@ -1,0 +1,13 @@
+## 163
+enable: true
+method: :smtp
+charset: "utf-8"
+settings:
+  :address: "smtp.163.com"
+  :port: 25
+  :domain: "163.com"
+  :authentication: :login
+  :enable_starttls_auto: true
+  :user_name: "user_name"
+  :password: "passwd"
+  #:openssl_verify_mode: 'none'

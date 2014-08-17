@@ -6,6 +6,7 @@ tmp/
 .svn
 .DS_Store
 config/database.yml
+config/email.yml
 Gemfile.lock
 db/schema.rb
 public/assets/

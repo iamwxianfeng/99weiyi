@@ -13,5 +13,9 @@ module Chima
     def self.make_token(*args)
       secure_digest(Time.now, (1..10).map{ rand.to_s },args.flatten.join)
     end
+
+    def self.random_code(length=6)
+      (0..9).to_a.sample(length).join
+    end
   end
 end

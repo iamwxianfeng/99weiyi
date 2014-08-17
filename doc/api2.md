@@ -69,6 +69,7 @@ Input:
   email: '99@weiyi.com',
   password: '123456',
   password_confirmation: '123456'
+  invite_code: '234098' #邀请码
 }
 
 Response:
@@ -143,8 +144,9 @@ Response: Status 200 OK
   city: 100001 #朝阳
   weibo: {nick_name:'love xiaotiantian',activated: false},
   qq: {nick_name:'love xiaotiantian',activated: true},
-  weixin: {nick_name:'love xiaotiantian',activated: true}
-  avatar_url: http://upyun.com/xxx.png
+  weixin: {nick_name:'love xiaotiantian',activated: true},
+  avatar_url: "http://upyun.com/xxx.png",
+  invite_code: '254098' #邀请码
 }
 ```
 

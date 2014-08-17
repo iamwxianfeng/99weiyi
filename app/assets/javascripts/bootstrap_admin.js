@@ -3,4 +3,4 @@
 //= require jquery_ujs
 //= require js/bootstrap.min
 //= require js/offcanvas
-
+//= require server

@@ -1,6 +1,6 @@
 class Admin::BrandsController < ApplicationController
   layout 'admin'
-  before_filter :logged_as_manager
+  before_filter :logged_as_admin
   # GET /brands
   # GET /brands.json
   def index

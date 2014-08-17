@@ -1,7 +1,7 @@
 # encoding:utf-8
 class Admin::WeightsController < ApplicationController
   layout 'admin'
-  before_filter :logged_as_manager
+  before_filter :logged_as_admin
   # GET /weights
   # GET /weights.json
   def index

@@ -59,9 +59,23 @@ module Chima
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    mail_settings = YAML.load(File.read("#{Rails.root}/config/email.yml"))
+    if mail_settings['enable'] == true
+      begin
+        config.action_mailer.perform_deliveries = true
+        config.action_mailer.raise_delivery_errors = true
+        config.action_mailer.delivery_method = mail_settings['method']
+        config.action_mailer.smtp_settings = mail_settings['settings']
+      rescue
+        # Fall back to using sendmail by default
+        ActionMailer::Base.delivery_method = :sendmail
+      end
+    end
+
+
     require "#{Rails.root}/lib/taobao.rb"
     require "#{Rails.root}/lib/error.rb"
-     require "#{Rails.root}/lib/chima/oauth.rb"
+    require "#{Rails.root}/lib/chima/oauth.rb"
 
     Dir.glob "./lib/{activerecord}/*.rb" do |f|
       require f

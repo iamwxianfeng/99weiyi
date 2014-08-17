@@ -1,6 +1,6 @@
 class Admin::SizesController < ApplicationController
   layout 'admin'
-  before_filter :logged_as_manager
+  before_filter :logged_as_admin
   # GET /sizes
   # GET /sizes.json
   def index

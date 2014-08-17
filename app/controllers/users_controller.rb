@@ -44,13 +44,27 @@ class UsersController < ApplicationController
     end
   end
 
-  def activate
+  def _activate
     logout_keeping_session!
     user = User.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
     case
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
       redirect_to '/login', :notice => "Signup complete! Please sign in to continue."
+    when params[:activation_code].blank?
+      redirect_back_or_default('/', :flash => { :error => "The activation code was missing.  Please follow the URL from your email." })
+    else
+      redirect_back_or_default('/', :flash => { :error  => "We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in." })
+    end
+  end
+
+  def activate
+    logout_keeping_session!
+    user = User.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
+    case
+    when (!params[:activation_code].blank?) && user && !user.activate?
+      user.activate!
+      redirect_to '/login', :notice => "邮箱验证成功！"
     when params[:activation_code].blank?
       redirect_back_or_default('/', :flash => { :error => "The activation code was missing.  Please follow the URL from your email." })
     else

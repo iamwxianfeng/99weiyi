@@ -1,5 +1,7 @@
 Chima::Application.routes.draw do
   # root :to => 'welcome#step1'
+
+  mount Resque::Server, :at => "/resque"
   root :to => "home#step1"
 
   resource :session do
