@@ -46,6 +46,7 @@ class V1::UsersController < ApplicationController
     render json: user_h
   end
 
+# 修改资料
   def patch
     login_user.update_attribute(:login, params[:login]) if params[:login].present?
     login_user.update_attribute(:province, params[:province]) if params[:province].present?
@@ -59,7 +60,10 @@ class V1::UsersController < ApplicationController
     render json: user_h
   end
 
+# 上传头像
   def avatar
+    login_user.update_attribute(:avatar, params[:file])
+    render json: { avatar_url: login_user.avatar.try(:url) || '' }
   end
 
 #预约列表

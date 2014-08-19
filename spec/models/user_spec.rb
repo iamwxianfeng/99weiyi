@@ -126,7 +126,7 @@ describe User do
      ].each do |name_str|
       it "'#{name_str}'" do
         lambda do
-          u = create_user(:name => name_str) 
+          u = create_user(:name => name_str)
           u.errors.get(:name).should_not be_nil
         end.should_not change(User, :count)
       end
@@ -216,6 +216,10 @@ describe User do
     users(:quentin).remember_token.should_not be_nil
     users(:quentin).remember_token_expires_at.should_not be_nil
     users(:quentin).remember_token_expires_at.between?(before, after).should be_true
+  end
+
+  it 'upload to upyun' do
+    p "upload to upyun ..."
   end
 
 protected

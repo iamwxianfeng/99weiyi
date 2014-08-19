@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   has_many :invitations
   has_many :passports
 
+  mount_uploader :avatar, ImageUploader
+
   module Style
     LOOSE = 'loose' # 宽松
     NORMAL = 'normal' # 标准

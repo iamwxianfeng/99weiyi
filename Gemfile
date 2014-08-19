@@ -84,6 +84,7 @@ gem 'qq_connect' #, :git => 'git@github.com:pobing/qq_connect.git'
 
 #Upload Image gem
 gem 'carrierwave' #,'~> 0.9.0', :require => 'carrierwave'
+gem "mini_magick", "~> 3.5.0"
 gem "carrierwave-upyun"
 gem "rest-client"
 gem 'resque',:require => 'resque/server'
