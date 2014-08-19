@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_json_oauth_error
-    render :json => { error: '用户名或密码错误'}
+    render :json => { message: '用户名或密码错误'}
   end
 
   def get_forecast(user = nil)

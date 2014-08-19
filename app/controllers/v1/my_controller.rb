@@ -30,7 +30,7 @@ class V1::MyController < ApplicationController
   	@actual_size = if user.actual_size
       user.actual_size
     else
-    	actual_hash = {chest: params[:chest], middle_chest: params[:middle_chest],shoulder: params[:shoulder],sleeve: params[:sleeve],neck: params[:neck], arm: params[:arm], wrist: params[:wrist],ass: params[:ass],crosspiece: params[:crosspiece], knee: params[:knee]}
+    	actual_hash = {chest: params[:chest], middle_chest: params[:middle_chest],shoulder: params[:shoulder],sleeve: params[:sleeve],neck: params[:neck], arm: params[:arm], wrist: params[:wrist],ass: params[:ass],crosspiece: params[:crosspiece], down_chest: params[:down_chest]}
       ActualSize.new(actual_hash)
     end
     if @actual_size.new_record? && @actual_size.save or @actual_size.update_attributes(params[:actual_size])

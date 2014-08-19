@@ -16,7 +16,7 @@ class V1::UsersController < ApplicationController
       Resque.enqueue(UserMailer,@user.id,'activation')
       render json: { access_token: @user.access_token }
     else
-      render status: 422, json: {error: @user.errors}
+      render status: 422, json: {message: @user.errors}
     end
   end
 
@@ -25,7 +25,7 @@ class V1::UsersController < ApplicationController
     if user
       render json: { access_token: user.access_token }
     else
-      render status: 401, json: {error: '用户名或密码错误'}
+      render status: 401, json: {message: '用户名或密码错误'}
     end
   end
 

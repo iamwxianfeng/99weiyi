@@ -11,9 +11,9 @@ class V1::QuestionsController < ApplicationController
     if question.save
 		  render status: 201, json: { message: "ok"}
     else
-		  render status: 422, json: { error: question.errors}
+		  render status: 422, json: { message: question.errors}
     end
-    
+
   end
 
   private

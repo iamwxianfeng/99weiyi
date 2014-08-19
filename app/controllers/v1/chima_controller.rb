@@ -10,12 +10,12 @@ class V1::ChimaController < ApplicationController
   before_filter :request_user
 
   def index
-    return render status:422, json: { error: "你还没有完善尺寸" } unless @user.actual_size
+    return render status:422, json: { message: "你还没有完善尺寸" } unless @user.actual_size
     if params[:type]
       h = send("load_#{params[:type]}")
       render json: h
     else
-      render status:422, json: { error: "请求参数错误" }
+      render status:422, json: { message: "请求参数错误" }
     end
   end
 

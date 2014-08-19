@@ -30,7 +30,7 @@ module V1Helper
 
     def auth_required
       unless signed_in?
-        return render status: 401,  :json => { error: '认证失败'}
+        return render status: 401,  :json => { message: '认证失败'}
       end
     end
 

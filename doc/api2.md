@@ -49,11 +49,11 @@ Input:
   neck: 37 //领围
   arm: 42 //臂围
   wrist: 24 //腕围
-  zongdang: 34//总挡
+  down_chest: 24 //腰围
   ass: 98 //臀围
+  zongdang: 34//总挡
   crosspiece: 54 //横档
   foot: 99 //脚长
-  knee: 23 //膝围
 
 }
 Response:
@@ -182,7 +182,7 @@ Response: Status 200 OK
 
 ```
 包括预约： 上门量体，上门定制，体验店
-post /v1/reserves
+post /v1/reserves?access_token=...
 Input: {
   address: "海淀区黄金小区4号楼5单元"//地址
   name:  "张无忌"//姓名
@@ -283,11 +283,10 @@ Response: Status 200 OK
 ### 查看各类型服饰尺码（穿多大）
 
 ```
-GET /v1/chima
+GET /v1/chima?access_token=...
 参数:{
   type: "xifu"//服饰类型
   style: "lose",// normal,fit,tight,不带style参数默认请求normal 数据
-  access_token: "7a68b4d65ddd6a6191ef0cbf9cadb06528d92d6"
 }
 请求示例(查看西服的修身尺寸)：http://localhost:3000/v1/chima?type=xifu&style=tight&access_token=7a68b4d65ddd6a6191ef0cbf9cadb06528d92d6
 请求的类型不同，返回的数据不同,
