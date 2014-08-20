@@ -3,11 +3,11 @@
 class UserMailer < ActionMailer::Base
 
   @queue = :user_mailer
-  # default :from => "99weiyi@163.com"
+
   HOST = Rails.env.development? ? 'localhost' : 'http://99weiyi.com'
   SITE = Rails.env.development? ? HOST+":3000" : HOST
   MAIL_FROM = Rails.env.development? ? "service@99weiyi.com" : "service@99weiyi.com"
-  default :from => "service@99weiyi.com"
+  default :from => "\"维衣尺码助手\" <service@99weiyi.com>"
 
   def self.perform(user_id,branch,options={})
     case branch
@@ -24,7 +24,7 @@ class UserMailer < ActionMailer::Base
   # end
 
   def activation(user)
-    @subject = '［99维衣］请激活您的邮件账号'
+    @subject = '激活邮件账号'
     @url = "http://#{SITE}/activate/#{user.activation_code}"
     @to_user = user
     mail(:to => user.email,:subject => @subject)
@@ -36,7 +36,6 @@ class UserMailer < ActionMailer::Base
     # @recipients  = "#{user.email}"
     @from        = MAIL_FROM
     @subject     = @subject
-    # @sent_on     = Time.now
     @user = user
   end
 

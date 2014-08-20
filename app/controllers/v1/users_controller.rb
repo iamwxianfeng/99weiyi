@@ -11,7 +11,7 @@ class V1::UsersController < ApplicationController
      @user.password = params[:password]
      @user.password_confirmation = params[:password_confirmation]
      from_user = User.find_by_invite_code(params['invite_code'])
-     @user.from_user_id = from_user.id
+     @user.from_user_id = from_user.id if from_user
     if @user.save
       Resque.enqueue(UserMailer,@user.id,'activation')
       render json: { access_token: @user.access_token }
