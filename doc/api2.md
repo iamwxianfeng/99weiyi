@@ -175,7 +175,7 @@ post /v1/users/avatar?access_token=...
 
 Response: Status 200 OK
 {
-  avatar_url: http://upyun.com/xxx.png
+  avatar_url: "http://weiyichima.b0.upaiyun.com/user/avatar/d0012d5d15c438712a6696c6cb034d3c.jpg"
 }
 ```
 ### 预约

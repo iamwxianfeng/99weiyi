@@ -6,8 +6,8 @@ class UserMailer < ActionMailer::Base
   # default :from => "99weiyi@163.com"
   HOST = Rails.env.development? ? 'localhost' : 'http://99weiyi.com'
   SITE = Rails.env.development? ? HOST+":3000" : HOST
-  MAIL_FROM = Rails.env.development? ? "noreply@entfield.com" : "noreply@entfield.com"
-  default :from => "zufanglushang@163.com"
+  MAIL_FROM = Rails.env.development? ? "service@99weiyi.com" : "service@99weiyi.com"
+  default :from => "service@99weiyi.com"
 
   def self.perform(user_id,branch,options={})
     case branch

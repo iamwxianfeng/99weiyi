@@ -3,11 +3,12 @@ enable: true
 method: :smtp
 charset: "utf-8"
 settings:
-  :address: "smtp.163.com"
+  :address: "smtp.163.com" //smtp.exmail.qq.com
   :port: 25
-  :domain: "163.com"
+  :domain: "163.com" // 99weiyi.com
   :authentication: :login
   :enable_starttls_auto: true
   :user_name: "user_name"
   :password: "passwd"
   #:openssl_verify_mode: 'none'
+
