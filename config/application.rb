@@ -44,6 +44,7 @@ module Chima
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+
     # config.i18n.default_locale = :de
     config.i18n.default_locale = "zh_CN"
 
@@ -76,6 +77,7 @@ module Chima
     require "#{Rails.root}/lib/taobao.rb"
     require "#{Rails.root}/lib/error.rb"
     require "#{Rails.root}/lib/chima/oauth.rb"
+    require "#{Rails.root}/lib/chima/setting.rb"
 
     Dir.glob "./lib/{activerecord}/*.rb" do |f|
       require f

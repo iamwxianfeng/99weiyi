@@ -12,9 +12,11 @@ module Chima
   module Oauth
     class << self
 
+      APP = YAML.load(File.read("#{Rails.root}/config/app.yml"))
+
       def weibo_user_info(hash)
-        WeiboOAuth2::Config.api_key = "2085384436" #Setting.get("weibo.api_key")
-        WeiboOAuth2::Config.api_secret = "c3366600b7987964360d33a116df5a62" #Setting.get("weibo.api_secret")
+        WeiboOAuth2::Config.api_key = APP['weibo']['api_key']
+        WeiboOAuth2::Config.api_secret = APP['weibo']['api_secret']
         res = []
         begin
           timeout(60) do
@@ -37,12 +39,12 @@ module Chima
       end
 
       def qq_user_info(hash)
-        app_id = "101008038" #Setting.get("qq.api_key")
+        app_id = APP['qq']['api_key']
         res = []
         begin
           timeout(60) do
             user = Qq.new(app_id,hash[:access_token])
-            res = user.get_user_info(Setting.get("qq.api_url") + '/user/get_user_info')
+            res = user.get_user_info(APP['qq']['api_url'] + '/user/get_user_info')
           end
         rescue TimeoutError
           puts "Timed Out"

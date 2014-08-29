@@ -4,6 +4,6 @@ weibo:
   api_secret: 'c3366600b7987964360d33a116df5a62'
 
 qq:
-  api_key: '101008038'
-  api_secret: 'dec9253d5cdb2c63868d2bd6e95cdfa5'
+  api_key: '101002156' #'101008038'
+  api_secret: '5d97b43d4f70c779d830441431d39162' #'dec9253d5cdb2c63868d2bd6e95cdfa5'
   api_url: 'https://graph.qq.com'
