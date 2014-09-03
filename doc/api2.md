@@ -152,7 +152,7 @@ Response: Status 200 OK
 
 ### 编辑个人资料
 ```
-patch: /v1/user?access_token=...
+post: /v1/user?access_token=...
 {
   login: 'zhangsanfeng'
   gender: 1 # 0: 未知 1：男 2:女
