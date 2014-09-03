@@ -60,6 +60,8 @@ class User < ActiveRecord::Base
   #    :length     => { :maximum => 100 },
   #    :allow_nil  => true
 
+  validates_inclusion_of :gender,:in => %w{ 0 1 }, :message => "性别不合法"
+
   validates :email, :presence   => { message: "email不能为空" },
     :uniqueness => { message: "email已经存在" },
     :format     => { :with => Authentication.email_regex, :message => Authentication.bad_email_message }
@@ -270,6 +272,10 @@ class User < ActiveRecord::Base
       save(:validate => false)
       reward_invite
     end
+  end
+
+  def avatar_url
+    self.avatar.url || self.avatar_src
   end
 
   protected

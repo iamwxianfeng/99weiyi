@@ -19,10 +19,13 @@ class ApplicationController < ActionController::Base
 
   def get_forecast(user = nil)
     @user ||=  user || current_user
+
+    height_forecasts, weight_forecasts = [], []
     if @user.gender == User::Gender::M
       height_forecasts = ForecastMsize.where(:height_id=>@user.height_id)
       weight_forecasts = ForecastMsize.where(:weight_id=>@user.weight_id)
-    else
+    end
+    if @user.gender == User::Gender::W
       height_forecasts = ForecastWsize.where(:height_id=>@user.height_id)
       weight_forecasts = ForecastWsize.where(:weight_id=>@user.weight_id)
     end
@@ -32,7 +35,7 @@ class ApplicationController < ActionController::Base
     # 预估尺寸算法
     # 身高差值 + 体重差值 最小的
     forecasts.each_with_index do |forecast,index|
-      unless @user.height.nil? || @user.weight.nil?
+      if @user.height && @user.weight && forecast.height && forecast.weight
         arr << (forecast.height.value - @user.height.value).abs + (forecast.weight.value - @user.weight.value).abs
       end
     end

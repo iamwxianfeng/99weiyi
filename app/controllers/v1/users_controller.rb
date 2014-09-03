@@ -42,7 +42,7 @@ class V1::UsersController < ApplicationController
   def show
     user_h = login_user.to_hash(:get)
     # weixin,weibo,qq
-    user_h.merge!({height: login_user.height.try(:value) || '' , weight: login_user.weight.try(:value) || '' })
+    user_h.merge!({height: login_user.height.try(:value) || '' , weight: login_user.weight.try(:value) || '' , avatar_url: login_user.avatar_url})
     render json: user_h
   end
 

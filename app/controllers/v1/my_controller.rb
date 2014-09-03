@@ -7,8 +7,8 @@ class V1::MyController < ApplicationController
 	  password = "123456"
     email = "#{Chima::Token.make_token}@tmp_user.com"
     login = "临时用户#{User.last.id}"
-    height_id = Height.find_by_value(params[:height].to_i) || 0
-    weight_id = Weight.find_by_value(params[:weight].to_i) || 0
+    height_id = Height.find_by_value(params[:height].to_i).try(:id) || 0
+    weight_id = Weight.find_by_value(params[:weight].to_i).try(:id) || 0
     attr = {email: email, login: login, password: password, password_confirmation: password,gender: params[:gender],height_id: height_id, weight_id: weight_id,style: params[:style]}
     user = User.new(attr)
     user.save(validate: false)
