@@ -60,6 +60,30 @@ Response:
 Success: Status 200 OK
 ```
 
+### 获取准确尺寸
+```
+POST /v1/my/actual_size?access_token=7a68b4d65ddd6a6191ef0cbf9cadb06528d92d6
+Input:
+
+{
+  chest: 91 //胸围
+  middle_chest: 82 //中腰围
+  shoulder: 42 //肩宽
+  sleeve: 57 //袖长
+  neck: 37 //领围
+  arm: 42 //臂围
+  wrist: 24 //腕围
+  down_chest: 24 //腰围
+  ass: 98 //臀围
+  zongdang: 34//总挡
+  crosspiece: 54 //横档
+  foot: 99 //脚长
+
+}
+Response:
+Success: Status 200 OK
+```
+
 ### 注册：
 
 ```

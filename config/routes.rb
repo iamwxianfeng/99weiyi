@@ -45,6 +45,7 @@ Chima::Application.routes.draw do
   namespace :v1 do
     post '/my/forecast', to: 'my#forecast'
     post '/my/actual_size', to: 'my#actual_size'
+    get '/my/actual_size', to: 'my#actual_size'
     get '/weights', to: 'weights#index'
     get '/heights', to: 'heights#index'
     get '/chima', to: 'chima#index'

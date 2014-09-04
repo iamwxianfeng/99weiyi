@@ -3,6 +3,8 @@
 class V1::MyController < ApplicationController
 	layout false
 
+  before_filter :auth_required, :except => [:forecast]
+
   def forecast
 	  password = "123456"
     email = "#{Chima::Token.make_token}@tmp_user.com"
@@ -25,20 +27,28 @@ class V1::MyController < ApplicationController
   end
 
   def actual_size
-  	user = User.get_by_access_token(params[:access_token])
-  	return render status: 401, json: { message: "授权过期，请登录"} if user.nil?
-  	@actual_size = if user.actual_size
-      user.actual_size
+  	@actual_size = if login_user.actual_size
+      login_user.actual_size
     else
     	actual_hash = {chest: params[:chest], middle_chest: params[:middle_chest],shoulder: params[:shoulder],sleeve: params[:sleeve],neck: params[:neck], arm: params[:arm], wrist: params[:wrist],ass: params[:ass],crosspiece: params[:crosspiece], down_chest: params[:down_chest]}
       ActualSize.new(actual_hash)
     end
     if @actual_size.new_record? && @actual_size.save or @actual_size.update_attributes(params[:actual_size])
-      get_forecast(user)
+      get_forecast(login_user)
       render status: 201, json: { message: "操作成功" }
     else
     	render status:422, json: { message: "操作失败，请重试"}
     end
+  end
+
+
+  def actual_size
+    if login_user.actual_size
+      render json: login_user.actual_size.to_hash(:get)
+    else
+      render status: 422, json: { message: "您还没有完善准确尺寸"}
+    end
+
   end
 
 end
