@@ -62,8 +62,10 @@ Success: Status 200 OK
 
 ### 获取准确尺寸
 ```
-POST /v1/my/actual_size?access_token=7a68b4d65ddd6a6191ef0cbf9cadb06528d92d6
-Input:
+GET /v1/my/actual_size?access_token=7a68b4d65ddd6a6191ef0cbf9cadb06528d92d6
+
+Response: 
+Success: Status 200 OK
 
 {
   chest: 91 //胸围
@@ -80,8 +82,7 @@ Input:
   foot: 99 //脚长
 
 }
-Response:
-Success: Status 200 OK
+
 ```
 
 ### 注册：
