@@ -52,8 +52,10 @@ class V1::UsersController < ApplicationController
     login_user.update_attribute(:province, params[:province]) if params[:province].present?
     login_user.update_attribute(:city,params[:city]) if params[:city].present?
     login_user.update_attribute(:gender,params[:gender]) if params[:gender].present?
-    login_user.update_attribute(:height_id,params[:height_id]) if params[:height_id].present?
-    login_user.update_attribute(:weight_id,params[:weight_id]) if params[:weight_id].present?
+    height_id = Height.find_by_value(params[:height].to_i).try(:id)
+    weight_id = Weight.find_by_value(params[:weight].to_i).try(:id)
+    login_user.update_attribute(:height_id, height_id) if height_id
+    login_user.update_attribute(:weight_id, weight_id) if weight_id
     login_user.update_attribute(:style,params[:style]) if params[:style].present?
 
     user_h = login_user.to_hash(:get)
@@ -62,6 +64,7 @@ class V1::UsersController < ApplicationController
 
 # 上传头像
   def avatar
+    binding.pry
     login_user.update_attribute(:avatar, params[:file])
     render json: { avatar_url: login_user.avatar.try(:url) || '' }
   end

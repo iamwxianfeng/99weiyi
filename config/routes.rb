@@ -54,6 +54,7 @@ Chima::Application.routes.draw do
     post '/invitations', to: 'invitations#create'
 
     get '/user', to: 'users#show'
+    post '/user', to: 'users#patch'
     get '/user/reserves', to: 'users#reserves'
     get '/user/coupons', to: 'users#coupons'
     get '/user/interactions', to: 'users#interactions'
