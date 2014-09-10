@@ -26,19 +26,15 @@ class V1::MyController < ApplicationController
     end
   end
 
-  def actual_size
+  def new_actual_size
+    actual_hash = {chest: params[:chest], middle_chest: params[:middle_chest],shoulder: params[:shoulder],sleeve: params[:sleeve],neck: params[:neck], arm: params[:arm], wrist: params[:wrist],ass: params[:ass],crosspiece: params[:crosspiece], down_chest: params[:down_chest]}
   	@actual_size = if login_user.actual_size
-      login_user.actual_size
+      login_user.actual_size.update_attributes(actual_hash)
     else
-    	actual_hash = {chest: params[:chest], middle_chest: params[:middle_chest],shoulder: params[:shoulder],sleeve: params[:sleeve],neck: params[:neck], arm: params[:arm], wrist: params[:wrist],ass: params[:ass],crosspiece: params[:crosspiece], down_chest: params[:down_chest]}
-      ActualSize.new(actual_hash)
+      actual_hash.merge!({user_id: login_user.id})
+      ActualSize.create(actual_hash)
     end
-    if @actual_size.new_record? && @actual_size.save or @actual_size.update_attributes(params[:actual_size])
-      get_forecast(login_user)
-      render status: 201, json: { message: "操作成功" }
-    else
-    	render status:422, json: { message: "操作失败，请重试"}
-    end
+    render json: login_user.reload.actual_size.to_hash(:get)
   end
 
 
