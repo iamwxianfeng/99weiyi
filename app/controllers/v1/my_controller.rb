@@ -27,7 +27,11 @@ class V1::MyController < ApplicationController
   end
 
   def new_actual_size
-    actual_hash = {chest: params[:chest], middle_chest: params[:middle_chest],shoulder: params[:shoulder],sleeve: params[:sleeve],neck: params[:neck], arm: params[:arm], wrist: params[:wrist],ass: params[:ass],crosspiece: params[:crosspiece], down_chest: params[:down_chest]}
+    actual_hash = { chest: params[:chest], middle_chest: params[:middle_chest],
+      shoulder: params[:shoulder],sleeve: params[:sleeve],neck: params[:neck],
+      arm: params[:arm], wrist: params[:wrist],ass: params[:ass],
+      crosspiece: params[:crosspiece], down_chest: params[:down_chest],
+      zongdang: params[:zongdang], foot: params[:foot]}
   	@actual_size = if login_user.actual_size
       login_user.actual_size.update_attributes(actual_hash)
     else

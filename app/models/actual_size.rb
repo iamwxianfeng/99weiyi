@@ -5,5 +5,6 @@ class ActualSize < ActiveRecord::Base
 
   belongs_to :user
 
-  attr_visible :chest, :middle_chest, :shoulder, :sleeve, :neck, :arm, :wrist, :down_chest, :ass, :crosspiece, :foot, :knee, as: [:get,:list]
+  attr_visible :chest, :middle_chest, :shoulder, :sleeve, :neck, :arm, :wrist, as: [:get,:list]
+  attr_visible :down_chest, :ass, :crosspiece, :foot, :knee, :zongdang, as: [:get,:list]
 end

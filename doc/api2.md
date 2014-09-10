@@ -64,7 +64,7 @@ Success: Status 200 OK
 ```
 GET /v1/my/actual_size?access_token=7a68b4d65ddd6a6191ef0cbf9cadb06528d92d6
 
-Response: 
+Response:
 Success: Status 200 OK
 
 {
