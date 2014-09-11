@@ -162,15 +162,27 @@ Response: Status 200 OK
 {
   login: 'zhangsanfeng'
   gender: 1 # 0: 未知 1：男 2:女
-  height： 9 // height_id: 150cm
-  weight： 2 // weight_id: 50kg
-  style: 'normal'
-  province: 100000 #北京
-  city: 100001 #朝阳
-  weibo: {nick_name:'love xiaotiantian',activated: false},
-  qq: {nick_name:'love xiaotiantian',activated: true},
-  weixin: {nick_name:'love xiaotiantian',activated: true},
-  avatar_url: "http://upyun.com/xxx.png",
+  height： 170,
+  weight： 60,
+  style: 'normal',
+  province: '100000', #北京
+  city: '100001' #朝阳
+  weibo: {
+    nick_name:'love xiaotiantian',
+    avatar_url: "http://tp1.sinaimg.cn/5031413300/50/0/0", //第三方头像
+    is_actived: false
+  },
+  qq: {
+    nick_name:'love xiaotiantian',
+    avatar_url: "http://tp1.sinaimg.cn/5031413300/50/0/0", //第三方头像
+    is_actived: true
+  },
+  weixin: {
+    nick_name:'love xiaotiantian',
+    avatar_url: "http://tp1.sinaimg.cn/5031413300/50/0/0", //第三方头像
+    is_actived: true
+  },
+  avatar_url: "http://upyun.com/xxx.png", //默认头像
   invite_code: '254098' #邀请码
 }
 ```
@@ -181,14 +193,39 @@ post: /v1/user?access_token=...
 {
   login: 'zhangsanfeng'
   gender: 1 # 0: 未知 1：男 2:女
-  height_id： 9 // height_id: 150cm
-  weight_id： 2 // weight_id: 50kg
+  height： 170,
+  weight： 60,
   style: 'normal'
   province: 100000 #北京
   city: 100001 #朝阳
 }
 Response: Status 200 OK
-
+{
+  login: 'zhangsanfeng'
+  gender: 1 # 0: 未知 1：男 2:女
+  height： 170,
+  weight： 60,
+  style: 'normal',
+  province: '100000', #北京
+  city: '100001' #朝阳
+  weibo: {
+    nick_name:'love xiaotiantian',
+    avatar_url: "http://tp1.sinaimg.cn/5031413300/50/0/0", //第三方头像
+    is_actived: false
+  },
+  qq: {
+    nick_name:'love xiaotiantian',
+    avatar_url: "http://tp1.sinaimg.cn/5031413300/50/0/0", //第三方头像
+    is_actived: true
+  },
+  weixin: {
+    nick_name:'love xiaotiantian',
+    avatar_url: "http://tp1.sinaimg.cn/5031413300/50/0/0", //第三方头像
+    is_actived: true
+  },
+  avatar_url: "http://upyun.com/xxx.png", //默认头像
+  invite_code: '254098' #邀请码
+}
 ```
 ### 上传头像
 

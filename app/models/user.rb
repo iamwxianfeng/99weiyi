@@ -106,7 +106,13 @@ class User < ActiveRecord::Base
       return render status: 422, json: { message: "操作失败"}
     else
       user = User.new(login: oauth_hash[:login], visitor_id: oauth_hash[:provider_uid])
-      user.passports.new({provider_uid: oauth_hash[:provider_uid], provider_name: oauth_hash[:provider_name], avatar_url: oauth_hash[:avatar_url] })
+      user.passports.new({
+        provider_uid: oauth_hash[:provider_uid],
+        provider_name: oauth_hash[:provider_name],
+        avatar_url: oauth_hash[:avatar_url],
+        nick_name: oauth_hash[:login],
+        is_actived: true
+      })
       user.save(validate: false)
       user
     end
@@ -276,6 +282,32 @@ class User < ActiveRecord::Base
 
   def avatar_url
     self.avatar.url || self.avatar_src
+  end
+
+  def body_hash
+    { height: self.height.try(:value) || '' , weight: self.weight.try(:value) || '' }
+  end
+
+  def provider_hash
+    init_hash = {nick_name: '', avatar_url: '', is_actived: false }
+    qq,weibo,weixin = init_hash, init_hash, init_hash
+
+    self.passports.each do |p|
+      if p.provider_name == "weibo"
+        weibo = p.to_hash(:get)
+      end
+
+      if p.provider_name == "qq"
+        qq = p.to_hash(:get)
+      end
+
+      if p.provider_name == "weixin"
+        weixin = p.to_hash(:get)
+      end
+    end
+
+    { qq: qq, weibo: weibo, weixin: weixin }
+
   end
 
   protected
