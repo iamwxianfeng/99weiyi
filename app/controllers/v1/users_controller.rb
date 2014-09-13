@@ -70,8 +70,15 @@ class V1::UsersController < ApplicationController
 
 # 上传头像
   def avatar
-    binding.pry
-    login_user.update_attribute(:avatar, params[:file])
+    p "==params[:file]>>>>>>>>>== #{params[:file]}"
+    file = params[:file]
+    filename = Token.make_token
+    extense_name = file.original_filename.split('.').last
+    tempfile = Tempfile.new([filename,".#{extense_name}"])
+    p "name: #{filename}, extense_name: #{extense_name}, tempfile: #{tempfile}"
+    tempfile.write(file.read)
+    login_user.update_attribute(:avatar, tempfile)
+    avatar_url = [u.avatar.url,'a.120'].join("!")
     render json: { avatar_url: login_user.avatar.try(:url) || '' }
   end
 

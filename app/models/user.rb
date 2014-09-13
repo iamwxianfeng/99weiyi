@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   include Activerecord::Visible
   include Chima::Oauth
 
-  attr_visible :id,:login,:gender,:email, :style, :province, :city, :avatar_url, :invite_code, as: :get
+  attr_visible :id,:login,:gender,:email, :style, :province, :city, :invite_code, as: :get
 
   set_table_name 'users'
   belongs_to :height
@@ -281,7 +281,8 @@ class User < ActiveRecord::Base
   end
 
   def avatar_url
-    self.avatar.url || self.avatar_src
+    upload_avatar = [self.avatar.url,'a.120'].join("!")
+    upload_avatar || self.avatar_src
   end
 
   def body_hash
