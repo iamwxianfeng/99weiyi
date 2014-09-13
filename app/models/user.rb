@@ -281,7 +281,7 @@ class User < ActiveRecord::Base
   end
 
   def avatar_url
-    upload_avatar = [self.avatar.url,'a.120'].join("!")
+    upload_avatar = "https://" + [self.avatar.url,'a.120'].join("!")
     upload_avatar || self.avatar_src
   end
 

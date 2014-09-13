@@ -34,7 +34,8 @@ describe 'Uploader' do
     tempfile.write(io_bytes)
     u = User.new
     u.update_attribute(:avatar, tempfile)
-    p u.avatar.url
+    # p u.avatar.url
+    p u.avatar_url
     u.avatar.url.should include('upaiyun.com')
   end
 
