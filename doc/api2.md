@@ -232,7 +232,8 @@ Response: Status 200 OK
 ```
 post /v1/users/avatar?access_token=...
 {
-  file: #文件对象
+  file: 'E9ST\xE2\xEA\u007Fn\xF8;\xF4y\xC9s.\ey\xF7\u0018ԥ\x98\xCF9\xF6\u0015\xB2\xBC6\u0002'//二进制文件流
+  name: 'axxx.png' //带扩展名的文件名
 }
 
 Response: Status 200 OK

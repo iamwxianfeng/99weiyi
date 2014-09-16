@@ -72,14 +72,14 @@ class V1::UsersController < ApplicationController
   def avatar
     p "==params[:file]>>>>>>>>>== #{params[:file]}"
     file = params[:file]
-    filename = Token.make_token
-    extense_name = file.original_filename.split('.').last
+    filename = Chima::Token.make_token
+    file_name = params[:name].to_s
+    extense_name = file_name.include?('.') ? file_name.split('.').last : "png"
     tempfile = Tempfile.new([filename,".#{extense_name}"])
     p "name: #{filename}, extense_name: #{extense_name}, tempfile: #{tempfile}"
-    tempfile.write(file.read)
+    tempfile.write(params[:file])
     login_user.update_attribute(:avatar, tempfile)
-    avatar_url = [u.avatar.url,'a.120'].join("!")
-    render json: { avatar_url: login_user.avatar.try(:url) || '' }
+    render json: { avatar_url: login_user.avatar_url }
   end
 
 #预约列表
