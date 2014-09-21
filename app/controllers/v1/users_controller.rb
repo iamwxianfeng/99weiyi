@@ -35,8 +35,12 @@ class V1::UsersController < ApplicationController
 
   def oauth
     user = User.find_by_visitor_id(params[:uid]) || User.from_auth_hash(params)
+    if user
+      render json: { access_token: user.access_token }
+    else
+      render status: 422, json: { message: "第三方登录失败"}
+    end
 
-    render json: { access_token: user.access_token }
   end
 
   def show
@@ -70,7 +74,6 @@ class V1::UsersController < ApplicationController
 
 # 上传头像
   def avatar
-    p "==params[:file]>>>>>>>>>== #{params[:file]}"
     file = params[:file]
     filename = Chima::Token.make_token
     file_name = params[:name].to_s

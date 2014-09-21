@@ -20,15 +20,19 @@ module Chima
         res = []
         begin
           timeout(60) do
-            client = WeiboOAuth2::Client.new
-            client.get_token_from_hash({ access_token: hash[:access_token] })
-            res = client.users.show_by_uid(hash[:uid]) unless client.users.nil?
+            begin
+              client = WeiboOAuth2::Client.new
+              client.get_token_from_hash({ access_token: hash[:access_token] })
+              res = client.users.show_by_uid(hash[:uid]) unless client.users.nil?
+            rescue Exception => e
+              p res.message
+            end
           end
         rescue TimeoutError
           puts "Timed Out"
         end
 
-        # raise OauthError.new("get faild") if res['error']
+        return [] if res.empty?
 
         login = res['name']
         provider_uid = res['id']
@@ -44,13 +48,18 @@ module Chima
         begin
           timeout(60) do
             user = Qq.new(app_id,hash[:access_token])
-            res = user.get_user_info(APP['qq']['api_url'] + '/user/get_user_info')
+            begin
+              res = user.get_user_info(APP['qq']['api_url'] + '/user/get_user_info')
+
+            rescue Exception => e
+              p e.message
+            end
           end
         rescue TimeoutError
           puts "Timed Out"
         end
 
-        # raise OauthError.new("get faild") unless res['ret'] == 0
+        return [] if res.empty?
 
         login = res['nickname']
         provider_name = 'qq'

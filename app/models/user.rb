@@ -102,8 +102,8 @@ class User < ActiveRecord::Base
   def self.from_auth_hash(hash)
     oauth_hash = Chima::Oauth.send("#{hash[:type]}_user_info".to_sym, hash)
 
-    if oauth_hash.nil?
-      return render status: 422, json: { message: "操作失败"}
+    if oauth_hash.nil? || oauth_hash.empty?
+      return nil
     else
       user = User.new(login: oauth_hash[:login], visitor_id: oauth_hash[:provider_uid])
       user.passports.new({
