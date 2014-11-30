@@ -4,7 +4,15 @@
 <table class="table table-hover table-condensed">
   <tr>
     <th>编号</th>
-    <th>名称</th>
+    <th>用户名</th>
+    <th>所属商圈</th>
+    <th>服务范围</th>
+    <th>工作时间</th>
+    <th>工作经验</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,7 +21,11 @@
 <% @tailors.each do |tailor| %>
   <tr>
     <td><%= tailor.id %></td>
+    <td><%= tailor.user.try(:login) %></td>
+    <td><%= tailor.areas_str %></td>
     <td><%= tailor.scope %></td>
+    <td><%= tailor.work_time %></td>
+    <td><%= tailor.experience %></td>
     <td><%= link_to '显示', [:admin,tailor] %></td>
     <td><%= link_to '编辑', edit_admin_tailor_path(tailor) %></td>
     <td><%= link_to '删除', [:admin,tailor], confirm: '确定?', method: :delete %></td>

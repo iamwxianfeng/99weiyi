@@ -6,7 +6,7 @@
 <% end %>
 <p>
   <b>用户名: </b>
-  <%=@tailor.user.login %>
+  <%=@tailor.user.try(:login) %>
 </p>
 <p>
   <b>所属商圈: </b>
