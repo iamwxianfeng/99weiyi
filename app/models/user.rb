@@ -9,12 +9,14 @@ class User < ActiveRecord::Base
   include Activerecord::Visible
   include Chima::Oauth
 
-  attr_visible :id,:login,:gender,:email, :style, :province, :city, :invite_code, as: :get
+  attr_visible :id,:gender,:email, :style, :city, :invite_code, as: :get
+  attr_visible :login, :avatar_url,:province, as:[:get,:tailor]
 
   set_table_name 'users'
   belongs_to :height
   belongs_to :weight
   has_one :actual_size
+  has_one :tailor
   belongs_to :forecast_msize , :foreign_key => "forecast_id"
   belongs_to :forecast_wsize , :foreign_key => "forecast_id"
   has_one :disk_file, :as => :item
@@ -29,6 +31,7 @@ class User < ActiveRecord::Base
   has_many :user_coupons
   has_many :invitations
   has_many :passports
+  has_many :tailor_comments, foreign_key: 'commenter_id'
 
   mount_uploader :avatar, ImageUploader
 
@@ -60,7 +63,7 @@ class User < ActiveRecord::Base
   #    :length     => { :maximum => 100 },
   #    :allow_nil  => true
 
-  validates_inclusion_of :gender,:in => %w{ 0 1 }, :message => "性别不合法"
+  # validates_inclusion_of :gender,:in => %w{ 0 1 }, :message => "性别不合法"
 
   validates :email, :presence   => { message: "email不能为空" },
     :uniqueness => { message: "email已经存在" },
@@ -230,6 +233,10 @@ class User < ActiveRecord::Base
 
   def is_messure?
     self.role_id >= Role::Measure # [admin,messure]
+  end
+
+  def age
+    self.birthday.year == 1900 ? '' : Time.now.year - self.birthday.year
   end
 
   def find_coupon_total_count_by_sql

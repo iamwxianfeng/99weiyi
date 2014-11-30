@@ -500,4 +500,8 @@ module ApplicationHelper
     arr.map { |doc| doc.to_hash role }
   end
 
+  def image_protocol(uri)
+    "https://" + uri
+  end
+
 end

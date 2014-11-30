@@ -4,6 +4,18 @@
     <title>Chima</title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
+    <% if Rails.env == "development" %>
+      <link href="/assets/application.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+      <link href="/assets/style.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+      <link href="/assets/wenzhushou.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+      <script src="/assets/application.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+      <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+      <script src="/assets/w.js?body=1" type="text/javascript"></script>
+      <script src="/assets/admin.js?body=1" type="text/javascript"></script>
+      <script src="/assets/global.js?body=1" type="text/javascript"></script>
+      <script src="/assets/step.js?body=1" type="text/javascript"></script>
+    <% end %>
     <%= csrf_meta_tags %>
     <meta property="wb:webmaster" content="84ca09d3aef1dc81" />
     <!-- <meta property="wb:webmaster" content="62f79f35977518ca" /> -->

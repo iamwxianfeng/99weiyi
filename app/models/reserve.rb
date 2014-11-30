@@ -7,9 +7,11 @@ class Reserve < ActiveRecord::Base
   set_table_name :reserves
 
   belongs_to :user
-  belongs_to :shop
+  belongs_to :height
+  belongs_to :weight
+  belongs_to :tailor
 
-  attr_visible :id,:address,:name,:phone, :service_time, :reserve_type, :created_at, as: [:get,:list]
+  attr_visible :id,:address,:name,:phone, :service_time, :reserve_type, :tailor_id,:created_at, :desc, as: [:get,:list]
 
   module Type
     SMLT = 1 #上门量体

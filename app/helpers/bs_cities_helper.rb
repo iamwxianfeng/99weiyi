@@ -1,0 +1,2 @@
+module BsCitiesHelper
+end

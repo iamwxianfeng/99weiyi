@@ -6,12 +6,25 @@ class V1::ReservesController < ApplicationController
   before_filter :auth_required
 
   def create
-    attr = {address: params[:address], name: params[:name], phone: params[:phone], service_time: params[:service_time], shop_id: params[:shop_id], reserve_type: params[:reserve_type]}
+    height_id = Height.find_by_value(params[:height].to_i).try(:id) || 0
+    weight_id = Weight.find_by_value(params[:weight].to_i).try(:id) || 0
+
+    attr = {
+      address: params[:address],
+      name: params[:name],
+      phone: params[:phone],
+      service_time: params[:service_time],
+      reserve_type: params[:reserve_type],
+      height_id: height_id,
+      weight_id: weight_id,
+      tailor_id: params[:tailor_id],
+      desc: params[:desc]
+    }
     reserve = Reserve.new(attr)
     reserve.user_id = login_user.id
     reserve.save
 
-    extend_h = {shop: reserve.shop.try(:name)}
+    extend_h = {height: reserve.height.try(:value) || '', weight: reserve.weight.try(:value) || '' }
     render json: reserve.to_hash(:get).merge!(extend_h)
   end
 

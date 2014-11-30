@@ -60,6 +60,14 @@ Chima::Application.routes.draw do
     get '/user/interactions', to: 'users#interactions'
     get '/user/invitations', to: 'users#invitations'
 
+    resources :tailors do
+      resources :tailor_comments, only: [:index,:create]
+    end
+
+    resources :bs_cities do
+      resources :bs_districts, only: [:index]
+    end
+
     resources :users do
       collection {
         post :signup
@@ -70,8 +78,6 @@ Chima::Application.routes.draw do
         post :avatar
       }
     end
-
-
 
   end
 
@@ -99,6 +105,18 @@ Chima::Application.routes.draw do
     resources :reserves
     resources :shops
     resources :coupons
+    resources :bs_cities do
+      resources :bs_districts
+    end
+
+    resources :bs_districts do
+      resources :bs_areas
+    end
+
+    resources :tailors
+    resources :tailor_areas
+
+    # resources :bs_areas
     resources :users do
       member {
         post :update_role

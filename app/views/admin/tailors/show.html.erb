@@ -1,0 +1,46 @@
+<h3>裁缝详情</h3>
+<% if @tailor.desc_pic %>
+<p>
+  <%=image_tag image_protocol(@tailor.desc_pic_url), :class => 'tailor_desc_pic' %>
+</p>
+<% end %>
+<p>
+  <b>用户名: </b>
+  <%=@tailor.user.login %>
+</p>
+<p>
+  <b>所属商圈: </b>
+  <%=@tailor.areas_str %>
+</p>
+<p>
+  <b>服务范围: </b>
+  <%=@tailor.scope %>
+</p>
+<p>
+  <b>工作时间: </b>
+  <%=@tailor.work_time %>
+</p>
+<p>
+  <b>工作经验: </b>
+  <%=@tailor.experience %>
+</p>
+<p>
+  <b>描述: </b>
+  <%=@tailor.desc %>
+</p>
+<hr>
+<h4>设置圈子信息</h4>
+
+<%= form_tag('/admin/tailor_areas', :method => 'post', :class=> 'form-inline' ) do -%>
+  <%#= error_messages_for @tailor_area %>
+  <%= hidden_field_tag "tailor_area[tailor_id]", @tailor.id %>
+  <div class="field">
+    <%= select_tag "tailor_area[bs_area_id]", "<option>--请选择圈子--</option>#{options_from_collection_for_select(BsArea.all,:id,:name)}".html_safe %>
+    <%#= f.select :bs_area_id, BsArea.all.collect {|a| [a.name, a.id] }, { include_blank: true } %>
+     <%= submit_tag "确定"%>
+  </div>
+<% end -%>
+
+
+<%= link_to '编辑', edit_admin_tailor_path(@tailor) %> |
+<%= link_to '返回', admin_tailors_path %>

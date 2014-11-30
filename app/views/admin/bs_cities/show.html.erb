@@ -1,0 +1,35 @@
+<h2>
+  <b>市名:</b>
+  <%= @bs_city.name %>
+</h2>
+<h3>区列表 </h3>
+
+<table class="table table-hover table-condensed">
+  <tr>
+    <th>编号</th>
+    <th>名称</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bs_city.bs_districts.each do |district|%>
+  <tr>
+    <td><%= district.id %></td>
+    <td><%= district.name %></td>
+    <td><%= link_to '查看商圈', [:admin,@bs_city,district] %></td>
+    <td><%#= link_to '编辑', edit_admin_bs_city_path(bs_city) %></td>
+    <td><%#= link_to '删除', [:admin,bs_city], confirm: '确定?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<h3>添加新区</h3>
+<%= form_for([:admin,@bs_city, @bs_city.bs_districts.build], :class=> 'form-inline') do |f| %>
+  <%= f.text_field :name, :class => 'input-medium', :placeholder => '名称' %>
+  <%= f.submit "提交", :class => 'btn btn-info'  %>
+<% end %>
+
+<br/>
+<%= link_to '编辑', edit_admin_bs_city_path(@bs_city) %> |
+<%= link_to '返回', admin_bs_cities_path %>

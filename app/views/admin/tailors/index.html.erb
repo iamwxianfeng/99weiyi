@@ -1,0 +1,26 @@
+<%= link_to '添加新裁缝', new_admin_tailor_path, :class => 'btn' %>
+<h1>裁缝列表</h1>
+
+<table class="table table-hover table-condensed">
+  <tr>
+    <th>编号</th>
+    <th>名称</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tailors.each do |tailor| %>
+  <tr>
+    <td><%= tailor.id %></td>
+    <td><%= tailor.scope %></td>
+    <td><%= link_to '显示', [:admin,tailor] %></td>
+    <td><%= link_to '编辑', edit_admin_tailor_path(tailor) %></td>
+    <td><%= link_to '删除', [:admin,tailor], confirm: '确定?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+

@@ -1,0 +1,27 @@
+<i class="icon-plus"></i><%= link_to '添加市', new_admin_bs_city_path, :class => 'btn' %>
+
+<h2>市列表</h2>
+
+<table class="table table-hover table-condensed">
+  <tr>
+    <th>编号</th>
+    <th>名称</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bs_cities.each do |bs_city| %>
+  <tr>
+    <td><%= bs_city.id %></td>
+    <td><%= bs_city.name %></td>
+    <td><%= link_to '查看区列表', [:admin,bs_city] %></td>
+    <td><%= link_to '编辑', edit_admin_bs_city_path(bs_city) %></td>
+    <td><%= link_to '删除', [:admin,bs_city], confirm: '确定?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+

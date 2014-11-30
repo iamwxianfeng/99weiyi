@@ -143,27 +143,27 @@ name: string
 区表
 bs_districts
 id:
+bs_citys_id
 name:
 
 商圈表
 bs_areas
 id:
+bs_citys_id
+bs_districts_id
 name:
 
 裁缝表 和用户表，市，区，商圈表 关联
 tailors
 user_id
-<!-- bs_citys_id
-bs_districts_id
-bs_areas_id -->
 desc
 desc_pic
-score: int 评分
+rate: int 评分
 book_counts: int 预定数
-bs_areas:商圈区域
-scope: 服务范围
-work_time: 服务时间 ? 一个范围，还是多个时间段
-experience: 工作经验？
+bs_areas:string商圈区域
+scope: string 服务范围
+work_time: string 服务时间 ? 一个范围，还是多个时间段
+experience: string 工作经验？
 
 
 裁缝评论表
@@ -174,7 +174,21 @@ has_many: pictures
 tailor_id: int
 user_id: int
 content: text
-score: int
+rate: int
 created_at: datetime
+
+裁缝商圈表
+tailor_areas
+has_many :through
+tailor_id
+bs_area_id
+bs_city_id
+bs_district_id
+
+图片表
+tailor_comments_images
+image
+tailor_comments_id
+
 
 

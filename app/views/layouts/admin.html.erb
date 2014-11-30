@@ -12,13 +12,20 @@
 
     <!-- Bootstrap core CSS -->
     <!-- Custom styles for this template -->
-    <!--
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/assets/jquery.js"></script>
-    <script src="/assets/w.js"></script>
-    <script src="/assets/admin.js"></script>
-    <script src="/assets/server.js"></script>
-    -->
+  <% if Rails.env == "development" %>
+    <link href="/assets/bootstrap_admin.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bootstrap-theme.min.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bootstrap.min.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/offcanvas.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/assets/wenzhushou.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/assets/bootstrap_admin.js?body=1" type="text/javascript"></script>
+    <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+    <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+    <script src="/assets/js/bootstrap.min.js?body=1" type="text/javascript"></script>
+    <script src="/assets/js/offcanvas.js?body=1" type="text/javascript"></script>
+    <script src="/assets/server.js?body=1" type="text/javascript"></script>
+  <% end %>
+
     <!-- // <script src="/assets/js/bootstrap.min.js"></script> -->
     <%= stylesheet_link_tag    "bootstrap_admin" %>
     <%= javascript_include_tag "bootstrap_admin" %>
@@ -35,7 +42,7 @@
   </head>
 
   <body>
-    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="navbar navbar-fixed-top navbar-inverse " role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -59,6 +66,8 @@
               <li><%=link_to "用户管理", admin_users_path %></li>
               <li><%=link_to "体验店管理", admin_shops_path %></li>
               <li><%=link_to "优惠券管理", admin_coupons_path %></li>
+              <li><%=link_to "圈子管理", admin_bs_cities_path %></li>
+              <li><%=link_to "裁缝管理", admin_tailors_path %></li>
             <% end %>
             <li><%=link_to "预约管理", admin_reserves_path %></li>
           </ul>
@@ -102,7 +111,7 @@
       <hr>
 
       <footer>
-        <p>&copy; 99weiyi 2013</p>
+        <p>&copy; 99weiyi 2013-2014</p>
       </footer>
 
     </div><!--/.container-->

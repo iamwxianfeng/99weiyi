@@ -1,0 +1,37 @@
+<%= form_for([:admin,@tailor], {html: {class: "form-horizontal"}}) do |f| %>
+  <%= error_messages_for @tailor %>
+
+  <div class="field">
+    <%= f.label '用户选择' %><br />
+    <%= f.select :user_id, User.all.collect {|u| [u.login, u.id] }, { include_blank: true } %>
+  </div>
+
+  <div class="field">
+    <%= f.label "服务范围" %><br />
+    <%= f.text_field :scope %>
+  </div>
+    <div class="field">
+    <%= f.label "工作时间" %><br />
+    <%= f.text_field :work_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label "工作经验" %><br />
+    <%= f.text_field :experience %>
+  </div>
+
+  <div class="field">
+    <%= f.label "图片描述" %><br />
+    <%= f.file_field :desc_pic %>
+  </div>
+
+  <div class="field">
+    <%= f.label "个人描述" %><br />
+    <%= f.text_area :desc, :class => "tarea" %>
+  </div>
+
+  <div class="actions">
+    <br/>
+    <%= f.submit "提交", :class=> "btn btn-info" %>
+  </div>
+<% end %>
