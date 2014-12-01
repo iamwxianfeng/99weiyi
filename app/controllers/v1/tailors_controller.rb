@@ -3,7 +3,7 @@
 class V1::TailorsController < ApplicationController
   layout false
 
-  before_filter :auth_required
+  # before_filter :auth_required
 
   def index
     tailor_areas = if params[:bs_district_id]
@@ -16,13 +16,15 @@ class V1::TailorsController < ApplicationController
     tailors = []
     tailor_areas.each do |a|
       tailor = a.tailor
-      comments = []
-      tailor.tailor_comments.first(3).each do |tc|
-        comments << tc.to_hash(:get).merge!(commenter_name: tc.commenter_name)
+      if tailor
+        comments = []
+        tailor.tailor_comments.first(3).each do |tc|
+          comments << tc.to_hash(:get).merge!(commenter_name: tc.commenter_name)
+        end
+        user_h = { login: tailor.user.login, areas_str: tailor.areas_str, comments: comments }
+        tailor = tailor.to_hash(:list).merge!(user_h)
+        tailors << tailor
       end
-      user_h = { login: tailor.user.login, areas_str: tailor.areas_str, comments: comments }
-      tailor = tailor.to_hash(:list).merge!(user_h)
-      tailors << tailor
     end
 
     render json: tailors
