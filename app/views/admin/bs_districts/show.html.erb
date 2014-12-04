@@ -3,6 +3,9 @@
   <%= @bs_district.name %>
 </h2>
 
+<%= link_to '编辑', edit_admin_bs_district_path(@bs_district) %> |
+<%= link_to '返回', admin_bs_cities_path %>
+
 <h3>商圈列表 </h3>
 <table class="table table-hover table-condensed">
   <tr>
@@ -17,20 +20,17 @@
     <td><%= area.id %></td>
     <td><%= area.name %></td>
     <td><%#= link_to '查看', [:admin,@bs_district,area] %></td>
-    <td><%#= link_to '编辑', edit_admin_bs_city_path(bs_city) %></td>
-    <td><%#= link_to '删除', [:admin,bs_city], confirm: '确定?', method: :delete %></td>
+    <td><%= link_to '编辑', edit_admin_bs_district_bs_area_path(area) %></td>
+    <td><%= link_to '删除', [:admin,@bs_district, area], confirm: '确定删除吗?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 
 
-<h2>新增圈子</h2>
+<h2>新增商圈</h2>
 <%= form_for([:admin,@bs_district, @bs_district.bs_areas.build], :class=> 'form-inline') do |f| %>
   <%= f.text_field :name, :class => 'input-medium', :placeholder => '名称' %>
   <%= f.submit "提交", :class => 'btn btn-info'  %>
 <% end %>
 
-<br/>
-<%= link_to '编辑', edit_admin_bs_district_path(@bs_district) %> |
-<%= link_to '返回', [:admin,@bs_city,@bs_district] %>

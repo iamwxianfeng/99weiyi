@@ -3,8 +3,6 @@
 class V1::BsDistrictsController < ApplicationController
   layout false
 
-  # before_filter :auth_required
-
   def index
     bs_city = BsCity.find(params[:bs_city_id])
     lists = []

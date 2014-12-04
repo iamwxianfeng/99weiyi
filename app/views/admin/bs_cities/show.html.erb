@@ -2,6 +2,11 @@
   <b>市名:</b>
   <%= @bs_city.name %>
 </h2>
+
+<%= link_to '编辑', edit_admin_bs_city_path(@bs_city) %> |
+<%= link_to '返回', admin_bs_cities_path %>
+
+
 <h3>区列表 </h3>
 
 <table class="table table-hover table-condensed">
@@ -18,8 +23,8 @@
     <td><%= district.id %></td>
     <td><%= district.name %></td>
     <td><%= link_to '查看商圈', [:admin,@bs_city,district] %></td>
-    <td><%#= link_to '编辑', edit_admin_bs_city_path(bs_city) %></td>
-    <td><%#= link_to '删除', [:admin,bs_city], confirm: '确定?', method: :delete %></td>
+    <td><%= link_to '编辑', edit_admin_bs_district_path(district) %></td>
+    <td><%= link_to '删除', [:admin,@bs_city, district], confirm: '确定删除吗?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
@@ -30,6 +35,3 @@
   <%= f.submit "提交", :class => 'btn btn-info'  %>
 <% end %>
 
-<br/>
-<%= link_to '编辑', edit_admin_bs_city_path(@bs_city) %> |
-<%= link_to '返回', admin_bs_cities_path %>

@@ -3,14 +3,12 @@
 class V1::TailorsController < ApplicationController
   layout false
 
-  # before_filter :auth_required
-
   def index
-    tailor_areas = if params[:bs_district_id]
-      TailorArea.where(bs_district_id: params[:bs_district_id])
+    tailor_areas =  unless params[:bs_city_id]
+      TailorArea.where(bs_city_id: 1)
     else
-      bs_city_id = params[:bs_city_id] || 1
-      TailorArea.where(bs_city_id: bs_city_id)
+      sql = TailorArea.condtion_sql(params)
+      TailorArea.find_by_sql(sql)
     end
 
     tailors = []

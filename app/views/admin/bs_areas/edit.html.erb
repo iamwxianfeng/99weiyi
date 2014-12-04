@@ -1,0 +1,8 @@
+<h2>编辑商圈</h2>
+
+<%= form_for([:admin,@bs_district,@bs_area], :class=> 'form-inline') do |f| %>
+  <%= f.text_field :name, :class => 'input-medium', :placeholder => '名称' %>
+  <%= f.submit "提交", :class => 'btn btn-default'  %>
+<% end %>
+
+<input type=button value=返回上一步 onclick="window.history.go(-1)" class="btn btn-link">

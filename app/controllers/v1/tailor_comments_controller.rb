@@ -7,9 +7,11 @@ class V1::TailorCommentsController < ApplicationController
 
   def create
       # todo 预约成功才可以评论
+      rating = [1,2,3,4,5].include?(params[:rating].to_i) ? params[:rating].to_i : 1
+
       tailor = Tailor.find_by_id(params[:tailor_id])
       if tailor
-        tailor_comment = tailor.tailor_comments.create(content: params[:content], rating: params[:rating].to_i, commenter_id: login_user.id)
+        tailor_comment = tailor.tailor_comments.create(content: params[:content], rating: rating, commenter_id: login_user.id)
         upload_pic(tailor_comment, params[:pictures] || [])
         render json: tailor_comment.to_hash(:get)
       else
