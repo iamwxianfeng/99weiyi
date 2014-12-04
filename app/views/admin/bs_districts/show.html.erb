@@ -20,7 +20,7 @@
     <td><%= area.id %></td>
     <td><%= area.name %></td>
     <td><%#= link_to '查看', [:admin,@bs_district,area] %></td>
-    <td><%= link_to '编辑', edit_admin_bs_district_bs_area_path(area) %></td>
+    <td><%= link_to '编辑', [:edit, :admin,@bs_district, area] %></td>
     <td><%= link_to '删除', [:admin,@bs_district, area], confirm: '确定删除吗?', method: :delete %></td>
   </tr>
 <% end %>
