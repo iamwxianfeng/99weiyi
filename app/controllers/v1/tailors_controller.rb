@@ -31,7 +31,7 @@ class V1::TailorsController < ApplicationController
   def show
     tailor = Tailor.find_by_id(params[:id])
     if tailor
-      extend_h = { areas_str: tailor.areas_str, desc_pic: image_protocol(tailor.desc_pic_url), score: tailor.average_score }
+      extend_h = { areas_str: tailor.areas_str, desc_pic: image_protocol(tailor.desc_pic.url), score: tailor.average_score }
       user_h = tailor.to_hash(:tailor).merge!(age: tailor.user.age,avatar_url: tailor.user.avatar_url)
       extend_h.merge!(user_h)
       render json: tailor.to_hash(:get).merge!(extend_h)
