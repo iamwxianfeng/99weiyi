@@ -6,7 +6,7 @@ class Tailor < ActiveRecord::Base
 
   belongs_to :user
   has_many :tailor_areas
-  has_many :bs_areas, :through => :tailor_areas,  :uniq=>true
+  has_many :bs_areas, :through => :tailor_areas,  :uniq => true
   has_many :tailor_comments
   has_many :reserves
 
