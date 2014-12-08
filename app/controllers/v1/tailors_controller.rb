@@ -32,7 +32,8 @@ class V1::TailorsController < ApplicationController
     tailor = Tailor.find_by_id(params[:id])
     if tailor
       extend_h = { areas_str: tailor.areas_str, desc_pic: image_protocol(tailor.desc_pic_url), score: tailor.average_score }
-      user = extend_h.merge!(tailor.user.to_hash(:tailor)).merge!(age: tailor.user.age)
+      user_h = tailor.to_hash(:tailor).merge!(age: tailor.user.age,avatar_url: tailor.user.avatar_url)
+      extend_h.merge!(user_h)
       render json: tailor.to_hash(:get).merge!(extend_h)
     else
       render status:422, json: { message: "请求参数错误" }
