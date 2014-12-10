@@ -46,7 +46,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     # 搞一个大一点的默认图片取名 blank.png 用 FTP 传入图片空间，用于作为默认图片
     # 由于有自动的缩略图处理，小图也不成问题
     # Setting.upload_url 这个是你的图片空间 URL
-    "http://chimaimage.b0.upaiyun.com/user/avatar/de15d38c9eaaf09f25f5c47f8d9a4281.jpg#{version_name}"
+    "chimaimage.b0.upaiyun.com/user/avatar/de15d38c9eaaf09f25f5c47f8d9a4281.jpg#{version_name}"
   end
 
   # 覆盖 url 方法以适应“图片空间”的缩略图命名
