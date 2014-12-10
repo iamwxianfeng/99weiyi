@@ -19,8 +19,8 @@ class V1::TailorsController < ApplicationController
         tailor.tailor_comments.first(3).each do |tc|
           comments << tc.to_hash(:get).merge!(commenter_name: tc.commenter_name)
         end
-        user_h = { login: tailor.user.login, areas_str: tailor.areas_str, comments: comments }
-        tailor = tailor.to_hash(:list).merge!(user_h)
+        extend_h = { login: tailor.user.login, avatar_url: tailor.user.avatar_url('a.90'), desc_pic: tailor.desc_pic_url('460x350'), areas_str: tailor.areas_str, comments: comments }
+        tailor = tailor.to_hash(:list).merge!(extend_h)
         tailors << tailor
       end
     end
@@ -31,8 +31,8 @@ class V1::TailorsController < ApplicationController
   def show
     tailor = Tailor.find_by_id(params[:id])
     if tailor
-      extend_h = { areas_str: tailor.areas_str, desc_pic: image_protocol(tailor.desc_pic_url), score: tailor.average_score }
-      user_h = tailor.user.to_hash(:tailor).merge!(age: tailor.user.age,avatar_url: tailor.user.avatar_url)
+      extend_h = { areas_str: tailor.areas_str, desc_pic: tailor.desc_pic_url('460x350'), score: tailor.average_score }
+      user_h = tailor.user.to_hash(:tailor).merge!(age: tailor.user.age,avatar_url: tailor.user.avatar_url('a.60'))
       extend_h.merge!(user_h)
       render json: tailor.to_hash(:get).merge!(extend_h)
     else

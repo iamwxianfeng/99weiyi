@@ -25,4 +25,8 @@ class Tailor < ActiveRecord::Base
     @score ||= self.tailor_comments.average(:rating).to_i
   end
 
+  def desc_pic_url version
+    "https://" + [self.desc_pic.url,version].join("!")
+  end
+
 end

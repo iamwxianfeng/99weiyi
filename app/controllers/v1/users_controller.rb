@@ -45,7 +45,7 @@ class V1::UsersController < ApplicationController
 
   def show
     user_h = login_user.to_hash(:get)
-    user_h.merge!(avatar_url: login_user.avatar_url)
+    user_h.merge!(avatar_url: login_user.avatar_url('a.120'))
     user_h.merge!(login_user.body_hash)
     user_h.merge!(login_user.provider_hash)
 
@@ -65,7 +65,7 @@ class V1::UsersController < ApplicationController
     login_user.update_attribute(:style,params[:style]) if params[:style].present?
 
     user_h = login_user.to_hash(:get)
-    user_h.merge!(avatar_url: login_user.avatar_url)
+    user_h.merge!(avatar_url: login_user.avatar_url('a.120'))
     user_h.merge!(login_user.body_hash)
     user_h.merge!(login_user.provider_hash)
 
@@ -82,7 +82,7 @@ class V1::UsersController < ApplicationController
     p "name: #{filename}, extense_name: #{extense_name}, tempfile: #{tempfile}"
     tempfile.write(params[:file])
     login_user.update_attribute(:avatar, tempfile)
-    render json: { avatar_url: login_user.avatar_url }
+    render json: { avatar_url: login_user.avatar_url('a.120') }
   end
 
 #预约列表
