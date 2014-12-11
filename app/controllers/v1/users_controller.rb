@@ -90,7 +90,7 @@ class V1::UsersController < ApplicationController
     reserves = Reserve.where(user_id: login_user.id)
     res = []
     reserves.each do |r|
-     res << r.to_hash(:get).merge!({shop: r.shop.try(:name)})
+     res << r.to_hash(:get)
     end
     render json: res
   end
