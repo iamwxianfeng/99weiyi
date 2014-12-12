@@ -4,5 +4,6 @@ class ChangeReserveStatusType < ActiveRecord::Migration
   end
 
   def down
+    change_column :reserves , :status , :integer, default: 0
   end
 end

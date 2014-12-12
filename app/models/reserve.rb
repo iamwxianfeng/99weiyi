@@ -11,8 +11,8 @@ class Reserve < ActiveRecord::Base
   belongs_to :weight
   belongs_to :tailor
 
-  validates :status, inclusion: { in: %w{waiting confirmed measured producing succeeded failed},
-    message: "%{value} is not a valid size" }
+  # validates :status, inclusion: { in: %w{waiting confirmed measured producing succeeded failed},
+  #   message: "%{value} is not a valid size" }
 
   attr_visible :id,:address,:name,:phone, :service_time, :reserve_type, :tailor_id,:created_at, :status, :desc, as: [:get,:list]
 
