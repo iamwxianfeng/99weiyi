@@ -13,6 +13,8 @@ class Reserve < ActiveRecord::Base
 
   # validates :status, inclusion: { in: %w{waiting confirmed measured producing succeeded failed},
   #   message: "%{value} is not a valid size" }
+ #   0： 待确认 ，1： 已确认，2： 已完成量体，3： 生产中 ，4： 成功
+ # ，－1： 失败
 
   attr_visible :id,:address,:name,:phone, :service_time, :reserve_type, :tailor_id,:created_at, :status, :desc, as: [:get,:list]
 
@@ -22,13 +24,30 @@ class Reserve < ActiveRecord::Base
     TYD  = 3 #体验店预约
   end
 
+  R_TYPE = {
+    "1" => "上门量体",
+    "2" => "上门定制",
+    "3" => "体验店预约"
+  }
+
+  R_STATUS = {
+    "0" => "待确认",
+    "1" => "已确认",
+    "2" => "已完成量体",
+    "3" => "生产中",
+    "4" => "成功",
+    "-1" => "失败"
+  }
+
+
   def human_type
-    s = case self.reserve_type
-        when Type::SMLT then '上门量体'
-        when Type::SMDZ then '上门定制'
-        when Type::TYD then '体验店预约'
-        end
-    s
+    R_TYPE[reserve_type.to_s]
   end
+
+  def human_status
+    R_STATUS[status.to_s]
+  end
+
+
 
 end

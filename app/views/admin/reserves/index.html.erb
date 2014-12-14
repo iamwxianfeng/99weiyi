@@ -1,4 +1,4 @@
-<h1>预约列表</h1>
+<h1>预约订单列表</h1>
 
 <table class="table table-hover table-condensed">
   <tr>
@@ -7,7 +7,11 @@
     <th>手机号</th>
     <th>服务时间</th>
     <th>预约类型</th>
+    <th>状态</th>
     <th>创建时间</th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
 
 <% @reserves.each do |reserve| %>
@@ -17,10 +21,11 @@
     <td><%= reserve.phone %></td>
     <td><%= reserve.service_time %></td>
     <td><%= reserve.human_type %></td>
+    <td><%= reserve.human_status %></td>
     <td><%= reserve.created_at %></td>
-    <td><%#= link_to '显示', [:admin,reserve] %></td>
-    <td><%= link_to '编辑', edit_admin_reserf_path(reserve) %></td>
-    <td><%= link_to '删除', [:admin,reserve], confirm: '确定?', method: :delete %></td>
+    <td><%= link_to '查看审核', [:admin,reserve] %></td>
+    <td><%#= link_to '编辑', edit_admin_reserf_path(reserve) %></td>
+    <td><%#= link_to '删除', [:admin,reserve], confirm: '确定?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

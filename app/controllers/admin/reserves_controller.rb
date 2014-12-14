@@ -33,6 +33,10 @@ class Admin::ReservesController < ApplicationController
   # PUT /reserves/1.json
   def update
     @reserve = Reserve.find(params[:id])
+    status = params[:reserve][:status].to_i
+    if status != -1 && status < @reserve.status.to_i
+      return redirect_to [:admin,@reserve], notice: 'opt error!!!'
+    end
 
     respond_to do |format|
       if @reserve.update_attributes(params[:reserve])
