@@ -22,7 +22,8 @@ class V1::TailorCommentsController < ApplicationController
   def index
     tailor = Tailor.find_by_id(params[:tailor_id])
     tailor_comments = []
-    tailor.tailor_comments.each do |tc|
+    # @comments = @business.comments.paginate(:page => params[:page], :per_page => 7)
+    tailor.tailor_comments.paginate(:page => params[:page]).each do |tc|
       tailor_comments <<  tc.to_hash(:list).merge!({commenter_name: tc.commenter_name, pictures: tc.comment_images})
     end
     render json: tailor_comments

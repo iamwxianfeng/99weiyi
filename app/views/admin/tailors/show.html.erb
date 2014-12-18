@@ -1,7 +1,7 @@
 <h3>裁缝详情</h3>
 <% if @tailor.desc_pic %>
 <p>
-  <%=image_tag image_protocol(@tailor.desc_pic_url), :class => 'tailor_desc_pic' %>
+  <%=image_tag image_protocol(@tailor.desc_pic_url('460x350')), :class => 'tailor_desc_pic' %>
 </p>
 <% end %>
 <p>
