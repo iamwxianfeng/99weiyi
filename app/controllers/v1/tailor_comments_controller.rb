@@ -12,7 +12,7 @@ class V1::TailorCommentsController < ApplicationController
       tailor = Tailor.find_by_id(params[:tailor_id])
       if tailor
         tailor_comment = tailor.tailor_comments.create(content: params[:content], rating: rating, commenter_id: login_user.id)
-        upload_pic(tailor_comment, params[:pictures] || [])
+        upload_pic(tailor_comment, params[:picture_ids] || [])
         render json: tailor_comment.to_hash(:get)
       else
         render status: 422, json: {message: '评论失败' }
@@ -30,12 +30,9 @@ class V1::TailorCommentsController < ApplicationController
   end
 
   private
-    def upload_pic tailor_comment, pictures
-      pictures.each do |pic|
-        filename = Chima::Token.make_token
-        tempfile = Tempfile.new([filename,".png"])
-        tempfile.write(pic)
-        tailor_comment.tailor_comment_images.create(image: tempfile)
+    def upload_pic tailor_comment, picture_ids
+      picture_ids.each do |id|
+        tailor_comment.tailor_comment_images.create(image_id: id)
       end
     end
 

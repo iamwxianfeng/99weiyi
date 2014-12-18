@@ -53,6 +53,8 @@ Chima::Application.routes.draw do
     post '/reserves', to: 'reserves#create'
     post '/invitations', to: 'invitations#create'
 
+    post '/files', to: 'files#create'
+
     get '/user', to: 'users#show'
     post '/user', to: 'users#patch'
     get '/user/reserves', to: 'users#reserves'

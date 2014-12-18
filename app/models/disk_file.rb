@@ -2,6 +2,9 @@ class DiskFile < AB
   belongs_to :user
   belongs_to :item, :polymorphic => true
 
+  mount_uploader :file, ImageUploader
+
+
   PATH = "#{Rails.root}/public/files"
 
   def location_dirname
@@ -24,6 +27,10 @@ class DiskFile < AB
 
   def path
     "/files/#{location_dirname}/#{location_filename}"
+  end
+
+  def file_url version=''
+    "https://" + [self.file.url,version].join("!")
   end
 
 end
