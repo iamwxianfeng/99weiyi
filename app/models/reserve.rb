@@ -16,7 +16,7 @@ class Reserve < ActiveRecord::Base
  #   0： 待确认 ，1： 已确认，2： 已完成量体，3： 生产中 ，4： 成功
  # ，－1： 失败
 
-  attr_visible :id,:address,:name,:phone, :service_time, :reserve_type, :tailor_id,:created_at, :status, :desc, as: [:get,:list]
+  attr_visible :id,:address,:name,:phone, :service_time, :reserve_type, :tailor_id,:created_at, :status, :desc, :commented, as: [:get,:list]
 
   module Type
     SMLT = 1 #上门量体
@@ -46,6 +46,10 @@ class Reserve < ActiveRecord::Base
 
   def human_status
     R_STATUS[status.to_s]
+  end
+
+  def markd_commented
+    self.update_attribute(:commented, true)
   end
 
 

@@ -45,10 +45,22 @@ class ImageUploader < CarrierWave::Uploader::Base
   def default_url
     # 搞一个大一点的默认图片取名 blank.png 用 FTP 传入图片空间，用于作为默认图片
     # 由于有自动的缩略图处理，小图也不成问题
-    # Setting.upload_url 这个是你的图片空间 URL
-    p "model.class #{model.class}"
-    p "model.class #{model.created_at}"
-    "chimaimage.b0.upaiyun.com/user/avatar/de15d38c9eaaf09f25f5c47f8d9a4281.jpg#{version_name}"
+    # http://chimaimage.b0.upaiyun.com/defaults/im_tailor.png
+    # http://chimaimage.b0.upaiyun.com/defaults/man_default.png
+    # http://chimaimage.b0.upaiyun.com/defaults/women_default.png
+    url = ''
+    if model.class.to_s == 'User'
+      url = "chimaimage.b0.upaiyun.com/defaults/man_default.png"  if model.is_male?
+      url = "chimaimage.b0.upaiyun.com/defaults/women_default.png" if model.is_female?  
+    end
+
+    if model.class.to_s == 'Tailor'
+      url = "chimaimage.b0.upaiyun.com/defaults/im_tailor.png"
+    end
+
+    p "model.class #{model.class}, #{url}"
+
+    url 
   end
 
   # 覆盖 url 方法以适应“图片空间”的缩略图命名
@@ -81,8 +93,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   def filename
-    if super.present?
-      @name ||="#{Digest::MD5.hexdigest(original_filename)}.#{file.extension.downcase}" if original_filename
+    if original_filename.present?
+      @name ||= Digest::MD5.hexdigest(model.id.to_s + Time.now.to_s)
+      "#{@name}.#{file.extension.downcase}"
     end
   end
 

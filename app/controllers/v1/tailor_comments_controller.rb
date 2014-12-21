@@ -12,7 +12,8 @@ class V1::TailorCommentsController < ApplicationController
       tailor = Tailor.find_by_id(params[:tailor_id])
       if tailor
         tailor_comment = tailor.tailor_comments.create(content: params[:content], rating: rating, commenter_id: login_user.id)
-        upload_pic(tailor_comment, params[:picture_ids] || [])
+        upload_pic(tailor_comment, params[:picture_ids])
+        markd_commented(params[:reverse_id])
         render json: tailor_comment.to_hash(:get)
       else
         render status: 422, json: {message: '评论失败' }
@@ -31,9 +32,15 @@ class V1::TailorCommentsController < ApplicationController
 
   private
     def upload_pic tailor_comment, picture_ids
-      picture_ids.each do |id|
+      ids = picture_ids.split(',')
+      ids.each do |id|
         tailor_comment.tailor_comment_images.create(image_id: id)
       end
+    end
+
+    def markd_commented reverse_id
+      reserve = Reserve.find_by_id(reverse_id)
+      reserve.markd_commented  if reserve
     end
 
 

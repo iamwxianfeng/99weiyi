@@ -79,7 +79,6 @@ class V1::UsersController < ApplicationController
     file_name = params[:name].to_s
     extense_name = file_name.include?('.') ? file_name.split('.').last : "png"
     tempfile = Tempfile.new([filename,".#{extense_name}"])
-    p "name: #{filename}, extense_name: #{extense_name}, tempfile: #{tempfile}"
     tempfile.write(params[:file])
     login_user.update_attribute(:avatar, tempfile)
     render json: { avatar_url: login_user.avatar_url('a.120') }

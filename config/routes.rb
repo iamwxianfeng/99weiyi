@@ -51,6 +51,8 @@ Chima::Application.routes.draw do
     get '/chima', to: 'chima#index'
     post '/questions', to: 'questions#create'
     post '/reserves', to: 'reserves#create'
+    post '/reserves/:id', to: 'reserves#show'
+
     post '/invitations', to: 'invitations#create'
 
     post '/files', to: 'files#create'

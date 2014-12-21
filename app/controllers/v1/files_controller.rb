@@ -6,12 +6,10 @@ class V1::FilesController < ApplicationController
   before_filter :auth_required
 
   def create
-    # file = params[:file]
     filename = Chima::Token.make_token
     file_name = params[:name].to_s
     extense_name = file_name.include?('.') ? file_name.split('.').last : "png"
     tempfile = Tempfile.new([filename,".#{extense_name}"])
-    p "name: #{filename}, extense_name: #{extense_name}, tempfile: #{tempfile}"
     tempfile.write(params[:file])
     upload_file = DiskFile.new
 

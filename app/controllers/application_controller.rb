@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_forecast(user = nil)
-    @user ||=  user || current_user
+    @user ||=  user ||= current_user
 
     height_forecasts, weight_forecasts = [], []
     if @user.gender == User::Gender::M

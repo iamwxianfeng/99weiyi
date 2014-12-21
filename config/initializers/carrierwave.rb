@@ -5,3 +5,7 @@ CarrierWave.configure do |config|
   config.upyun_bucket = "chimaimage"
   config.upyun_bucket_host = "chimaimage.b0.upaiyun.com"
 end
+
+# http://chimaimage.b0.upaiyun.com/defaults/im_tailor.png
+# http://chimaimage.b0.upaiyun.com/defaults/man_default.png
+# http://chimaimage.b0.upaiyun.com/defaults/women_default.png

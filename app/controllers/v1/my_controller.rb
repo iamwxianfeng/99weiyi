@@ -43,10 +43,15 @@ class V1::MyController < ApplicationController
 
 
   def actual_size
+
     if login_user.actual_size
       render json: login_user.actual_size.to_hash(:get)
     else
-      render status: 422, json: { message: "您还没有完善准确尺寸"}
+      if login_user.forecast_wsize
+        render json: login_user.forecast_wsize.to_hash(:get)
+      else
+        render status: 422, json: { message: "您还没有任何尺寸信息"}
+      end
     end
 
   end
