@@ -25,7 +25,7 @@ class V1::TailorCommentsController < ApplicationController
     tailor_comments = []
     # @comments = @business.comments.paginate(:page => params[:page], :per_page => 7)
     tailor.tailor_comments.paginate(:page => params[:page]).each do |tc|
-      tailor_comments <<  tc.to_hash(:list).merge!({commenter_name: tc.commenter_name, pictures: tc.comment_images})
+      tailor_comments <<  tc.to_hash(:list).merge!({commenter_name: tc.commenter_name, pictures: tc.comment_images, created_at: string_time(tc.created_at)})
     end
     render json: tailor_comments
   end

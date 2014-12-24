@@ -6,7 +6,7 @@ class TailorComment < ActiveRecord::Base
   belongs_to :user
   has_many :tailor_comment_images
 
-  attr_visible :id, :rating, :content, :created_at,  as: [:get,:list]
+  attr_visible :id, :rating, :content,  as: [:get,:list]
 
   validates :rating, inclusion: { in: [1,2,3,4,5],
     message: "%{value} is not a valid size" }
@@ -24,7 +24,6 @@ class TailorComment < ActiveRecord::Base
   def comment_images
     self.tailor_comment_images.collect{ |c| c.image_url}
   end
-
 
 
 end
