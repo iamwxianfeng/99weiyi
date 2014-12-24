@@ -11,6 +11,9 @@ class TailorComment < ActiveRecord::Base
   validates :rating, inclusion: { in: [1,2,3,4,5],
     message: "%{value} is not a valid size" }
 
+  default_scope :order => "created_at desc"
+
+
   self.per_page = 10
 
   def commenter
