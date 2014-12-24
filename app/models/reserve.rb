@@ -15,6 +15,7 @@ class Reserve < ActiveRecord::Base
   #   message: "%{value} is not a valid size" }
  #   0： 待确认 ，1： 已确认，2： 已完成量体，3： 生产中 ，4： 成功
  # ，－1： 失败
+   default_scope :order => "created_at desc"
 
   attr_visible :id,:address,:name,:phone, :service_time, :reserve_type, :tailor_id,:created_at, :status, :desc, :commented, as: [:get,:list]
 
