@@ -17,9 +17,9 @@ class V1::TailorsController < ApplicationController
       if tailor
         comments = []
         tailor.tailor_comments.first(3).each do |tc|
-          comments << tc.to_hash(:get).merge!(commenter_name: tc.commenter_name)
+          comments << tc.to_hash(:get).merge!(commenter_name: tc.commenter_name, created_at: string_time(tc.created_at))
         end
-        extend_h = { login: tailor.user.login, avatar_url: tailor.user.avatar_url('a.90'), desc_pic: tailor.desc_pic_url('460x350'), areas_str: tailor.areas_str, comments: comments }
+        extend_h = { login: tailor.user.human_login, avatar_url: tailor.user.avatar_url('a.90'), desc_pic: tailor.desc_pic_url('460x350'), areas_str: tailor.areas_str,score: tailor.average_score,  comments: comments }
         tailor = tailor.to_hash(:list).merge!(extend_h)
         tailors << tailor
       end

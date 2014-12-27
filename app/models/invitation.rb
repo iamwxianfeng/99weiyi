@@ -6,5 +6,5 @@ class Invitation < ActiveRecord::Base
 
   belongs_to :user
 
-  attr_visible :id, :status, :created_at, as: [:get,:list]
+  attr_visible :id, :status, as: [:get,:list]
 end

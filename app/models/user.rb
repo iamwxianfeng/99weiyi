@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   include Chima::Oauth
 
   attr_visible :id,:gender,:email, :style, :city, :invite_code, as: :get
-  attr_visible :login, :avatar_url,:province, as:[:get,:tailor]
+  attr_visible :avatar_url,:province, as:[:get,:tailor]
 
   set_table_name 'users'
   belongs_to :height
@@ -65,8 +65,8 @@ class User < ActiveRecord::Base
 
   # validates_inclusion_of :gender,:in => %w{ 0 1 }, :message => "性别不合法"
 
-  validates :email, :presence   => { message: "email不能为空" },
-    :uniqueness => { message: "email已经存在" },
+  validates :email, :presence   => { message: "邮箱不能为空" },
+    :uniqueness => { message: "邮箱已经存在" },
     :format     => { :with => Authentication.email_regex, :message => Authentication.bad_email_message }
   # :length     => { :within => 6..100 }
 
@@ -201,6 +201,10 @@ class User < ActiveRecord::Base
 
   def title
     self.login || self.name || self.email
+  end
+
+  def human_login
+    self.login  || self.email
   end
 
   def avatar_path

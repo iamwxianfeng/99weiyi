@@ -28,10 +28,10 @@ class V1::ReservesController < ApplicationController
     render json: reserve.to_hash(:get).merge!(extend_h)
   end
 
-  def show 
+  def show
     reserve = Reserve.find_by_id(params[:id])
     if reserve
-      extend_h = {height: reserve.height.try(:value) || '', weight: reserve.weight.try(:value) || '' }
+      extend_h = {height: reserve.height.try(:value) || '', weight: reserve.weight.try(:value) || '' , created_at: string_time(reserve.created_at)}
       render json: reserve.to_hash(:get).merge!(extend_h)
     else
       render status: 422, json: { message: "预约信息信息不存在"}

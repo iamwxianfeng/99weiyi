@@ -16,7 +16,7 @@ class V1::UsersController < ApplicationController
       Resque.enqueue(UserMailer,@user.id,'activation')
       render json: { access_token: @user.access_token }
     else
-      render status: 422, json: {message: @user.errors}
+      render status: 422, json: {message: @user.errors.messages.values.join(',')}
     end
   end
 
@@ -45,7 +45,7 @@ class V1::UsersController < ApplicationController
 
   def show
     user_h = login_user.to_hash(:get)
-    user_h.merge!(avatar_url: login_user.avatar_url('a.120'))
+    user_h.merge!(avatar_url: login_user.avatar_url('a.120'), login: login_user.human_login)
     user_h.merge!(login_user.body_hash)
     user_h.merge!(login_user.provider_hash)
 
@@ -89,7 +89,7 @@ class V1::UsersController < ApplicationController
     reserves = Reserve.where(user_id: login_user.id)
     res = []
     reserves.each do |r|
-     res << r.to_hash(:get)
+     res << r.to_hash(:get).merge!({created_at: string_time(r.created_at)})
     end
     render json: res
   end
@@ -128,7 +128,7 @@ class V1::UsersController < ApplicationController
   def invitations
     invitations_arr = []
     login_user.invitations.each do |ci|
-      h = ci.to_hash(:get).merge!({invite_name: ci.value})
+      h = ci.to_hash(:get).merge!({invite_name: ci.value, created_at: string_time(ci.created_at)})
       invitations_arr << h
     end
     render json: invitations_arr

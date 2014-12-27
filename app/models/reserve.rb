@@ -17,7 +17,7 @@ class Reserve < ActiveRecord::Base
  # ，－1： 失败
    default_scope :order => "created_at desc"
 
-  attr_visible :id,:address,:name,:phone, :service_time, :reserve_type, :tailor_id,:created_at, :status, :desc, :commented, as: [:get,:list]
+  attr_visible :id,:address,:name,:phone, :service_time, :reserve_type, :tailor_id, :status, :desc, :commented, as: [:get,:list]
 
   module Type
     SMLT = 1 #上门量体
