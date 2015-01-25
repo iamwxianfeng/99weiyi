@@ -1,7 +1,7 @@
 <h3>裁缝详情</h3>
 <% if @tailor.desc_pic %>
 <p>
-  <%=image_tag image_protocol(@tailor.desc_pic_url('460x350')), :class => 'tailor_desc_pic' %>
+  <%=image_tag @tailor.desc_pic_url('460x350'), :class => 'tailor_desc_pic' %>
 </p>
 <% end %>
 <p>
@@ -29,17 +29,26 @@
   <%=@tailor.desc %>
 </p>
 <hr>
-<h4>设置圈子信息</h4>
+<h4>添加商圈</h4>
 
 <%= form_tag('/admin/tailor_areas', :method => 'post', :class=> 'form-inline' ) do -%>
   <%#= error_messages_for @tailor_area %>
   <%= hidden_field_tag "tailor_area[tailor_id]", @tailor.id %>
   <div class="field">
-    <%= select_tag "tailor_area[bs_area_id]", "<option>--请选择圈子--</option>#{options_from_collection_for_select(BsArea.all,:id,:name)}".html_safe %>
-    <%#= f.select :bs_area_id, BsArea.all.collect {|a| [a.name, a.id] }, { include_blank: true } %>
+    <%= select_tag "tailor_area[bs_area_id]",  "#{options_from_collection_for_select(BsArea.all,:id,:name)}".html_safe, { :include_blank => 'select one ', :required => true } %>
      <%= submit_tag "确定"%>
   </div>
 <% end -%>
+<hr/>
+<h4>商圈列表</h4>
+<div class="span6">
+<ul class="list-group">
+  <% @tailor.tailor_areas.each do |area| %>
+   <li class="list-group-item"> <%=area.bs_area.try(:name) %>  <%=link_to "删除", [:admin, area],  confirm: '确定删除吗?', method: :delete %> </li>
+  <% end %>
+
+</ul>
+</div>
 
 
 <%= link_to '编辑', edit_admin_tailor_path(@tailor) %> |

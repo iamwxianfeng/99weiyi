@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
   has_many :watchs, :class_name => "Watcher"
   has_many :questions
   has_many :answers
-  has_many :reserves
   has_many :user_coupons
   has_many :invitations
   has_many :passports

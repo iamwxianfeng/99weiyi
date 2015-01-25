@@ -14,7 +14,7 @@ class V1::TailorCommentsController < ApplicationController
         tailor_comment = tailor.tailor_comments.create(content: params[:content], rating: rating, commenter_id: login_user.id)
         upload_pic(tailor_comment, params[:picture_ids])
         markd_commented(params[:reverse_id])
-        render json: tailor_comment.to_hash(:get).merge!({created_at: string_time(tc.created_at)})
+        render json: tailor_comment.to_hash(:get).merge!({created_at: string_time(tailor_comment.created_at)})
       else
         render status: 422, json: {message: '评论失败' }
       end

@@ -5,8 +5,11 @@ class Admin::ReservesController < ApplicationController
   # GET /reserves
   # GET /reserves.json
   def index
-    @reserves = Reserve.all
-
+    @reserves = if current_user.is_admin?
+      Reserve.all
+    else
+      Reserve.where(tailor_id: current_user.id)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @reserves }
