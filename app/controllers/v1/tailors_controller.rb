@@ -25,7 +25,7 @@ class V1::TailorsController < ApplicationController
       end
     end
 
-    render json: tailors
+    render json: tailors.uniq!
   end
 
   def show
